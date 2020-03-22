@@ -1,0 +1,464 @@
+  \documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage[a4paper, total={6in, 8in}]{geometry}
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+\usepackage{comment} 
+\usepackage[pdftex]{graphicx}
+
+\usepackage{fancyvrb} % packages needed for verbatim environments
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+
+\usepackage{pgfplotstable, booktabs}
+
+\pgfplotstableset{
+    every head row/.style={before row=\toprule,after row=\midrule},
+    every last row/.style={after row=\bottomrule}
+}
+
+
+
+
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% --- fancyhdr package for fancy headers ---
+\usepackage{fancyhdr}
+\fancyhf{} % sets both header and footer to nothing
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[LE,RO]{\thepage}
+% Ensure copyright on titlepage (article style) and chapter pages (book style)
+\fancypagestyle{plain}{
+  \fancyhf{}
+  \fancyfoot[C]{{\footnotesize \copyright\ 1999-2018, "Computational Physics I FYS3150/FYS4150":"http://www.uio.no/studier/emner/matnat/fys/FYS3150/index-eng.html". Released under CC Attribution-NonCommercial 4.0 license}}
+%  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+% Ensure copyright on titlepages with \thispagestyle{empty}
+\fancypagestyle{empty}{
+  \fancyhf{}
+  \fancyfoot[C]{{ }}
+  \renewcommand{\footrulewidth}{0mm}
+  \renewcommand{\headrulewidth}{0mm}
+}
+
+\pagestyle{fancy}
+
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+\usepackage{listings}
+\usepackage[normalem]{ulem} 	%for tables
+\useunder{\uline}{\ul}{}
+\usepackage{hyperref}
+\usepackage[section]{placeins} %force figs in section
+
+\usepackage{natbib}
+
+\usepackage[toc,page]{appendix} % appenix
+\usepackage{amsmath} % split in align
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% ----------------- title -------------------------
+
+\thispagestyle{empty}
+
+\begin{center}
+{\LARGE\bf
+\begin{spacing}{1.25}
+VMC%
+\end{spacing}
+}
+\end{center}
+
+% ----------------- author(s) -------------------------
+
+\begin{center}
+{\bf Johan Nereng}
+\end{center}
+
+    \begin{center}
+% List of all institutions:
+\centerline{{\small Department of Physics, University of Oslo, Norway}}
+\end{center}
+    
+% ----------------- end author(s) -------------------------
+
+% --- begin date ---
+\begin{center}
+March 23, 2020
+\end{center}
+% --- end date ---
+
+\vspace{3cm}
+\vspace{3cm}
+\begin{abstract}
+
+
+\end{abstract}
+
+
+\newpage
+
+
+\textit{\textbf{Author's comments:} .}
+\newpage
+
+\section{Introduction}
+
+
+In order to write this project paper and the code required to produce the results, I used a variety of tools, including: Python 3.7.5, NumPy \cite{numpy}, , as well as a number of books, web-pages and articles - of which most are listed under 
+ \hyperref[refer]{references}. All the code required to reproduce the results may be found on my \href{https://github.com/johanere/FYS-STK4155/tree/master/Project3}{github page }.  
+
+
+
+\section{Material and methods} \label{theory}
+\subsection{System}
+Hard sphere Bose gas for various number of particles.  In order to study the properties of the system, a trial wave function \eqref{eq:trialwf} is used. Trap is an harmonic spherical (S) ($\omega_{ho}^2=\omega_z^2$) or elliptical (E) ($\omega_{ho}^2 \neq \omega_z^2$) one, two and finally three dimensional trap, made up of the potential \eqref{trap_eqn}. The two-body Hamiltionian of the system
+
+\begin{equation}
+ V_{ext}(\mathbf{r}) = 
+ \Bigg\{
+ \begin{array}{ll}
+	 \frac{1}{2}m\omega_{ho}^2r^2 & (S)\\
+ \strut
+	 \frac{1}{2}m[\omega_{ho}^2(x^2+y^2) + \omega_z^2z^2] & (E)
+ \label{trap_eqn}
+ \end{array}
+ \end{equation}
+Where $\omega_{ho}^2$ is the trap potential strength.
+
+
+
+\begin{equation}
+     H = \sum_i^N \left(\frac{-\hbar^2}{2m}{\bigtriangledown }_{i}^2 +V_{ext}({\mathbf{r}}_i)\right)  +
+	 \sum_{i<j}^{N} V_{int}({\mathbf{r}}_i,{\mathbf{r}}_j),
+	 \label{eq:hamiltonian}
+ \end{equation}
+ as the two-body Hamiltonian of the system.  Here $\omega_{ho}^2$
+ defines the trap potential strength.  In the case of the elliptical
+ trap, $V_{ext}(x,y,z)$, $\omega_{ho}=\omega_{\perp}$ is the trap
+ frequency in the perpendicular or $xy$ plane and $\omega_z$ the
+ frequency in the $z$ direction.  The mean square vibrational
+ amplitude of a single boson at $T=0K$ in the trap (\ref{trap_eqn}) is
+ $\langle x^2\rangle=(\hbar/2m\omega_{ho})$ so that $a_{ho} \equiv
+ (\hbar/m\omega_{ho})^{\frac{1}{2}}$ defines the characteristic length
+ of the trap.  The ratio of the frequencies is denoted
+ $\lambda=\omega_z/\omega_{\perp}$ leading to a ratio of the trap
+ lengths $(a_{\perp}/a_z)=(\omega_z/\omega_{\perp})^{\frac{1}{2}} =
+ \sqrt{\lambda}$. Note that we use the shorthand notation
+\begin{align}
+    \sum_{i < j}^{N} V_{ij} \equiv \sum_{i = 1}^{N}\sum_{j = i + 1}^{N} V_{ij},
+\end{align}
+ that is, the notation $i < j$ under the summation sign signifies a double sum
+ running over all pairwise interactions once.
+
+
+\begin{equation}
+ V_{int}(|\mathbf{r}_i-\mathbf{r}_j|) =  \Bigg\{
+ \begin{array}{ll}
+	 \infty & {|\mathbf{r}_i-\mathbf{r}_j|} \leq {a}\\
+	 0 & {|\mathbf{r}_i-\mathbf{r}_j|} > {a}
+ \end{array}
+ \end{equation}
+ 
+\begin{equation}
+ \Psi_T(\mathbf{r})=\Psi_T(\mathbf{r}_1, \mathbf{r}_2, \dots \mathbf{r}_N,\alpha,\beta)
+ =\left[
+    \prod_i g(\alpha,\beta,\mathbf{r}_i)
+ \right]
+ \left[
+    \prod_{j<k}f(a,|\mathbf{r}_j-\mathbf{r}_k|)
+ \right],
+ \label{eq:trialwf}
+\end{equation}
+Where
+
+\begin{equation}
+    g(\alpha,\beta,\mathbf{r}_i)= \exp{[-\alpha(x_i^2+y_i^2+\beta z_i^2)]}.
+ \end{equation}
+ For spherical traps we have $\beta = 1$ and for non-interacting
+ bosons ($a=0$) we have $\alpha = 1/2a_{ho}^2$.  The correlation wave
+ function is
+
+\begin{equation}
+    f(a,|\mathbf{r}_i-\mathbf{r}_j|)=\Bigg\{
+ \begin{array}{ll}
+	 0 & {|\mathbf{r}_i-\mathbf{r}_j|} \leq {a}\\
+	 (1-\frac{a}{|\mathbf{r}_i-\mathbf{r}_j|}) & {|\mathbf{r}_i-\mathbf{r}_j|} > {a}.
+ \end{array}
+ \end{equation}
+
+\subsection{Local energy}
+The local energy is defined as \eqref{eq:locale}. Using the trial wave function \eqref{eq:trialwf}, the first thingything is to find the analytical expression IOT save flops (quote with ratio).
+\begin{equation}
+    E_L(\mathbf{r})=\frac{1}{\Psi_T(\mathbf{r})}H\Psi_T(\mathbf{r}),
+    \label{eq:locale}
+ \end{equation}
+ 
+\subsubsection{Non-interacting}
+In the Non-interacting care, the local energy \eqref{eq:locale} on the trial wave functio eqref{eq:trialwf} with $a=0$ -> only HO potential and $\beta=1$. This also means that the internal potential $V_{int}$ in the Hamiltonian \eqref{eq:hamiltonian} becomes zero. 
+\begin{equation}
+    E_L(\mathbf{r}) \Psi_T(\mathbf{r}) =\frac{1}{ 
+    \prod_i g(\alpha,\beta,\mathbf{r}_i)
+}  \sum_i^N \left(\frac{-\hbar^2}{2m}{\nabla }_{i}^2 +V_{ext}({\mathbf{r}}_i)\right)  \left[
+    \prod_i g(\alpha,\beta,\mathbf{r}_i)
+ \right]
+    \label{eq:locale}
+ \end{equation}
+Taking the gradient of $g$:
+\begin{equation}
+{\nabla }_{i} g(\alpha,\beta,\mathbf{r}_i)=-2\alpha \mathbf{r}_i g(\alpha,\beta,\mathbf{r}_i)
+\end{equation}
+Taking the Laplacian of the $g$ thing which I'm sure has another name. From the product rule, this entails deriving $ \mathbf{r}_i$, resulting in a coefficient $d$ representing the dimensionality of $r$. 
+\begin{equation}
+{\nabla }_{i}^2  g(\alpha,\beta,\mathbf{r}_i)=  (-2d \alpha  + 4 \alpha  \mathbf{r}_i^2) g(\alpha,\beta,\mathbf{r}_i)
+\label{eq:grad_g}
+\end{equation}
+Meaning that
+\begin{equation}
+        E_L(\mathbf{r}) =  \sum_i^N \left(\frac{-\hbar^2}{2m}(-2 d \alpha + 4 \alpha  \mathbf{r}_i^2) + \frac{1}{2}m\omega_{ho}^2r_i^2 )\right)  
+    \label{eq:locale}
+ \end{equation}
+ 
+\eqref{eq:grad_g} also leads to an analytic expression for the drift force used in the importance sampling;
+\begin{equation}
+F_i = \frac{2\nabla \Psi_T}{\Psi_T}= -4\alpha \mathbf{r}_i 
+\end{equation}
+ 
+
+Next, we will find the local energy for the full problem in three dimensions.
+The tricky part is to find an analytic expressions for the derivative of the trial wave function
+
+\begin{equation*}
+   \frac{1}{\Psi_T(\mathbf{r})}\sum_i^{N}\nabla_i^2\Psi_T(\mathbf{r}),
+\end{equation*}
+with the above 
+trial wave function of Eq. (\ref{eq:trialwf}).
+We rewrite (and we can use the same general expressions for projects 2 and 3)
+
+\begin{equation*}
+\Psi_T(\mathbf{r})=\Psi_T(\mathbf{r}_1, \mathbf{r}_2, \dots \mathbf{r}_N,\alpha,\beta)
+=\left[
+    \prod_i g(\alpha,\beta,\mathbf{r}_i)
+\right]
+\left[
+    \prod_{j<k}f(a,|\mathbf{r}_j-\mathbf{r}_k|)
+\right],
+\end{equation*}
+as
+
+\begin{equation*}
+\Psi_T(\mathbf{r})=\left[
+    \prod_i g(\alpha,\beta,\mathbf{r}_i)
+\right]
+\exp{\left(\sum_{j<k}u_{jk}\right)}
+\end{equation*}
+where we have defined $r_{ij}=|\mathbf{r}_i-\mathbf{r}_j|$
+and
+
+\begin{equation*}
+   \prod_{i<j} f(r_{ij})= \exp{\left(\sum_{i<j}u_{jk}\right)},
+\end{equation*}
+with $u_{jk}=\ln{f(r_{ij})}$.
+We have also
+\begin{equation*}
+    g(\alpha,\beta,\mathbf{r}_i) = \exp{\left[-\alpha(x_i^2+y_i^2+\beta
+    z_i^2)\right]}= \phi(\mathbf{r}_i) = \phi_i.
+\end{equation*}
+
+Taking the gradient with respect to the k'th particle;
+
+\begin{align}
+  \nabla_k\Psi_T(\mathbf{r}) &= \nabla_k \left(\left[
+    \prod_i \phi_i
+\right]
+\exp{\left(\sum_{j<m}u_{jm}\right)}\right) \\
+ &= \left( \nabla_k \left[
+    \prod_i \phi_i
+\right] \right)
+\exp{\left(\sum_{j<m} u_{jm}\right)} +
+\left[
+    \prod_i \phi_i
+\right]
+\left( \nabla_k \exp{\left(\sum_{j<m} u_{jm} \right)}\right) \label{AA_gradfullTW}
+\end{align}
+The gradient of the non-interacting part of the TW:
+\begin{align}
+& \nabla_k \left[
+    \prod_i \phi_i
+\right] =  \nabla_k \phi_k \left[
+    \prod_{i\neq k} \phi_i
+\right]= \nabla_k \phi_k \frac{\prod_i g(\alpha,\beta,\mathbf{r}_i)}{\phi_k} \\
+\end{align}
+And the gradient of the interacting part, remembering that $r_{kl}=r_{lk}$;
+\begin{align}
+\nabla_k \exp{\left(\sum_{j<m} u_{jm} \right)}
+= \exp{\left(\sum_{j<m} u_{jm} \right)} \sum_{j\neq k} \nabla_k u_{kj}
+=  \prod_{j<m} f(r_{jm}) \sum_{l\neq k} \nabla_k u_{kl}
+\end{align}
+
+Thus \eqref{AA_gradfullTW} is
+\begin{align}
+\begin{split}
+  \nabla_k\Psi_T(\mathbf{r}) &= \nabla_k\phi_k\left[\prod_{i\ne k}\phi_i\right]\exp{\left(\sum_{j<m}u_{jm}\right)}
+  \\
+  &\qquad
+  +  \left[\prod_i\phi_i\right]
+  \exp{\left(\sum_{j<m}u_{jm}\right)}\sum_{l\ne k}\nabla_k u_{kl}
+\end{split}
+\end{align}
+or
+
+\begin{align}
+\begin{split}
+  \nabla_k\Psi_T(\mathbf{r}) &=\nabla_k \phi_k \frac{\prod_i g(\alpha,\beta,\mathbf{r}_i)}{\phi_k}\prod_{j<m} f(r_{jm})
+  \\
+  &\qquad
+  +  \prod_i  g(\alpha,\beta,\mathbf{r}_i)
+ \prod_{j<m} f(r_{jm})\sum_{l\ne k}\nabla_k u_{kl} \\
+&= \left(\ \frac{\nabla_k \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k u_{kl} \right) \Psi_T(\mathbf{r})  
+\end{split}
+\end{align}
+Next, we find the second derivative;
+
+\begin{align}  
+\begin{split}
+\frac{1}{\Psi_T(\mathbf{r})} \nabla_k^2\Psi_T(\mathbf{r}) 
+&=
+\frac{1}{\Psi_T(\mathbf{r})} \nabla_k\left( \left(\frac{\nabla_k \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k u_{kl} \right) \Psi_T(\mathbf{r}) \right)\\
+&=
+\frac{1}{\Psi_T(\mathbf{r})} \left(\left(\phi_k \nabla_k\frac{1}{\phi_k} +\frac{\nabla_k^2 \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k^2 u_{kl} \right)\Psi_T(\mathbf{r}) + 
+\left(\ \frac{\nabla_k \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k u_{kl} \right)^2 \Psi_T(\mathbf{r})   \right) \\
+&=
+ \left(\ \frac{\nabla_k \phi_k}{\phi_k} \right)^2 + \frac{\nabla_k^2 \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k^2 u_{kl}  + 
+\left(\ \frac{\nabla_k \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k u_{kl} \right)^2 \\
+&=
+ -\left(\frac{\nabla_k \phi_k}{\phi_k}\right)^2 + \frac{\nabla_k^2 \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k^2 u_{kl}  + 
+\left(\ \frac{\nabla_k \phi_k}{\phi_k} \right)^2 + 2\left(\ \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\nabla_k u_{kl} \right)+ \left(\ \sum_{l\ne k}\nabla_k u_{kl} \right)^2 \\
+&= 
+\frac{\nabla_k^2 \phi_k}{\phi_k} + 2  \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\nabla_k u_{kl} + \sum_{l\ne k}\nabla_k^2 u_{kl}   + \left(\ \sum_{l\ne k}\nabla_k u_{kl} \right)^2
+\end{split}      
+\end{align}
+In order to simplify applying the $\nabla_k$-operator to $u_{kl}$, the operator is re-written:
+\begin{align*}
+\nabla_k = \nabla_k \frac{\partial r_{kl}}{\partial r_{kl}} = \nabla_k \sqrt{\left(\bm r_k - \bm r_l \right)^2} \frac{\partial}{\partial r_{kl}} = \frac{\bm r_k - \bm r_l}{r_{kl}} \frac{\partial}{\partial r_{kl}}
+\end{align*}
+This re-written operator is then applied to the $\nabla_k u_{kl}$ terms, such that
+\begin{align*}
+\nabla_k u_{kl} = \frac{\bm r_k - \bm r_l}{r_{kl}} \frac{\partial u_{kl}}{\partial r_{kl}} = \frac{\bm r_k - \bm r_l}{r_{kl}}  u'_{kl}
+\end{align*}
+And
+\begin{align*}
+\nabla_k^2 u_{kl} 
+&= \left( \nabla_k  \frac{\bm r_k - \bm r_l}{r_{kl}} \right) \partial u'_{kl}  +  \frac{\bm r_k - \bm r_l}{r_{kl}} \left( \nabla_k   u'_{kl}  \right) \\
+&=  \left( \frac{ \nabla_k (\bm r_k - \bm r_l)}{r_{kl}} \right)  u'_{kl}  +   (\bm r_k - \bm r_l) \left( \nabla_k \frac{1 }{r_{kl}} \right)  u'_{kl}  +  \frac{\bm r_k - \bm r_l}{r_{kl}} \left( \nabla_k   u'_{kl}  \right) \\
+&= 
+\frac{d}{r_{kl}}   u'_{kl}  -  (\bm r_k - \bm r_l) \frac{(\bm r_k - \bm r_l)}{r_{kl}^3}   u'_{kl} 
++  \left( \frac{\bm r_k - \bm r_l}{r_{kl}} \right)^2   u{''}_{kl} \\
+&= 
+\left( \frac{d}{r_{kl}}   -   \frac{(\bm r_k - \bm r_l)^2}{r_{kl}^3} \right)  u'_{kl} 
++  \left( \frac{\bm r_k - \bm r_l}{r_{kl}} \right)^2   u{''}_{kl}
+\end{align*}
+Where $(\bm r_k - \bm r_l)^2={r_{kl}}^2$, thus
+\begin{align*}
+\nabla_k^2 u_{kl} 
+&=
+\left( \frac{d}{r_{kl}}   -   \frac{1}{r_{kl}} \right)  u'_{kl} 
++    u{''}_{kl} =   \frac{d-1}{r_{kl}}   u'_{kl} 
++    u{''}_{kl}
+\end{align*}
+Applied to the Laplacian;
+\begin{align}
+\begin{split}
+\frac{1}{\Psi_T(\mathbf{r})} \nabla_k^2\Psi_T(\mathbf{r}) 
+&=
+\frac{\nabla_k^2 \phi_k}{\phi_k} + 2  \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\frac{\bm r_k - \bm r_l}{r_{kl}}  u'_{kl}  \\
+&+  \left(\ \sum_{l\ne k} \frac{\bm r_k - \bm r_l}{r_{kl}} \partial u'_{kl} \right)^2 \\
+&+ \sum_{l\ne k} \left( \frac{d-1}{r_{kl}}   u'_{kl} +   u{''}_{kl} \right)
+\end{split}
+\end{align}
+Expanding the third term, re-arranging, and inserting $d=3$;
+\begin{align}
+\begin{split}
+\frac{1}{\Psi_T(\mathbf{r})} \nabla_k^2\Psi_T(\mathbf{r}) 
+&=
+\frac{\nabla_k^2 \phi_k}{\phi_k} + 2  \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\frac{\bm r_k - \bm r_l}{r_{kl}}  u'_{kl}  \\
+&+  \sum_{j\ne k} \sum_{l\ne k} \frac{(\bm r_k - \bm r_l)(\bm r_k - \bm r_j)}{r_{kj} r_{kl} }  u'_{kj}  u'_{kl} \\
+&+ \sum_{l\ne k} \left(   u{''}_{kl} + \frac{2}{r_{kl}}   u'_{kl} \right)
+\end{split}
+\end{align}
+
+ 
+\section{Results} \label{results}
+
+\section{Conclusions} \label{conclusions}
+
+
+
+\bibliography{ref} \label{refer}
+\bibliographystyle{plain}
+
+
+\begin{appendices}
+\section*{Appendix 1.} \label{APP_1}
+
+
+\end{appendices}
+\end{document}
