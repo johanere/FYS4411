@@ -253,7 +253,7 @@ The local energy is defined as \eqref{eq:locale}. Using the trial wave function 
  \end{equation}
  
 \subsubsection{Non-interacting}
-In the Non-interacting care, the local energy \eqref{eq:locale} on the trial wave functio eqref{eq:trialwf} with $a=0$ -> only HO potential and $\beta=1$. This also means that the internal potential $V_{int}$ in the Hamiltonian \eqref{eq:hamiltonian} becomes zero. 
+In the Non-interacting case, the local energy \eqref{eq:locale} on the trial wave functio eqref{eq:trialwf} with $a=0$ -> only HO potential and $\beta=1$. This also means that the internal potential $V_{int}$ in the Hamiltonian \eqref{eq:hamiltonian} becomes zero. 
 \begin{equation}
     E_L(\mathbf{r}) \Psi_T(\mathbf{r}) =\frac{1}{ 
     \prod_i g(\alpha,\beta,\mathbf{r}_i)
@@ -276,13 +276,19 @@ Meaning that
         E_L(\mathbf{r}) =  \sum_i^N \left(\frac{-\hbar^2}{2m}(-2 d \alpha + 4 \alpha  \mathbf{r}_i^2) + \frac{1}{2}m\omega_{ho}^2r_i^2 )\right)  
     \label{eq:locale}
  \end{equation}
+Using natural units, $\hbar=c=1$, and unity mass $m=1$, the equation becomes;
+
+\begin{equation}
+        E_L(\mathbf{r}) =  \alpha d N + \left( - 2 \alpha    + \frac{1}{2} \omega_{ho}^2\right)  \sum_i^N r_i^2 
+\label{eq:locale_unity}
+\end{equation}
  
 \eqref{eq:grad_g} also leads to an analytic expression for the drift force used in the importance sampling;
 \begin{equation}
 F_i = \frac{2\nabla \Psi_T}{\Psi_T}= -4\alpha \mathbf{r}_i 
 \end{equation}
  
-
+\subsubsection{Interacting - IKKE FERDIG}
 Next, we will find the local energy for the full problem in three dimensions.
 The tricky part is to find an analytic expressions for the derivative of the trial wave function
 
@@ -291,7 +297,7 @@ The tricky part is to find an analytic expressions for the derivative of the tri
 \end{equation*}
 with the above 
 trial wave function of Eq. (\ref{eq:trialwf}).
-We rewrite (and we can use the same general expressions for projects 2 and 3)
+We rewrite 
 
 \begin{equation*}
 \Psi_T(\mathbf{r})=\Psi_T(\mathbf{r}_1, \mathbf{r}_2, \dots \mathbf{r}_N,\alpha,\beta)

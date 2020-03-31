@@ -7,14 +7,48 @@
 #include "InitialStates/initialstate.h"
 #include "Math/random.h"
 
+
+
+//remove
+#include <iostream>
+using std::cout;
+using std::endl;
+//
 bool System::metropolisStep() {
     /* Perform the actual Metropolis step: Choose a particle at random and
      * change it's position by a random amount, and check if the step is
      * accepted by the Metropolis test (compare the wave function evaluated
      * at this new position with the one at the old position).
      */
+     assert(m_stepLength>0);
+     //get old WF
+    float oldWF = m_waveFunction->evaluate(m_particles);
 
-    return false;
+    //pick random particle
+    int particle=Random::nextInt(m_numberOfParticles);
+    // make copy of old pos
+    std::vector<double> oldPosition=m_particles[particle]->getPosition();
+
+    for (int dimension=0; dimension < m_numberOfDimensions; dimension++)
+    {
+      //move particle
+      m_particles[particle]->adjustPosition((Random::nextDouble()-0.5)*m_stepLength,dimension);
+    }
+    //calculate new WF
+    float newWF = m_waveFunction->evaluate(m_particles);
+
+
+    // check if move in accepted
+    double q= (newWF*newWF) / (oldWF*oldWF);
+    if(Random::nextDouble() > q) {
+      //if not accepted, reset particle
+      m_particles[particle]->setPosition(oldPosition);
+      return false;
+    }
+    else  {
+      return true;
+    }
+
 }
 
 void System::runMetropolisSteps(int numberOfMetropolisSteps) {
@@ -32,7 +66,10 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps) {
          * for a while. You may handle this using the fraction of steps which
          * are equilibration steps; m_equilibrationFraction.
          */
-        m_sampler->sample(acceptedStep);
+         if (i>=m_equilibrationFraction*numberOfMetropolisSteps)
+         {
+          m_sampler->sample(acceptedStep);
+        }
     }
     m_sampler->computeAverages();
     m_sampler->printOutputToTerminal();
@@ -67,5 +104,3 @@ void System::setWaveFunction(WaveFunction* waveFunction) {
 void System::setInitialState(InitialState* initialState) {
     m_initialState = initialState;
 }
-
-

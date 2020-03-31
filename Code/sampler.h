@@ -1,4 +1,5 @@
 #pragma once
+#include <vector>
 
 class Sampler {
 public:
@@ -8,6 +9,7 @@ public:
     void printOutputToTerminal();
     void computeAverages();
     double getEnergy()          { return m_energy; }
+    std::vector <double> getEnergySamples() { return m_EnergySamples; }
 
 private:
     int     m_numberOfMetropolisSteps = 0;
@@ -15,4 +17,5 @@ private:
     double  m_energy = 0;
     double  m_cumulativeEnergy = 0;
     class System* m_system = nullptr;
+    std::vector <double> m_EnergySamples;
 };

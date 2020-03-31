@@ -18,6 +18,7 @@ Sampler::Sampler(System* system) {
 
 void Sampler::setNumberOfMetropolisSteps(int steps) {
     m_numberOfMetropolisSteps = steps;
+    m_EnergySamples.reserve(steps);
 }
 
 void Sampler::sample(bool acceptedStep) {
@@ -29,10 +30,12 @@ void Sampler::sample(bool acceptedStep) {
     /* Here you should sample all the interesting things you want to measure.
      * Note that there are (way) more than the single one here currently.
      */
+
     double localEnergy = m_system->getHamiltonian()->
                          computeLocalEnergy(m_system->getParticles());
     m_cumulativeEnergy  += localEnergy;
     m_stepNumber++;
+    m_EnergySamples.push_back(m_cumulativeEnergy/m_stepNumber);
 }
 
 void Sampler::printOutputToTerminal() {
@@ -65,5 +68,5 @@ void Sampler::computeAverages() {
     /* Compute the averages of the sampled quantities. You need to think
      * thoroughly through what is written here currently; is this correct?
      */
-    m_energy = m_cumulativeEnergy / m_system->getNumberOfMetropolisSteps();
+    m_energy = m_cumulativeEnergy/m_stepNumber;
 }

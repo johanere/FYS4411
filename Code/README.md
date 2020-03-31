@@ -6,7 +6,7 @@ Please note that this is only a start, and when you have implemented all of thes
 
 If you want to write your own code from scratch, you are of course welcome to do so, and feel free to use this code as inspiration for your own class structure.
 
-- If you choose to use this code as a basis for your work, the first thing you should do is fork it, pull it down to your computer, and make sure it compiles and runs. See the next section on how to compile and run the project. After this you should spend at least 10 minutes looking at the structure and familiarizing yourself with how the classes interact with eachother. 
+- If you choose to use this code as a basis for your work, the first thing you should do is fork it, pull it down to your computer, and make sure it compiles and runs. See the next section on how to compile and run the project. After this you should spend at least 10 minutes looking at the structure and familiarizing yourself with how the classes interact with eachother.
 - A good way to do this may be to simply start at the top of the main.cpp file, and go through all the calls to the System class functions. Consider also the base classes WaveFunction, Hamiltonian, and InitialState and see which functions are virtual (which functions NEED to be implemented by any sub-class).
 - You can skip over the output function in the Sampler class and the entire Random class.
 
@@ -56,4 +56,3 @@ Here follows a suggestion for how you can work to complete the missing parts of 
 - Now, the last big thing needed is to implement the energy calculation. This is done by the Hamiltonian sub-class HarmonicOscillator. Here you will have to use the Laplacian you calculated for the wave function earlier.
 - Now the code should be functioning and you should see (somewhat) reasonable results. Try to set the oscillator frequency to 1 and calculate analytically the energy of the oscillator. Recall the form of the ground state wave function of the harmonic oscillator, and set the parameter alpha accordingly. What is the resulting energy?
 - If this energy is NOT correct, the last bit missing is to take a look at the computeAverages function in the Sampler class. What is missing here?
-
