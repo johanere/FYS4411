@@ -10,8 +10,8 @@
 using namespace std;
 //
 
-SimpleGaussian::SimpleGaussian(System* system, double alpha) :
-        WaveFunction(system) {
+SimpleGaussian::SimpleGaussian(System* system, int numberOfDimensions,double alpha) :
+        WaveFunction(system,numberOfDimensions) {
     assert(alpha >= 0);
     m_numberOfParameters = 1;
     m_parameters.reserve(1);
@@ -30,7 +30,7 @@ double SimpleGaussian::evaluate(std::vector<class Particle*> particles) {
     for (int i=0; i<m_system->getNumberOfParticles();i++)
     {
       r_squared=0;
-      for (int dimension=0; dimension <particles[i]->getPosition().size();dimension++)
+      for (int dimension=0; dimension <(int) particles[i]->getPosition().size();dimension++)
       {
         r_squared+=pow(particles[i]->getPosition()[dimension],2);
         // if dimension == 2 : beta
@@ -51,4 +51,22 @@ double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> part
      */
     cout<<" DD DD  DD  DD  DD  DD "<<endl;
     return 0;
+}
+
+std::vector<double> SimpleGaussian::updateQForce(std::vector<class Particle*> particles,int particle) {
+    /* All wave functions need to implement this function, so you need to
+     * find the double derivative analytically. Note that by double derivative,
+     * we actually mean the sum of the Laplacians with respect to the
+     * coordinates of each particle.
+     *
+     * This quantity is needed to compute the (local) energy (consider the
+     * Schrödinger equation to see how the two are related).
+     */
+
+    for (int dim=0; dim <(int) m_qForce.size();dim++)
+    {
+    m_qForce.at(dim)=-4*m_parameters[0] * particles[particle]->getPosition()[dim]  ;
+    }
+    // F_i = -4 alpha r_i
+    return m_qForce;
 }

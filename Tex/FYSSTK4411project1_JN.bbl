@@ -1,5 +1,13 @@
 \begin{thebibliography}{1}
 
+\bibitem{Griffiths95}
+David~J Griffiths.
+\newblock Introduction to quantum mechanics, 1995.
+
+\bibitem{CMP}
+A.~Weisse H.~Fehske, R.~Schneider.
+\newblock Computational many-particle physics, 2008.
+
 \bibitem{numpy}
 Travis~E Oliphant.
 \newblock {\em A guide to NumPy}, volume~1.

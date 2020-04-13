@@ -36,7 +36,6 @@ void RandomUniform::setupInitialState() {
     double pos=0;
     for (int i=0; i < m_numberOfParticles; i++) {
         std::vector<double> position = std::vector<double>();
-        cout<<"Particle: "<<i<<" ";
         for (int j=0; j < m_numberOfDimensions; j++) {
             /* This is where you should actually place the particles in
              * some positions, according to some rule. Since this class is
@@ -49,11 +48,9 @@ void RandomUniform::setupInitialState() {
              * according to their index in the particles list (this is
              * obviously NOT a good idea).
              */
-            pos=Random::nextDouble();
-            cout<<pos<<" ";
-            position.push_back(pos);//dis(generator)); //add new random position using generator and distribution
+            pos=(m_system->getRandomEngine())->nextDouble();
+            position.push_back(pos);
         }
-        cout<<endl;
         m_particles.push_back(new Particle());
         m_particles.at(i)->setNumberOfDimensions(m_numberOfDimensions);
         m_particles.at(i)->setPosition(position);

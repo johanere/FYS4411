@@ -30,10 +30,8 @@ void Sampler::sample(bool acceptedStep) {
     /* Here you should sample all the interesting things you want to measure.
      * Note that there are (way) more than the single one here currently.
      */
-
-    double localEnergy = m_system->getHamiltonian()->
-                         computeLocalEnergy(m_system->getParticles());
-    m_cumulativeEnergy  += localEnergy;
+    m_cumulativeEnergy  += m_system->getHamiltonian()->
+                         computeLocalEnergy(m_system->getParticles()); //add local energy
     m_stepNumber++;
     m_EnergySamples.push_back(m_cumulativeEnergy/m_stepNumber);
 }

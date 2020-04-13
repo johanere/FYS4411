@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  31 MAR 2020 16:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  10 APR 2020 17:56
 entering extended mode
 **./FYSSTK4411project1_JN.tex
 (FYSSTK4411project1_JN.tex
@@ -981,14 +981,7 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \RaggedLeftParindent=\skip84
 \RaggedRightParindent=\skip85
 \JustifyingParindent=\skip86
-) (FYSSTK4411project1_JN.aux
-
-LaTeX Warning: Label `eq:locale' multiply defined.
-
-
-LaTeX Warning: Label `eq:locale' multiply defined.
-
-)
+) (FYSSTK4411project1_JN.aux)
 \openout1 = `FYSSTK4411project1_JN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 107.
@@ -1006,7 +999,8 @@ LaTeX Font Info:    ... okay on input line 107.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 107.
 LaTeX Font Info:    ... okay on input line 107.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 107.
- (C:\Johan\Miktex\tex\latex\lm\t1lmr.fd
+
+(C:\Johan\Miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -1118,37 +1112,41 @@ ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 107.
  [1
 
-{C:/Users/Johan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 173.
+{C:/Users/Johan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] (C:\Joh
+an\Miktex\tex\latex\ucs\uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+)
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 193.
 
- (C:\Johan\Miktex\tex\latex\lm\ot1lmr.fd
+
+(C:\Johan\Miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 173.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 193.
 
 
 (C:\Johan\Miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 173
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 193
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 173
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 193
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 173.
+(Font)              <10> on input line 193.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 173.
+(Font)              <7> on input line 193.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 173.
-LaTeX Font Info:    Try loading font information for U+msa on input line 173.
+(Font)              <5> on input line 193.
+LaTeX Font Info:    Try loading font information for U+msa on input line 193.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1156,7 +1154,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Johan\Miktex\tex\latex\microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 173.
+LaTeX Font Info:    Try loading font information for U+msb on input line 193.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1164,15 +1162,29 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 (C:\Johan\Miktex\tex\latex\microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 ) [3] [4] [5]
-Overfull \hbox (49.2067pt too wide) detected at line 404
+Overfull \hbox (26.73898pt too wide) detected at line 349
 []
  []
 
-[6] (FYSSTK4411project1_JN.bbl) [7] [8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 470.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 470.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 369.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 369.
+[6]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 412--412
+ [] 
+ []
+
+[7] [8] (FYSSTK4411project1_JN.bbl [9]) [10]
+Overfull \hbox (49.2067pt too wide) detected at line 620
+[]
+ []
+
+[11] [12] [13]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 677.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 677.
  (FYSSTK4411project1_JN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 470.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 677.
 
 
  *File List*
@@ -1300,6 +1312,7 @@ RS)
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
 FYSSTK4411project1_JN.out
 FYSSTK4411project1_JN.out
+   uni-0.def    2013/05/13 UCS: Unicode data U+0000..U+00FF
   ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
   omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
  omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
@@ -1311,45 +1324,46 @@ FYSSTK4411project1_JN.out
 FYSSTK4411project1_JN.bbl
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 470.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 677.
 
 Package rerunfilecheck Warning: File `FYSSTK4411project1_JN.out' has changed.
 (rerunfilecheck)                Rerun to get outlines right
 (rerunfilecheck)                or use package `bookmark'.
 
 Package rerunfilecheck Info: Checksums for `FYSSTK4411project1_JN.out':
-(rerunfilecheck)             Before: BB7E70E4A4B727B0EB9711BAE5A56D25;553
-(rerunfilecheck)             After:  6FC5096BA7B026CBCF0901ED9E9EB386;567.
-
-LaTeX Warning: There were multiply-defined labels.
-
+(rerunfilecheck)             Before: DA3433A55EA93BF2FAACE62609EE5F43;910
+(rerunfilecheck)             After:  A075E44D9358D731F278ACCEEDFF0BF2;999.
  ) 
 Here is how much of TeX's memory you used:
- 32197 strings out of 493312
- 734174 string characters out of 3144112
- 976142 words of memory out of 3000000
- 35032 multiletter control sequences out of 15000+200000
- 75071 words of font info for 83 fonts, out of 3000000 for 9000
+ 32834 strings out of 493312
+ 741102 string characters out of 3144112
+ 978634 words of memory out of 3000000
+ 35579 multiletter control sequences out of 15000+200000
+ 101664 words of font info for 126 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,16n,98p,904b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Johan/Miktex/fonts/enc/
-dvips/lm/lm-rm.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/
-Miktex/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-
-ec.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mi
-ktex/fonts/type1/public/lm/lmbx10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lm
-bx12.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx7.pfb><C:/Johan/Miktex/font
-s/type1/public/lm/lmbx9.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbxi10.pfb>
-<C:/Johan/Miktex/fonts/type1/public/lm/lmex10.pfb><C:/Johan/Miktex/fonts/type1/
-public/lm/lmmi10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan
-/Miktex/fonts/type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/
-lmr10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex/font
-s/type1/public/lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb><C:/
-Johan/Miktex/fonts/type1/public/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/publ
-ic/lm/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy7.pfb><C:/Johan/Mik
-tex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on FYSSTK4411project1_JN.pdf (8 pages, 305377 bytes).
+ 69i,17n,98p,904b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/
+dvips/lm/lm-rm.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Johan/
+Miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-math
+ex.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mi
+ktex/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb><C:/Johan/Miktex/fonts/type
+1/public/amsfonts/cmextra/cmmib7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmb
+x10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Johan/Miktex/font
+s/type1/public/lm/lmbx7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx9.pfb><C
+:/Johan/Miktex/fonts/type1/public/lm/lmbxi10.pfb><C:/Johan/Miktex/fonts/type1/p
+ublic/lm/lmex10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi10.pfb><C:/Johan
+/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/type1/public/lm/
+lmmi6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fon
+ts/type1/public/lm/lmr10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C
+:/Johan/Miktex/fonts/type1/public/lm/lmr6.pfb><C:/Johan/Miktex/fonts/type1/publ
+ic/lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr8.pfb><C:/Johan/Miktex
+/fonts/type1/public/lm/lmr9.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmri10.p
+fb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy10.pfb><C:/Johan/Miktex/fonts/typ
+e1/public/lm/lmsy5.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy7.pfb><C:/Joh
+an/Miktex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on FYSSTK4411project1_JN.pdf (13 pages, 424716 bytes).
 PDF statistics:
- 215 PDF objects out of 1000 (max. 8388607)
- 45 named destinations out of 1000 (max. 500000)
- 19549 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 311 PDF objects out of 1000 (max. 8388607)
+ 71 named destinations out of 1000 (max. 500000)
+ 27253 words of extra memory for PDF output out of 29859 (max. 10000000)
 

@@ -15,7 +15,7 @@ outfile.open(filename);
 outfile << setiosflags(ios::showpoint | ios::uppercase);
 
 outfile << setw(15) << setprecision(8) <<"Energies" <<endl;
-for (int i=0; i<energySamples.size();i++){
+for (unsigned int i=0; i<energySamples.size();i++){
   outfile << setw(15) << setprecision(8) <<energySamples[i]<<endl;
 }
 outfile.close();

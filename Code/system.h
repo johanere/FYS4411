@@ -3,8 +3,13 @@
 
 class System {
 public:
+    System();
+    System(int seed);
     bool metropolisStep             ();
-    void runMetropolisSteps         (int numberOfMetropolisSteps);
+
+    bool metropolishastingsStep     ();
+
+    void runMetropolisSteps         (int numberOfMetropolisSteps,int method);
     void setNumberOfParticles       (int numberOfParticles);
     void setNumberOfDimensions      (int numberOfDimensions);
     void setStepLength              (double stepLength);
@@ -15,11 +20,13 @@ public:
     class WaveFunction*             getWaveFunction()   { return m_waveFunction; }
     class Hamiltonian*              getHamiltonian()    { return m_hamiltonian; }
     class Sampler*                  getSampler()        { return m_sampler; }
+    class Random*                   getRandomEngine()   { return m_random; }
     std::vector<class Particle*>    getParticles()      { return m_particles; }
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }
     int getNumberOfMetropolisSteps()    { return m_numberOfMetropolisSteps; }
     double getEquilibrationFraction()   { return m_equilibrationFraction; }
+
 
 private:
     int                             m_numberOfParticles = 0;
@@ -27,9 +34,20 @@ private:
     int                             m_numberOfMetropolisSteps = 0;
     double                          m_equilibrationFraction = 0.0;
     double                          m_stepLength = 0.1;
+
+    double                          m_stepLengthsqrt = 0.316;
+
+    float                           oldWF=0;
+    int                             particle=0;
+    std::vector<double>             oldPosition=std::vector<double>();
+    float                           newWF=0;
+    bool                            acceptedStep;
+
+
     class WaveFunction*             m_waveFunction = nullptr;
     class Hamiltonian*              m_hamiltonian = nullptr;
     class InitialState*             m_initialState = nullptr;
     class Sampler*                  m_sampler = nullptr;
     std::vector<class Particle*>    m_particles = std::vector<class Particle*>();
+    class Random*                   m_random = nullptr;
 };
