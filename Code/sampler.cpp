@@ -25,13 +25,12 @@ void Sampler::sample(bool acceptedStep) {
     // Make sure the sampling variable(s) are initialized at the first step.
     if (m_stepNumber == 0) {
         m_cumulativeEnergy = 0;
+        m_cumulativeEnergy2 = 0;
     }
 
-    /* Here you should sample all the interesting things you want to measure.
-     * Note that there are (way) more than the single one here currently.
-     */
-    m_cumulativeEnergy  += m_system->getHamiltonian()->
-                         computeLocalEnergy(m_system->getParticles()); //add local energy
+    m_DeltaE=m_system->getHamiltonian()->computeLocalEnergy(m_system->getParticles());
+    m_cumulativeEnergy  += m_DeltaE;
+    m_cumulativeEnergy2 += m_DeltaE*m_DeltaE;
     m_stepNumber++;
     m_EnergySamples.push_back(m_cumulativeEnergy/m_stepNumber);
 }
@@ -59,6 +58,7 @@ void Sampler::printOutputToTerminal() {
     cout << endl;
     cout << "  -- Reults -- " << endl;
     cout << " Energy : " << m_energy << endl;
+    cout << " Variance : " << m_variance << endl;
     cout << endl;
 }
 
@@ -67,4 +67,7 @@ void Sampler::computeAverages() {
      * thoroughly through what is written here currently; is this correct?
      */
     m_energy = m_cumulativeEnergy/m_stepNumber;
+    m_energy2 =  m_cumulativeEnergy2/m_stepNumber;
+    m_variance=m_energy2 - (m_energy*m_energy);
+    m_error=sqrt(m_variance/m_stepNumber);
 }

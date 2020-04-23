@@ -7,8 +7,11 @@
 \BOOKMARK [2][-]{subsection.2.3}{variational principle and VMC}{section.2}% 7
 \BOOKMARK [3][-]{subsubsection.2.3.1}{Metropolis algorithm}{subsection.2.3}% 8
 \BOOKMARK [2][-]{subsection.2.4}{importance sampling}{section.2}% 9
-\BOOKMARK [3][-]{subsubsection.2.4.1}{evaluating correlation ratio}{subsection.2.4}% 10
-\BOOKMARK [1][-]{section.3}{Results}{}% 11
-\BOOKMARK [1][-]{section.4}{Conclusions}{}% 12
-\BOOKMARK [1][-]{section*.1}{References}{}% 13
-\BOOKMARK [1][-]{section*.2}{Appendices}{}% 14
+\BOOKMARK [2][-]{subsection.2.5}{Error analysis}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.5.1}{Error estimate of correlated energy samples; the "blocking" method}{subsection.2.5}% 11
+\BOOKMARK [2][-]{subsection.2.6}{Steepest descent}{section.2}% 12
+\BOOKMARK [2][-]{subsection.2.7}{onebody}{section.2}% 13
+\BOOKMARK [1][-]{section.3}{Results}{}% 14
+\BOOKMARK [1][-]{section.4}{Conclusions}{}% 15
+\BOOKMARK [1][-]{section*.1}{References}{}% 16
+\BOOKMARK [1][-]{section*.2}{Appendices}{}% 17

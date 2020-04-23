@@ -394,7 +394,7 @@ The probability of the system being in state $i$ at time $t+\epsilon$ can be exp
 \end{align*}
 Using the probability ratio means that normalization is unnecessary, but more importantly this ratio also tells whether or not the random walker is moving into a region of high probability. Since the acceptance probability is unknown, brute force Metropolis uses $A(j\rightarrow i)=min(1,\frac{P_i}{P_j})$. The adaptation of the algorithm used in this project reads as; 
 
-\begin{center}\fbox{\parbox{\textwidth}{{\textbf{MCMC: Brute Force Metropolis algorithm}}
+\begin{center}\fbox{\parbox{\textwidth}{{\textbf{Algorithm: Brute Force Metropolis}}
 \begin{enumerate}
 \item Initialize algorithm
 \subitem - Set the number of Monte Carlo cycles, $M$, and step length, $l$
@@ -478,15 +478,223 @@ By adjusting the parameters of the trial wave function described earlier, the va
 In order to evaluate the ground-state energy of the Bose gas without solving the 
 The variational  ground-state energy of a system which is described by the Hamiltonian H i
  
-\subsection{importance sampling} \label{importance_sampling}
+\subsection{Error analysis} \label{importance_sampling}
+The ground-state energy of the system is estimated by the sample mean of the local energies over $M$ cycles (or the fraction left after equilibration);
 
-\subsubsection{evaluating correlation ratio}
+\begin{equation}
+\bar{E}=\frac{1}{M}\sum^M E_L(\vec r_i)
+\label{eq:estimated_energy}
+\end{equation}
+
+This means that the error of the sample mean, or sample error (squared) \eqref{eq:sampleerror}, coincides with the estimation error of $E_0$;
+
+\begin{equation}
+err^2_{\bar{E}}=var(\bar E)=\frac{1}{M} \sum^M (E_L(\vec r_i) - \mu_{\bar{E_L}})^2,
+\label{eq:sampleerror}
+\end{equation}
+where $\mu_{\bar{E_L}}$ is the true mean of $E_L$. Assuming that the samples are independent of one another, then by the law of large numbers\footnote{ $ lim_{n\rightarrow \infty} \frac{1}{n} \sum^n_{i=1} x_i p(x_i)= \mu_x $}, the difference between the sample mean and the true mean will decreases as the number of samples increase. For a sufficiently large number of Monte Carlo cycles, this would reduce the sample error arbitrarily close to zero, as long as $\mu_{\bar{E_L}}=E_0$, which depends on having chosen the correct variational parameters. Assuming that $\bar{E}=\mu_{\bar{E_L}}=E_0$, the error of the sample mean can be directly compared to the variance of the ground-energy;
+In general, $H\Psi = E_0 \Psi$ when $\Psi$ is the exact ground-state (the same holds for any eigenpair) of the system. This means that $\langle H^n \rangle=\langle \Psi \rvert H^n \lvert \Psi \rangle=E^n$, which also means that the exact wave function has variance of zero;
+\begin{equation}
+var(E)= \langle H^2 \rangle-\langle H \rangle^2 = E^2 -(E)^2= 0
+\end{equation}
+
+In other words, the sample error should be (machine precision) equal to the energy variance, which is zero, if the variational parameters are correct and the number of cycles sufficiently large. If the paramters are not correct, then the closer the parameters are to the correct values, the smaller the sample error. The magnitude of this sample error however, will only be correct if the assumption of independent samples holds, which it in this case does not.
+
+\subsubsection{Error estimate of correlated energy samples; the "blocking" method} 
+As any particular system configuration is directly dependent on the previous configuration of the system through the use of a random walker, the associated energy samples are correlated. Currently, the error estimate \eqref{eq:sampleerror} does not reflect this correlation, which means that the error estimate will be less accurate. In order to remedy this, I have chosen to use the "blocking" or "bunching" meothd \cite {flyvebjerg}. 
+
+As the series of energy samples from the VMC is ordered as a function of time, it is a time series of finite length. In general, a time series of $n$ samples can be be used to form an $n$-vector or $n$-tuple, $\vec X$, where $(X_i)$ denotes the $i$'th sample in the series. In order to estimate the variance of the sample mean, $var (\bar X)$, the time series is divided into blocks of increasing size. By combining these transformations with theorems on strictly stationary time series an automated blocking method (explained in detail in \cite{Jonsson}) may be applied to the VMC sample series. Pivotal for this method is the distribution of some quantity $M$ \eqref{eq:M}, which depends on a small spectre of different statistical quantities from the transformed series, an automated blocking method \cite{Jonsson} may be applied to the VMC sample series. Below is a brief outline of the automated "blocking" method.
+
+Starting with one block per sample, followed by two samples per block and so on, the sample variance, $\hat \sigma^2$ is calculated. As these blocks increase in size, $\hat \sigma^2$ tends towards the true $var(\bar X)$. From $\bm X_0=\bm X$, the subsequent "blocking" transformation, $\bm X_0 \rightarrow \bm X_1$, produces a new time series $\bm X_1$ with length $n_1=n/2$. The subsequent "blocking" number $k$, continues in the same fashion, where each transformation is achieved through 
+\begin{align}
+(X_i)_k=\frac{1}{2} (X_{2i-1})_{k-1} + (X_{2i})_{k-1}
+\end{align}
+for $i=1,..,n_k$, where $n_k$ is the length of the $\bm X_k$. These transformations are carried out until only one block remains. 
+
+Letting $\hat \sigma^2_k$ denote the sample variance of the $k$ times transformed series, and $\hat \gamma_k (h)$, the corresponding first-order \textit{sample covariance} \eqref{eq:samplecovar},
 
 
+Compare all values of $M$ to $q_{d-k}(1-\alpha)$ from the chi distrubtion, for some $\alpha$, usually, $0.05$
+
+what is d?
+each transformation bring truncation error. chose the lowest estaimte for sigma which has the lowest truncation error, but still long enough to make up for correlation.
+-----
+
+
+
+
+\begin{equation}
+\hat \gamma(h)=\frac{1}{n} \sum_{i=1}^{n-h} (X_i-\bar X)(X_{i+h}-\bar X) 
+\label{eq:samplecovar}
+\end{equation}
+which is a measure of the $h$-order ($h=|i-j|$) covariance of a time series series with length $n$. 
+
+\begin{equation}
+\hat \gamma_k=\frac{1}{4}
+\end{equation}
+
+
+\begin{equation}
+M_j=\sum_{k=j}^{d-1} \frac{n_k\left[(n_k-1)\hat \sigma_k^2/(n_k^2)+\hat \gamma_k(1)\right]^2}{\sigma_k^4}
+\label{eq:M}
+\end{equation}
+
+ Using the \textit{sample covariance}
+\begin{equation}
+\hat y(x)=\frac{1}{n} \sum_{i=1}^{n-h} (X_i-\bar X)(X_{i+h}-\bar X)
+\end{equation}
+, the sample covariance of 
+
+\begin{center}\fbox{\parbox{\textwidth}{{\textbf{Algorithm: The "blocking" method}}
+\begin{enumerate}
+\item Initialize algorithm
+\subitem - Estimate $var(\bar X)$
+\subitem - Set $i=0$
+\item Iterative "blocking" while size of $X_{i+1}\geq 2$:
+\subitem - Compute $\hat \sigma_i^2, \hat y_i$
+\subitem - Transform data $\vec X_i \rightarrow \vec X_{i+1}$, and set $i=i+1$
+\item Calculate final values
+\subitem - Compute $M_j$ from $\hat \sigma_j^2, \hat y_j$
+\subitem - Find smallest $k$ such that $M_k \leq q_{d-k} (1-\alpha)$
+\subitem - Calculate $\hat var (\bar X) = \hat \sigma_k^2/n_k$ 
+\end{enumerate}}}\end{center}
+
+
+
+
+ which benefits from being more accurate the larger the sample size, unlike for example bootstrapping.
+
+
+Moving from case specific quantities to a general sequence of (correlated) samples ${x_1,x_2,...x_n}, i=1,2,...,n$, the mean sampling error may be written as
+\begin{align*}
+err_{x}^2&= \frac{1}{n} var(x) + \frac{1}{n^2} \left(cov(x)-var(x)\right) \\
+&= \frac{1}{n^2} \sum_{k=1}^n (x_k-\bar x)^2 + \frac{2}{n^2} \sum_{k<l}(x_k-\bar x)(x_l-x_n)
+\end{align*}
+Where the first term is the uncorrelated term, and the second term the correlation term. Such a sampling series can reasonably be thought of as a time series with \textit{autocorrelation} between samples, ie. that samples in the time series is correlated within some time delay. Looking at time delay in terms of sample spacing, $d$, the correlated term in the above equation can be written as;
+\begin{align*}
+\frac{2}{n^2} \sum_{k<l}(x_k-\bar x)(x_l-x_n) = 2 \sum_{d=1}^{n-1} f_d \\
+\text{where } f_d=\frac{1}{n-d} \sum_{k=1}^{n-d}(x_k-\bar{x})(x_{k+d}-\bar{x})
+\end{align*}
+The value of $f_d$ is then a measurement of the correlation between samples at distance $d$. This gives rise to the pairwise correlation measurement known as the \textit{autocorrelation function};
+\begin{equation}
+\kappa_d=\frac{f_d}{var(x)}
+\end{equation}
+
+Using this, the sample error can be written as
+\begin{equation}
+err_{x}^2=\frac{\tau}{n} var(x)
+\end{equation}
+where $\tau=1+2\sum_{d=1}^{n-1}\kappa_d$ is the autocorrelation time. Using this expression as estimate of the sample error instead of only taking the variance, leads to a more realistic error estimate, as it reflects the correlation between the samples.
+
+In order to estimate $\tau$, \textit{blocking} may be used. In blocking, the series is partitioned into blocks, and the mean of each block calculated. 
+
+
+
+
+ Assuming that the time series is asymptotically uncorrelated, the samples are arranged as an $n$-tuple;
+$\vec X = (X_1, X_2,...,X_n)$, for $n=2^d$ where $d>1$. 
+
+
+
+ This vector is subjected to $k$ blocking transformation;
+
+
+By recursively forming pair-wise elements and taking the mean of the transformed vectors;
+\begin{align*}
+&(\vec X_0)_k = (\vec X)\\
+&(\vec X_{i+1})_k = \frac{1}{2}(\vec X_i)_{2k-1} +( \vec X_{i+1} )_{2k} \text{ for all} 1 \leq i \leq d-1
+\end{align*}
+
+
+\begin{equation}
+err^2_{\bar{E}}=\frac{\tau}{n} var(\bar E)
+\end{equation}
+
+
+--------------------------------------- her
+
+However, if $\mu_{\bar{E_L}}=E_0$, the variance of the Hamiltonian is
+
+
+
+Assuming that $\mu_{\bar{E_L}}=E_0$ (which is not the case, as $E_L$ tends to be over-estimated), the law of large numbers provides that given a sufficient number of cycles, $\bar{E} \rightarrow  E_0$.
+
+ \footnote{ In general, for a sampling sequence of independent variables, ${x_i}$, by the law of large numbers, the difference between the sample mean and the true mean decreases as the number of samples increase; $ lim_{n\rightarrow \infty} \frac{1}{n} \sum^n_{i=1} x_i p(x_i)= \mu_x $}. 
+
+ since $H\Psi = E \Psi$ when $\Psi$ is the exact ground-state (or really any eigenstate) of the system. This means that $\langle H^n \rangle=\langle \Psi \rvert H^n \lvert \Psi \rangle=E^n$, which also means that the exact wave function has a standard deviation of zero;
+\begin{equation}
+\sigma_{E}=\sqrt{var(E)}=\sqrt{ \langle H^2 \rangle-\langle H \rangle^2 }=\sqrt{ E^2 -(E)^2}= 0
+\end{equation}
+
+
+
+
+However, this only holds if the samples are uncorrelated. As each local energy sample is directly dependent on the previous sample through the random walker used in moving the position of each particle, the samples are correlated. Thus, the expression for the sample error must be adjusted to;
+
+
+ As $H\Psi = E \Psi$ when $\Psi$ is the exact ground-state (or really any eigenstate) of the system, the expectation values of the moments of the Hamiltonian are constant, ie. $\langle H^n \rangle=\langle \Psi \rvert H^n \lvert \Psi \rangle=E^n$. This means that the exact wave function has a standard deviation of zero;
+\begin{equation}
+\sigma_{E}=\sqrt{var(E)}=\sqrt{ \langle H^2 \rangle-\langle H \rangle^2 }=\sqrt{ E^2 -(E)^2}= 0
+\end{equation}
+
+from the VMC will not only measure the variance of the local energy sampling, but also how closely the estimated energy \eqref{eq:estimated_energy}, or the sample mean of $E_L$, is to the desired ground-energy.
+
+\begin{equation}
+\bar{E}=\frac{1}{M}\sum^M E_L(\vec r_i)
+\label{eq:estimated_energy}
+\end{equation}
+
+The sample error \eqref{eq:sampleerror} will only give the exact error if $\bar{E}=\mu_E$, the true mean of $E_L(\vec r)$ as a stochastic variable. From the law of large numbers,
+\begin{equation*}
+\lim_{n\rightarrow \infty} \frac{1}{n} \sum^n_{i=1} x_i p(x_i)= \mu_x
+\end{equation*} 
+
+one can see that as the number of samples increase, the difference between the sample mean and the true mean decreases. However, this only holds if the samples are uncorrelated. As each local energy sample is directly dependent on the previous sample through the random walker used in moving the position of each particle, the samples are most definitely correlated. Thus, the expression for the sample error must be adjusted to;
+\begin{equation}
+err_{\bar E }^2=\frac{1}{M} var( \bar E) + \frac{1}{M} \left(cov(E_L)-var(E_L)\right)
+\end{equation}
+where $cov(E_L)=\frac{1}{M}\sum_{ij}^M \left(E_L(\vec r_i)-\bar{E_l}\right) \left(E_L(\vec r_j)-\bar{E_l}\right)$ is the \textit{sample covariance}.
  
+
+
+This property of the Hamiltonian can be used in estimating the error on the estimated energy $E$, from the VMC calculations. Using the \textit{sample variance};
+\begin{equation}
+var(E)=
+\end{equation}
+
+
+and the closer the variational parameters in a trial wave function is to the correct parameter values, the smaller the variance. Thus, using the local energy at iterations $i=1,2,..M$ in the Monte Carlo simulation;
+
+Since the VMC methods used in this project does not provide samples that are entirely independent of each other, the true variance is distorted by the covariance of the samples. In general, the sample error (squared) can be written as;
+\begin{equation}
+err^2 = \frac{1}{n} var(x) + \frac{1}{n} \left( cov(x)-var(x) \right) 
+\end{equation}
+Which clearly shows that 
+
+kalle både estimated energy og energy heter begge E. Problem?
+
+Hvordan motivere å bruke sample error? Dette er vanlig feil estimering, eller gjennom at Hpsi=const?
+
+Linke var med covar -> link med autocorr, juster uttrykk for sigma -> trenger autocorr tid  -> estimate av autocorr time med blocking -> mer nøyaktig feil esimat.
+
+kommenter at det kan være smart å regne på deltaer i stdet for fuelle funksjonseval. v tilstand.
+err2=var=covar requires true mean
+The sample error $e_{rr}X$ is given by;
+
+When samples are uncorrelated, or equivalently some quantity depending on the samples $r_i$, making themselves stocahstic variables, like $E_L$, the squared sample error is given by the variance of $x$ as
+$err=\frac{1}{n}var(x)$, however, this does not hold for cov(xi,xj) $\neq 0$%
+
+blocking is a lot faster than bootstrap
  
- 
-One needs to develop a special algorithm that runs only through the elements of the upper triangular matrix g and have k as an index. 
+\subsection{Steepest descent} \label{SD}
+
+\subsection{onebody}
+Høgberget, Jørgen duo uio
+
+må sample kartesisk
+
+lage bins.
+løpe over partiklene, tell opp antall i hver
 \section{Results} \label{results}
 
 \section{Conclusions} \label{conclusions}

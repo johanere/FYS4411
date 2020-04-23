@@ -1,5 +1,9 @@
 \begin{thebibliography}{1}
 
+\bibitem{flyvebjerg}
+H.~Flyvbjerg and H.~G. Petersen.
+\newblock Error estimates on averages of correlated data, 1989.
+
 \bibitem{Griffiths95}
 David~J Griffiths.
 \newblock Introduction to quantum mechanics, 1995.
@@ -7,6 +11,10 @@ David~J Griffiths.
 \bibitem{CMP}
 A.~Weisse H.~Fehske, R.~Schneider.
 \newblock Computational many-particle physics, 2008.
+
+\bibitem{Jonsson}
+Marius Jonsson.
+\newblock Standard error estimation by an automated blocking method, 2018.
 
 \bibitem{numpy}
 Travis~E Oliphant.
