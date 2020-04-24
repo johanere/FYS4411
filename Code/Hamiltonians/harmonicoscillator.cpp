@@ -32,22 +32,22 @@ double HarmonicOscillator::computeLocalEnergy(std::vector<Particle*> particles) 
     */
     std::vector<double> paramters=(m_system->getWaveFunction())->getParameters();
 
-    int d=m_system->getNumberOfDimensions();
-    int N=m_system->getNumberOfParticles();
-    double alpha= paramters[0];
-    double r_squared;
+    int n_particles=m_system->getNumberOfParticles();
+    double alpha = paramters[0];
+    double r_squared=0;
 
-    for (int i=0; i<N;i++)
+    for (int i=0; i<n_particles;i++)
     {
-      for (int dimension=0; dimension <d;dimension++)
+      for (int dim=0; dim < m_system->getNumberOfDimensions(); dim++)
       {
-        r_squared+=(particles[i]->getPosition()[dimension])*(particles[i]->getPosition()[dimension]);
+
+        r_squared+=( particles[i]->getPosition().at(dim) )*( particles[i]->getPosition().at(dim) );
         // if dimension == 2 : beta
       }
     }
 
-    double EL=alpha*d*N+(0.5*m_omega*m_omega-2*alpha*alpha)*r_squared;
-
+    double EL=alpha*m_system->getNumberOfDimensions()*n_particles
+    +(0.5*m_omega*m_omega-2*alpha*alpha)*r_squared;
 
     return EL;
 }

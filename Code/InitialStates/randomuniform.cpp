@@ -5,6 +5,8 @@
 #include "../particle.h"
 #include "../system.h"
 
+
+#include "../distances.h"
 #include <random>
 
 using std::cout;

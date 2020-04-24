@@ -26,16 +26,19 @@ double SimpleGaussian::evaluate(std::vector<class Particle*> particles) {
      * For the actual expression, use exp(-alpha * r^2), with alpha being the
      * (only) variational parameter.
      */
-    double r_squared,g=1,f=1;
+
+
+    double r_squared,g=1.0,f=1.0;
+
     for (int i=0; i<m_system->getNumberOfParticles();i++)
     {
       r_squared=0;
-      for (int dimension=0; dimension <(int) particles[i]->getPosition().size();dimension++)
+      for (int dim=0; dim <m_system->getNumberOfDimensions();dim++)
       {
-        r_squared+=pow(particles[i]->getPosition()[dimension],2);
+        r_squared+= (particles[i]->getPosition()[dim])*(particles[i]->getPosition()[dim]);
         // if dimension == 2 : beta
       }
-    g*=exp(-m_parameters[0]*r_squared);  //exp ( alpha * r^2)
+    g=g*exp(-m_parameters[0]*r_squared);  //exp ( alpha * r^2)
     }
     return g*f;
 }
@@ -63,7 +66,7 @@ std::vector<double> SimpleGaussian::updateQForce(std::vector<class Particle*> pa
      * Schrödinger equation to see how the two are related).
      */
 
-    for (int dim=0; dim <(int) m_qForce.size();dim++)
+    for (int dim=0; dim < m_system->getNumberOfDimensions();dim++)
     {
     m_qForce.at(dim)=-4*m_parameters[0] * particles[particle]->getPosition()[dim]  ;
     }

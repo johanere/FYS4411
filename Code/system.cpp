@@ -6,7 +6,7 @@
 #include "Hamiltonians/hamiltonian.h"
 #include "InitialStates/initialstate.h"
 #include "Math/random.h"
-
+#include "distances.h"
 
 
 //remove
@@ -29,28 +29,20 @@ bool System::metropolisStep() {
      * accepted by the Metropolis test (compare the wave function evaluated
      * at this new position with the one at the old position).
      */
-
     assert(m_stepLength>0);
-
-
     //pick random particle
     particle=m_random->nextInt(0,m_numberOfParticles-1);
-
     // make copy of old pos
     oldPosition=m_particles[particle]->getPosition();
-
-
-    for (int dimension=0; dimension < m_numberOfDimensions; dimension++)
-    {
-      //move particle
-      m_particles[particle]->adjustPosition((m_random->nextDouble()-0.5)*m_stepLength,dimension);
+    //move particle
+    for (int dimension=0; dimension < m_numberOfDimensions; dimension++){
+      m_particles[particle]->adjustPosition(2*(m_random->nextDouble()-0.5)*m_stepLength,dimension);
     }
     //calculate new WF
     newWF = m_waveFunction->evaluate(m_particles);
 
-    // check if move in accepted
+    // check if move in accepted, if not accepted, reset particle
     if(m_random->nextDouble() > (newWF*newWF) / (oldWF*oldWF)) {
-      //if not accepted, reset particle
       m_particles[particle]->setPosition(oldPosition);
       return false;
     }
@@ -58,8 +50,7 @@ bool System::metropolisStep() {
       oldWF = newWF;
       return true;
     }
-
-}
+}//end of metropolisStep
 
 
 bool System::metropolishastingsStep() {
@@ -68,10 +59,7 @@ bool System::metropolishastingsStep() {
     particle=m_random->nextInt(0,m_numberOfParticles-1);
     // make copy of old pos
     oldPosition=m_particles[particle]->getPosition();
-
-
     std::vector<double> oldQForce = m_waveFunction->updateQForce(m_particles,particle);
-
     for (int dim=0; dim < m_numberOfDimensions; dim++)
     {
       //move particle
@@ -81,24 +69,30 @@ bool System::metropolishastingsStep() {
     }
     //calculate new WF
     newWF = m_waveFunction->evaluate(m_particles);
-
     std::vector<double> newQForce = m_waveFunction->updateQForce(m_particles,particle);
-    
     //Greens
     double gfRatio;
     double term1;
     double term2;
+    /*
     for (int dim=0; dim < m_numberOfDimensions; dim++)
     {
         term1 = oldPosition.at(dim) - m_particles[particle]->getPosition().at(dim) - 0.5 *m_stepLength*newQForce.at(dim);
         term2 = m_particles[particle]->getPosition().at(dim) - oldPosition.at(dim) - 0.5 *m_stepLength*oldQForce.at(dim);
         gfRatio += (term2*term2) - (term1*term1);
     }
+    */
+    for (int dim=0; dim < m_numberOfDimensions; dim++)
+    {
+        term1 = oldPosition.at(dim) - m_particles[particle]->getPosition().at(dim) - 0.5 *m_stepLength*newQForce.at(dim);
+        term2 = m_particles[particle]->getPosition().at(dim) - oldPosition.at(dim) - 0.5 *m_stepLength*oldQForce.at(dim);
+        gfRatio +=  - (term1*term1) + (term2*term2);
+    }
 
-    gfRatio=gfRatio/2*m_stepLength;
+    gfRatio= gfRatio/(2.0*m_stepLength);
     gfRatio = exp(gfRatio);
     // check if move in accepted
-    if(m_random->nextDouble() > gfRatio*(newWF*newWF) / (oldWF*oldWF)) {
+    if(m_random->nextDouble() > gfRatio*(newWF*newWF)  / (oldWF*oldWF)) {
       //if not accepted, reset particle
       m_particles[particle]->setPosition(oldPosition);
       return false;
@@ -116,6 +110,19 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
     m_numberOfMetropolisSteps   = numberOfMetropolisSteps;
     m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps);
 
+    double a,b,c;
+
+    a=( m_particles[3]->getPosition()[0] - m_particles[1]->getPosition()[0] );
+    b=( m_particles[3]->getPosition()[1] - m_particles[1]->getPosition()[1] );
+    c=( m_particles[3]->getPosition()[2] - m_particles[1]->getPosition()[2] );
+
+
+    cout<<"DIST jk " <<m_distances->getR_jk(1,3)<<endl;
+    cout<<"DIST kj " <<m_distances->getR_jk(3,1)<<endl;
+    cout<<"CHECK DIST "<<sqrt(a*a+b*b+c*c)<<endl;
+
+
+
     oldWF = m_waveFunction->evaluate(m_particles);
 
     for (int i=0; i < numberOfMetropolisSteps; i++) {
@@ -125,7 +132,6 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
         cout<<"Provide valid method selection"<<endl;
         abort();
       }
-
         /* Here you should sample the energy (and maybe other things using
          * the m_sampler instance of the Sampler class. Make sure, though,
          * to only begin sampling after you have let the system equilibrate
@@ -137,6 +143,18 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
           m_sampler->sample(acceptedStep);
           }
     }
+
+
+    a=( m_particles[3]->getPosition()[0] - m_particles[1]->getPosition()[0] );
+    b=( m_particles[3]->getPosition()[1] - m_particles[1]->getPosition()[1] );
+    c=( m_particles[3]->getPosition()[2] - m_particles[1]->getPosition()[2] );
+
+    m_distances->calculateR_jk(m_particles,1);
+    cout<<"DIST jk " <<m_distances->getR_jk(1,3)<<endl;
+    cout<<"DIST kj " <<m_distances->getR_jk(3,1)<<endl;
+    cout<<"CHECK DIST "<<sqrt(a*a+b*b+c*c)<<endl;
+
+
     m_sampler->computeAverages();
     m_sampler->printOutputToTerminal();
 }
@@ -170,4 +188,9 @@ void System::setWaveFunction(WaveFunction* waveFunction) {
 
 void System::setInitialState(InitialState* initialState) {
     m_initialState = initialState;
+}
+
+void System::setDistances(Distances* distances) {
+    m_distances = distances;
+    m_distances->InitiateR(m_initialState->getParticles());
 }

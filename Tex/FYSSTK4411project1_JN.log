@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  22 APR 2020 17:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  23 APR 2020 16:56
 entering extended mode
 **./FYSSTK4411project1_JN.tex
 (FYSSTK4411project1_JN.tex
@@ -1181,26 +1181,21 @@ Overfull \hbox (6.79999pt too wide) in paragraph at lines 412--412
  [] 
  []
 
-[7] [8] [9]
-
-LaTeX Warning: Reference `eq:samplecovar' on page 10 undefined on input line 51
-4.
-
-[10]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 550--550
+[7] [8] [9] [10]
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 549--549
  [] 
  []
 
-[11] [12] [13] (FYSSTK4411project1_JN.bbl) [14]
-Overfull \hbox (49.2067pt too wide) detected at line 819
+[11] (FYSSTK4411project1_JN.bbl) [12]
+Overfull \hbox (49.2067pt too wide) detected at line 706
 []
  []
 
-[15] [16] [17]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 876.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 876.
+[13] [14] [15]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 763.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 763.
  (FYSSTK4411project1_JN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 876.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 763.
 
 
  *File List*
@@ -1340,47 +1335,48 @@ FYSSTK4411project1_JN.out
 FYSSTK4411project1_JN.bbl
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 876.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 763.
 Package rerunfilecheck Info: File `FYSSTK4411project1_JN.out' has not changed.
 (rerunfilecheck)             Checksum: 43F1F600655FDE5BC2DEBFDD8CE20391;1227.
-
-LaTeX Warning: There were undefined references.
-
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 32911 strings out of 493312
- 742031 string characters out of 3144112
- 982979 words of memory out of 3000000
- 35596 multiletter control sequences out of 15000+200000
- 105901 words of font info for 141 fonts, out of 3000000 for 9000
+ 32890 strings out of 493312
+ 741780 string characters out of 3144112
+ 982074 words of memory out of 3000000
+ 35594 multiletter control sequences out of 15000+200000
+ 102494 words of font info for 136 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,17n,98p,972b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/
-dvips/lm/lm-mathit.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-rm.enc}{C:/Johan/
-Miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-math
-ex.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mi
-ktex/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb><C:/Johan/Miktex/fonts/type
-1/public/amsfonts/cmextra/cmmib7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmb
-x10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Johan/Miktex/font
-s/type1/public/lm/lmbx7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx9.pfb><C
-:/Johan/Miktex/fonts/type1/public/lm/lmbxi10.pfb><C:/Johan/Miktex/fonts/type1/p
-ublic/lm/lmex10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi10.pfb><C:/Johan
-/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/type1/public/lm/
-lmmi6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fon
-ts/type1/public/lm/lmmi8.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><
-C:/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex/fonts/type1/pub
-lic/lm/lmr6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr7.pfb><C:/Johan/Mikte
-x/fonts/type1/public/lm/lmr8.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pf
-b><C:/Johan/Miktex/fonts/type1/public/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type
-1/public/lm/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb><C:/Joh
-an/Miktex/fonts/type1/public/lm/lmsy6.pfb><C:/Johan/Miktex/fonts/type1/public/l
-m/lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on FYSSTK4411project1_JN.pdf (17 pages, 471435 bytes).
+ 69i,17n,98p,1000b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+pdfTeX warning (dest): name{equation.1..42} has been referenced but does not 
+exist, replaced by a fixed one
+
+{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/dv
+ips/lm/lm-mathit.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-rm.enc}{C:/Johan/Mi
+ktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathex
+.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mikt
+ex/fonts/type1/public/amsfonts/cmextra/cmmib6.pfb><C:/Johan/Miktex/fonts/type1/
+public/amsfonts/cmextra/cmmib7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx1
+0.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Johan/Miktex/fonts/
+type1/public/lm/lmbx7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx9.pfb><C:/
+Johan/Miktex/fonts/type1/public/lm/lmbxi10.pfb><C:/Johan/Miktex/fonts/type1/pub
+lic/lm/lmex10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi10.pfb><C:/Johan/M
+iktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lm
+mi6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts
+/type1/public/lm/lmmi8.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><C:
+/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex/fonts/type1/publi
+c/lm/lmr6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr7.pfb><C:/Johan/Miktex/
+fonts/type1/public/lm/lmr8.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb>
+<C:/Johan/Miktex/fonts/type1/public/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/
+public/lm/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb><C:/Johan
+/Miktex/fonts/type1/public/lm/lmsy6.pfb><C:/Johan/Miktex/fonts/type1/public/lm/
+lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy8.pfb><C:/Johan/Miktex/fon
+ts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on FYSSTK4411project1_JN.pdf (15 pages, 464228 bytes).
 PDF statistics:
- 390 PDF objects out of 1000 (max. 8388607)
- 102 named destinations out of 1000 (max. 500000)
- 27797 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 376 PDF objects out of 1000 (max. 8388607)
+ 92 named destinations out of 1000 (max. 500000)
+ 27285 words of extra memory for PDF output out of 29859 (max. 10000000)
 

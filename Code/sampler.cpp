@@ -32,7 +32,8 @@ void Sampler::sample(bool acceptedStep) {
     m_cumulativeEnergy  += m_DeltaE;
     m_cumulativeEnergy2 += m_DeltaE*m_DeltaE;
     m_stepNumber++;
-    m_EnergySamples.push_back(m_cumulativeEnergy/m_stepNumber);
+    m_EnergySamples.push_back(m_DeltaE);
+    m_acceptedSteps+=acceptedStep;
 }
 
 void Sampler::printOutputToTerminal() {
@@ -47,8 +48,8 @@ void Sampler::printOutputToTerminal() {
     cout << "  -- System info -- " << endl;
     cout << " Number of particles  : " << np << endl;
     cout << " Number of dimensions : " << nd << endl;
-    cout << " Number of Metropolis steps run : 10^" << std::log10(ms) << endl;
-    cout << " Number of equilibration steps  : 10^" << std::log10(std::round(ms*ef)) << endl;
+    cout << " Number of Metropolis steps run : 2^" << std::log2(ms) << endl;
+    cout << " Number of equilibration steps  : 2^" << std::log2(std::round(ms*ef)) << endl;
     cout << endl;
     cout << "  -- Wave function parameters -- " << endl;
     cout << " Number of parameters : " << p << endl;
@@ -58,7 +59,8 @@ void Sampler::printOutputToTerminal() {
     cout << endl;
     cout << "  -- Reults -- " << endl;
     cout << " Energy : " << m_energy << endl;
-    cout << " Variance : " << m_variance << endl;
+    cout << " std : " << m_error << endl;
+    cout << "accepted steps " << ((double) m_acceptedSteps)/m_stepNumber<<endl;
     cout << endl;
 }
 

@@ -21,6 +21,7 @@ private:
     double  m_DeltaE=0;
     double  m_variance=0;
     double  m_error=0;
+    int     m_acceptedSteps=0;
     class System* m_system = nullptr;
     std::vector <double> m_EnergySamples;
 
