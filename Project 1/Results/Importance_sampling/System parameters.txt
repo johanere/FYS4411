@@ -1,0 +1,4 @@
+Method = Importance Sampling
+Single particle only with beta = 1.0
+Seed = 9101
+N = 10 particles

@@ -1,3 +1,0 @@
-protected
-nullptr
-assert
