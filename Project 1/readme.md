@@ -14,4 +14,8 @@ This project aimed to examine using Vartiational Monte Carlo (VMC) in making an 
 <img src="https://render.githubusercontent.com/render/math?math=\Delta t"> values. Increases in particle number, N, was generally observed to increase 
 <img src="https://render.githubusercontent.com/render/math?math=\hat \sigma">; after 
 <img src="https://render.githubusercontent.com/render/math?math=2^{18}"> Monte Carlo cycles, 
-<img src="https://render.githubusercontent.com/render/math?math=\hat \sigma \sim 10^3"> (N=10) increased to $\sim 10^2$ ($N=50$) and $\sim 10^{-1}$ ($N=100$), both with and without the Jastrow factor, which accounts for particle-particle correlation.  Incorporating the Jastrow factor was concluded to have an increasing effect on the average estimated energy per particle $\bar E /N$ as $N$ increased, from $\bar E/N\approx2.45\approx$ constant for all values of $N$, to $4.55$ ($N=50$) and $2.66$ ($N=100$). This impact dependence was further verified by qualitative comparison of one-body densities. 
+<img src="https://render.githubusercontent.com/render/math?math=\hat \sigma \sim 10^3"> (N=10) increased to 
+<img src="https://render.githubusercontent.com/render/math?math=\sim 10^2"> (N=50) and 
+<img src="https://render.githubusercontent.com/render/math?math=\sim 10^{-1}"> (N=100), both with and without the Jastrow factor, which accounts for particle-particle correlation.  Incorporating the Jastrow factor was concluded to have an increasing effect on the average estimated energy per particle 
+<img src="https://render.githubusercontent.com/render/math?math=\bar E /N"> as N increased, from 
+<img src="https://render.githubusercontent.com/render/math?math=\bar E/N\approx2.45\approx"> constant for all values of N, to 4.55 (N=50) and 2.66 (N=100). This impact dependence was further verified by qualitative comparison of one-body densities. 
