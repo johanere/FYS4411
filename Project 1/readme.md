@@ -1,7 +1,7 @@
 ## FYS 4411 - Project 1
 The project report ("FYSSTK4411project1_JN.pdf") may be found in this folder.
 #### Folders
-All tex files used to compile the project report may be found under "Tex".  All programs used to obtain the results described in the report is under "Code", while the results themselves may be found under "Results". "DataFiles" contains two articles, and the original data sets. 
+All tex files used to compile the project report may be found under "Tex".  All programs used to obtain the results described in the report is under "Code". Python code used to analyse output from the C++ VMC engine may be found under "data_analysis" in "Results".
 
 ### Abstract
 
