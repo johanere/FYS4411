@@ -1,3 +1,0 @@
-Accepted steps        = 0.94437375
-Time                  = 112041.00
-Sigma (not corrected) = 4.55384680E+00

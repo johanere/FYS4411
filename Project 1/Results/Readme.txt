@@ -1,1 +1,1 @@
-1b1 contains files used to produce table 1
+Data_analysis contains the python programs used to produce results and apply the "blocking" method.

@@ -22,15 +22,6 @@ interactingWF::interactingWF(System* system, int numberOfDimensions,double alpha
 }
 
 double interactingWF::evaluate(std::vector<class Particle*> particles) {
-    /* You need to implement a Gaussian wave function here. The positions of
-     * the particles are accessible through the particle[i].getPosition()
-     * function.
-     *
-     * For the actual expression, use exp(-alpha * r^2), with alpha being the
-     * (only) variational parameter.
-     */
-
-    //single particle
     assert(m_system->getNumberOfDimensions() == 3);
 
     double r_squared,g=1.0,f=1.0;
@@ -65,28 +56,7 @@ double interactingWF::evaluate(std::vector<class Particle*> particles) {
 }
 
 
-double interactingWF::computeDoubleDerivative(std::vector<class Particle*> particles) {
-    /* All wave functions need to implement this function, so you need to
-     * find the double derivative analytically. Note that by double derivative,
-     * we actually mean the sum of the Laplacians with respect to the
-     * coordinates of each particle.
-     *
-     * This quantity is needed to compute the (local) energy (consider the
-     * Schrödinger equation to see how the two are related).
-     */
-    cout<<" DD DD  DD  DD  DD  DD "<<endl;
-    return 0;
-}
-
 std::vector<double> interactingWF::updateQForce(std::vector<class Particle*> particles,int particle) {
-    /* All wave functions need to implement this function, so you need to
-     * find the double derivative analytically. Note that by double derivative,
-     * we actually mean the sum of the Laplacians with respect to the
-     * coordinates of each particle.
-     *
-     * This quantity is needed to compute the (local) energy (consider the
-     * Schrödinger equation to see how the two are related).
-     */
       double factor=0,r_kj=0,phi_dk=0;
 
 

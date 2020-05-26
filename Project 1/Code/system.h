@@ -5,9 +5,9 @@ class System {
 public:
     System();
     System(int seed);
-    bool metropolisStep             ();
+    bool brute_force_Step             ();
 
-    bool metropolishastingsStep     ();
+    bool importance_sampling_Step     ();
 
     void runMetropolisSteps         (int numberOfMetropolisSteps,int method, int GD_iters);
     void setNumberOfParticles       (int numberOfParticles);

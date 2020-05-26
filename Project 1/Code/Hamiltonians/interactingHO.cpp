@@ -18,28 +18,12 @@ interactingHO::interactingHO(System* system, double omega,double a) :
 }
 
 double interactingHO::computeLocalEnergy(std::vector<Particle*> particles) {
-    /* Here, you need to compute the kinetic and potential energies. Note that
-     * when using numerical differentiation, the computation of the kinetic
-     * energy becomes the same for all Hamiltonians, and thus the code for
-     * doing this should be moved up to the super-class, Hamiltonian.
-     *
-     * You may access the wave function currently used through the
-     * getWaveFunction method in the m_system object in the super-class, i.e.
-     * m_system->getWaveFunction()...
-
-    double potentialEnergy = 0;
-    double kineticEnergy   = 0;
-    return kineticEnergy + potentialEnergy;
-    */
-
 
     std::vector<double> paramters=(m_system->getWaveFunction())->getParameters();
-
 
     int n_particles=m_system->getNumberOfParticles();
 
     assert(m_system->getNumberOfDimensions() ==3);
-
 
     double alpha = paramters[0];
     double beta  = paramters[1];

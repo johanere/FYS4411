@@ -24,12 +24,7 @@ System::System(int seed) {
     m_random = new Random(seed);
 }
 
-bool System::metropolisStep() {
-    /* Perform the actual Metropolis step: Choose a particle at random and
-     * change it's position by a random amount, and check if the step is
-     * accepted by the Metropolis test (compare the wave function evaluated
-     * at this new position with the one at the old position).
-     */
+bool System::brute_force_Step() {
     assert(m_stepLength>0);
     //pick random particle
     particle=m_random->nextInt(0,m_numberOfParticles-1);
@@ -67,10 +62,10 @@ bool System::metropolisStep() {
       oldWF = newWF;
       return true;
     }
-}//end of metropolisStep
+} //end of brute force sampling
 
 
-bool System::metropolishastingsStep() {
+bool System::importance_sampling_Step() {
     assert(m_stepLength>0);
     //pick random particle
     particle=m_random->nextInt(0,m_numberOfParticles-1);
@@ -107,9 +102,6 @@ bool System::metropolishastingsStep() {
     double term1=0;
     double term2=0;
 
-    double term1_x,term2_x,term1_y,term2_y,term1_z,term2_z;
-
-
     for (int dim=0; dim < m_numberOfDimensions; dim++)
     {
         term1 = oldPosition.at(dim) - m_particles[particle]->getPosition().at(dim) - 0.5 *m_stepLength*newQForce.at(dim);
@@ -132,7 +124,7 @@ bool System::metropolishastingsStep() {
       return true;
     }
 
-}
+} //end of improtance sampling step
 
 void System::runMetropolisSteps(int numberOfMetropolisSteps, int method,int GD_iters) {
     m_particles                 = m_initialState->getParticles();
@@ -144,18 +136,12 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method,int GD_i
 
 
     for (int i=0; i < numberOfMetropolisSteps; i++) {
-      if (method == 0) acceptedStep = metropolisStep();
-      else if (method == 1) acceptedStep = metropolishastingsStep();
+      if (method == 0) acceptedStep = brute_force_Step();
+      else if (method == 1) acceptedStep = importance_sampling_Step();
       else {
         cout<<"Provide valid method selection"<<endl;
         abort();
       }
-        /* Here you should sample the energy (and maybe other things using
-         * the m_sampler instance of the Sampler class. Make sure, though,
-         * to only begin sampling after you have let the system equilibrate
-         * for a while. You may handle this using the fraction of steps which
-         * are equilibration steps; m_equilibrationFraction.
-         */
          if (i>=m_equilibrationFraction*numberOfMetropolisSteps)
           {
           m_sampler->sample(acceptedStep);
@@ -199,7 +185,6 @@ void System::setInitialState(InitialState* initialState) {
 void System::setDistances(int interaction,double a) {
   m_interaction=interaction;
   m_a=a;
-  //InitiateR(getParticles());
 }
 
 void System::InitiateR( ){
@@ -283,8 +268,6 @@ double System::getR_jk(int i, int j){
 }
 else {return 0;}
 }
-
-
 
 std::vector<double> System::getRadialDistances(){
   std::vector<double> radial_distances = std::vector<double>();

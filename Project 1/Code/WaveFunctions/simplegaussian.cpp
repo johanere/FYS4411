@@ -46,29 +46,8 @@ double SimpleGaussian::evaluate(std::vector<class Particle*> particles) {
     return g*f;
 }
 
-double SimpleGaussian::computeDoubleDerivative(std::vector<class Particle*> particles) {
-    /* All wave functions need to implement this function, so you need to
-     * find the double derivative analytically. Note that by double derivative,
-     * we actually mean the sum of the Laplacians with respect to the
-     * coordinates of each particle.
-     *
-     * This quantity is needed to compute the (local) energy (consider the
-     * Schrödinger equation to see how the two are related).
-     */
-    cout<<" DD DD  DD  DD  DD  DD "<<endl;
-    return 0;
-}
 
 std::vector<double> SimpleGaussian::updateQForce(std::vector<class Particle*> particles,int particle) {
-    /* All wave functions need to implement this function, so you need to
-     * find the double derivative analytically. Note that by double derivative,
-     * we actually mean the sum of the Laplacians with respect to the
-     * coordinates of each particle.
-     *
-     * This quantity is needed to compute the (local) energy (consider the
-     * Schrödinger equation to see how the two are related).
-     */
-
     for (int dim=0; dim < m_system->getNumberOfDimensions();dim++)
     {
     m_qForce.at(dim)=-4*m_parameters[0] * particles[particle]->getPosition()[dim]  ;
