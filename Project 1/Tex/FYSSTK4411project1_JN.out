@@ -6,7 +6,7 @@
 \BOOKMARK [2][-]{subsection.2.2}{Variational Monte Carlo}{section.2}% 6
 \BOOKMARK [3][-]{subsubsection.2.2.1}{Metropolis algorithm}{subsection.2.2}% 7
 \BOOKMARK [3][-]{subsubsection.2.2.2}{Importance sampling}{subsection.2.2}% 8
-\BOOKMARK [3][-]{subsubsection.2.2.3}{Steepest descent}{subsection.2.2}% 9
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Gradient Descent}{subsection.2.2}% 9
 \BOOKMARK [2][-]{subsection.2.3}{Error analysis}{section.2}% 10
 \BOOKMARK [3][-]{subsubsection.2.3.1}{Error estimate of correlated energy samples; the "blocking" method}{subsection.2.3}% 11
 \BOOKMARK [1][-]{section.3}{Results}{}% 12

@@ -481,9 +481,9 @@ G(\bm r,\bm r*,\Delta t) = \frac{1}{(4 \pi D \Delta t)^{dN/2}} exp\left(-\frac{(
 \begin{equation}
 q=\frac{G(\bm r,\bm r*)|\Psi_T(y)|^2}{G(\bm r*,\bm r)|\Psi_T(x)|^2}
 \end{equation}
-Meaning that only the ratio of the exponentials  in the Green's function needs to be calculated.
+Meaning that only the ratio of the exponentials in the Green's function needs to be calculated.
 
-\subsubsection{Steepest descent} \label{SD}
+\subsubsection{Gradient Descent} \label{SD}
 By including the Jastrow factor, or the correlation part of the wave equation, the ground energy of a system is expected to increase when compared to a corresponding single-particle evaluation. Because of the particle interaction, $\alpha=0.5$ will necessarily no longer be the correct parameter value for all values of $N$. As such, I have opted to implement gradient descent on iterative runs in order to better approximate the value of $\alpha$.
 
 As the desired outcome is to find an $\alpha$ s.t the energy is minimized, the energy may be viewed as a cost function to be minimized.  In general, the minimization of a cost function may in some cases be carried out analytically, in this case however this is not feasible. For problems such as this one, numerical methods for obtaining the desired parameters $\bm \alpha$ is instead applied. One such method is the gradient descent (GD) \eqref{eq:GD} \citep{MLMurphy}[p.247], also known as steepest descent. When utilizing GD, one makes an initial guess for $\bm{\alpha}$, evaluates the gradient, $\bm g$ of the cost function in order to obtain an estimate closer to the desired minimizing value. This process is then iteratively repeated till the sufficient convergence of the coefficients is reached. In order to not overshoot the $k+1$'th estimate, a \textit{learning rate} of $\eta$ is applied to the gradient. The value of the learning rate can either be fixed, usually by trial and error, such that it works well for the problem at hand, or it may be adapted to each step. 
