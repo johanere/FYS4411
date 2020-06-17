@@ -210,6 +210,28 @@ In order to write this project paper and the code required to produce the result
  
 \section{Material and methods} \label{theory}
 
+
+\subsection{System: Electrons in 2D isotropic HO}
+The system consists of $P$ electrons in a $D$ dimensional isotropic harmoinc oscillator (HO) potential, with the following idealized total Hamiltonian, when using natural units, ($\hbar=c=e=m_e=1$), and energies in  atomic units a.u:
+\begin{equation}
+\label{eq:finalH}
+H=\sum_{i=1}^{P} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)+\sum_{i=1}^P \sum_{j=1}^i \frac{1}{r_{ij}},
+\end{equation}
+Where $\omega$ is the oscillator frequency  $\omega$, $r_{ij}=\vert \bm{r}_1-\bm{r}_2\vert$, and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$.  Furthermore,
+\begin{equation*}
+\hat{H}_0=\sum_{i=1}^{P} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
+\end{equation*}
+is the standard HO part of the Hamiltonian, while
+\begin{equation*}
+\hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
+\end{equation*}
+is the interactive part, where $r_{ij}=\vert \bm{r}_1-\bm{r}_2\vert$, and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$.
+
+\subsection{Boltzmann}
+
+\subsubsection{Wave Function}
+Using $M=DP$ visible nodes, and $N$ hidden nodes;
+
 \begin{align*}
 \Psi (\mathbf{X}) &= F_{rbm}(\mathbf{X}) \\
 &= \frac{1}{Z}\sum_{\{h_j\}} e^{-E(\mathbf{X}, \mathbf{h})} \\
@@ -217,62 +239,24 @@ In order to write this project paper and the code required to produce the result
 &= \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \\
 \end{align*}
 
-\subsection{System: Boson gas}
-The system consists of $N$ Bosons in an harmonic spherical (S) ($\omega_{ho}^2=\omega_z^2$) or elliptical (E) ($\omega_{ho}^2 \neq \omega_z^2$) trap \eqref{trap_eqn};
+Så det går litt kjappere:
 \begin{equation}
- V_{ext}(\mathbf{r}) = 
- \Bigg\{
- \begin{array}{ll}
-	 \frac{1}{2}m\omega_{ho}^2r^2 & (S)\\
- \strut
-	 \frac{1}{2}m[\omega_{ho}^2(x^2+y^2) + \omega_z^2z^2] & (E)
- \label{trap_eqn}
- \end{array}
- \end{equation}, 
- where $\omega_{ho}$ and  $\omega_z$ are trap frequencies in the $xy$ plane and $z$ direction respectively. The characteristic length of the trap is defined $a_{ho}=(\hbar /m \omega_{ho})^{1/2}$, while the ratio of the trap lengths in the $xy$ plane and the $z$ direction is $a_{ho}/a_z=(\omega_z/\omega_{ho})^2=\sqrt{\lambda}$, which will be used when scaling the system. The Hamiltonian of the system is given by
-\begin{equation}
-     H = \sum_i^N \left(\frac{-\hbar^2}{2m}{\bigtriangledown }_{i}^2 +V_{ext}({\mathbf{r}}_i)\right)  +
-	 \sum_{i<j}^{N} V_{int}({\mathbf{r}}_i,{\mathbf{r}}_j),
-	 \label{eq:hamiltonian}
- \end{equation}
-where the Boson interaction is given by the repulsive force prohibiting particles to come within a distance $a$ of other particles;
-\begin{equation}
- V_{int}(|\mathbf{r}_i-\mathbf{r}_j|) =  \Bigg\{
- \begin{array}{ll}
-	 \infty & {|\mathbf{r}_i-\mathbf{r}_j|} \leq {a}\\
-	 0 & {|\mathbf{r}_i-\mathbf{r}_j|} > {a}
- \end{array}
- \end{equation}
-
-In order to evaluate the ground-state energy, a trial wave function (TWF) is used \eqref{eq:trialwf}, where $\alpha$ and $\beta$ are variational parameters used to tune the wave function towards ground-state (more under a the \hyperref[S:VMC]{section on VMC}).
-
-\begin{equation}
- \Psi_T(\mathbf{r})=\Psi_T(\mathbf{r}_1, \mathbf{r}_2, \dots \mathbf{r}_N,\alpha,\beta)
- =\left[
-    \prod_i g(\alpha,\beta,\mathbf{r}_i)
- \right]
- \left[
-    \prod_{j<k}f(a,|\mathbf{r}_j-\mathbf{r}_k|)
- \right],
- \label{eq:trialwf}
+\begin{aligned}
+v(\bm X,j) = b_j + \sum_{i=1}^M \frac{X_i W_{ij} }{\sigma^2}
+\end{aligned}
+\label{eq:v_j}
 \end{equation}
-Where
+
+Så:
+
 \begin{equation}
-    g(\alpha,\beta,\mathbf{r}_i)= \exp{[-\alpha(x_i^2+y_i^2+\beta z_i^2)]}.
- \end{equation}
-is the non-interactive part of the wave function, and 
-\begin{equation}
-    f(a,|\mathbf{r}_i-\mathbf{r}_j|)=\Bigg\{
- \begin{array}{ll}
-	 0 & {|\mathbf{r}_i-\mathbf{r}_j|} \leq {a}\\
-	 (1-\frac{a}{|\mathbf{r}_i-\mathbf{r}_j|}) & {|\mathbf{r}_i-\mathbf{r}_j|} > {a}.
- \end{array}
- \end{equation}
-the interactive part, or the Jastrow correlation factor.  
+\begin{aligned}
+\Psi (\mathbf{X}) = \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{v(\bm X,j)})
+\end{aligned}
+\label{eq:TWF}
+\end{equation}
 
-
-
-\subsubsection{Local energy and drift force}
+\subsubsection{Local Energy}
 When using the Monte Carlo methods described later, the particles will be moved one at a time. After each such move, the local energy \eqref{eq:locale} will be evaluated, and used to calculate the ground energy of the system. 
  
 \begin{equation}
@@ -280,300 +264,84 @@ When using the Monte Carlo methods described later, the particles will be moved 
     \label{eq:locale}
  \end{equation}
  
-As the algorithms will involve repeatedly calculating the local energy, every reduction of floating point operations (FLOPs) involved in doing so will lead to a significant speed up - which is why an analytical expression for the local energy is desirable. As will be discussed more under \hyperref[importance_sampling]{importance sampling}, the drift force of the  particles are also needed;
+As the algorithms will involve repeatedly calculating the local energy, every reduction of floating point operations (FLOPs) involved in doing so will lead to a significant speed up - which is why an analytic expression for the local energy is desirable. Using the trial wave function \eqref{eq:TWF}, and \eqref{eq:locale} (see \hyperref[APP_2:le_1]{Appendix 1: Analytic expression for the local energy}):
+
+\textbf{Non-interacting, using $H=H_0$}
+\begin{equation}
+\begin{aligned}
+E_L(\mathbf{r})&=\frac{1}{\Psi_T(\mathbf{r})}   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right) \Psi_T(\mathbf{r}) + \frac{1}{\Psi_T(\mathbf{r})}  \sum_{i<j}\frac{1}{r_{ij}}  \Psi_T(\mathbf{r}) \\
+&=\frac{1}{\Psi_T(\mathbf{r})}   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 \Psi_T(\mathbf{r})\right) + \sum_{i=1}^{M} \frac{1}{2} \omega^2r_i^2    +  \sum_{i<j}\frac{1}{r_{ij}}  \\
+\frac{1}{\Psi_T}\nabla^2 \Psi_T &=  \frac{1}{\Psi_T}\nabla (\Psi _T \frac{1}{\Psi_T} \nabla \frac{1}{\Psi_T})\\
+&= (\frac{1}{\Psi_T} \nabla \Psi_T) ^2 + \nabla (\frac{1}{\Psi_T}\nabla \Psi_T)\\ 
+&= (\nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T
+\end{aligned}
+\label{eq:Appendix_rewrite}
+\end{equation}
+
+\textbf{Interacting, using $H=H_0+H_1$}
+
+As will be discussed more under \hyperref[importance_sampling]{importance sampling}, the drift force of the  particles are also needed;
 
 \begin{equation}
 F_i = \frac{2\nabla \Psi_T}{\Psi_T}
 \end{equation} 
 
-\subsubsubsection{Local energy and drift force: Non-interacting boson sphere}
-For a spherical harmonic oscillator with no interaction between particles, $a=0$ and $\beta = 1$, the TWF \eqref{eq:trialwf} reduces to;
-\begin{equation}
-\Psi_T (\bm r)= \left[
-    \prod_i g(\alpha,\beta,\mathbf{r}_i)
- \right]
-\end{equation}
 
-Thus simplifying the expression needed for the local energy \eqref{eq:locale} to;
-\begin{equation*}
-    E_L(\mathbf{r}) =\frac{1}{ 
-    \prod_i g(\alpha,\beta,\mathbf{r}_i)
-}  \sum_i^N \left(\frac{-\hbar^2}{2m}{\nabla }_{i}^2 +\frac{1}{2}m\omega_{ho}^2r^2 \right)  \left[
-    \prod_i g(\alpha,\beta,\mathbf{r}_i)
- \right]
- \end{equation*}
 
-which leads to (see \hyperref[APP_2:le_1]{Appendix 1: Analytic local energy, non-interacting spherical}) the following expression when using natural units, $\hbar = c = 1 $, and unity mass, $m=1$;
+\subsubsection{neste greie}
 
-\begin{equation}
-        E_L(\mathbf{r}) =  \alpha d N + \left( - 2 \alpha^2    + \frac{1}{2} \omega_{ho}^2\right)  \sum_i^N r_i^2 .
-\label{eq:locale_analytic_1}
-\end{equation}
 
-With drift force;
-\begin{equation}
-F_i = \frac{2\nabla \Psi_T}{\Psi_T}= -4\alpha \mathbf{r}_i 
-\end{equation}
- 
-\subsubsubsection{Local energy and drift force: interacting boson sphere with elliptic trap}
-Next, an analytic expression for the local energy of an elliptical trap with particle interaction, $\beta\neq 1$ and $a \neq 0$, is required. In order to derive it, the TWF \eqref{eq:trialwf} is re-written. First, the non-interactive part; 
-\begin{equation*}
-    g(\alpha,\beta,\mathbf{r}_i) = \exp{\left[-\alpha(x_i^2+y_i^2+\beta
-    z_i^2)\right]}= \phi(\mathbf{r}_i) = \phi_i.
+
+In this project  we will deal only with a system of
+two electrons in a quantum dot with a frequency of $\hbar\omega = 1$. 
+The reason for this is that we have exact closed form expressions 
+for the ground state energy from Taut's work for selected values of $\omega$, 
+see M. Taut, Phys. Rev. A \textbf{48}, 3561 (1993).
+The energy is given by $3$ a.u.  (atomic units) when the interaction between the electrons is included. We can however easily extend our system to say interacting bosons as in project 1.
+
+If only the harmonic oscillator part of the Hamiltonian is included,
+the so-called unperturbed part,
+\begin{equation*} 
+\hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
 \end{equation*}
-
-Secondly, the interactive part;
-
-\begin{equation}
-\prod_{i<j} f(r_{ij})= \exp{\left(\sum_{i<j}u_{jk}\right)}
-\end{equation}
-Where $u_{jk}=\ln{f(r_{ij})}$, using the shorthand notation $r_{ij}=|\mathbf{r}_i-\mathbf{r}_j|$. Thus, the WTF \eqref{eq:trialwf} is expressed as;
-
+the energy is $2$ a.u.
+The wave function for one electron in an oscillator potential in two dimensions is
 \begin{equation*}
-\Psi_T(\mathbf{r})=\left[
-    \prod_i \phi_i
-\right]
-\exp{\left(\sum_{j<k}u_{jk}\right)}
+\phi_{n_x,n_y}(x,y) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)\exp{(-\omega(x^2+y^2)/2}.
 \end{equation*}
-Which means that the local energy, using natural units and unity mass as before, \eqref{eq:locale} can be written as
+The functions $H_{n_x}(\sqrt{\omega}x)$ are so-called Hermite polynomials  while $A$ is a normalization constant. 
+For the lowest-lying state we have $n_x=n_y=0$ and an energy $\epsilon_{n_x,n_y}=\omega(n_x+n_y+1) = \omega$.
+Convince yourself that the lowest-lying energy for the two-electron system  is simply $2\omega$.
 
-\begin{equation}
-    E_L(\mathbf{r}) =\frac{1}{ 
-    \left[
-    \prod_i \phi_i
-\right]
-\exp{\left(\sum_{j<k}u_{jk}\right)}
-}  \sum_i^N \left(\frac{1}{2}{\nabla }_{i}^2 +V_{ext}(\bm r_i) \right)  \left[
-    \prod_i \phi_i
-\right]
-\exp{\left(\sum_{j<k}u_{jk}\right)}
-\end{equation}
-where (see \hyperref[APP_2:le_2]{Appendix 1: Analytic local energy, interacting elliptical})
-\begin{align}
-\begin{split}
-\frac{1}{\Psi_T(\mathbf{r})} \nabla_k^2\Psi_T(\mathbf{r}) 
-&=
-\frac{\nabla_k^2 \phi_k}{\phi_k} + 2  \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\frac{\bm r_k - \bm r_l}{r_{kl}}  u'_{kl}  \\
-&+  \sum_{j\ne k} \sum_{l\ne k} \frac{(\bm r_k - \bm r_l)(\bm r_k - \bm r_j)}{r_{kj} r_{kl} }  u'_{kj}  u'_{kl} \\
-&+ \sum_{l\ne k} \left(   u{''}_{kl} + \frac{2}{r_{kl}}   u'_{kl} \right)
-\end{split}
-\end{align}
-Thus
-\begin{align}
-\begin{split}
-    E_L(\mathbf{r}) &= \frac{1}{2}\sum_{k=1}^N \left(\frac{\nabla_k^2 \phi_k}{\phi_k} 
-    + 2 \frac{\nabla_k \phi_k}{\phi_k} \sum_{l\ne k}\frac{\bm r_k - \bm r_l}{r_{kl}}  u'_{kl}
-    +  \right( \sum_{j\ne k}  \frac{(\bm r_k - \bm r_j)}{r_{kj} }  u'_{kj} \left)^2
-    +  \sum_{l\ne k} \left(   u{''}_{kl} + \frac{2}{r_{kl}}   u'_{kl} \right) +V_{ext}(\bm r_i) \right)  
-\end{split}
-\end{align}
-Where
-\begin{align*}
-\frac{\nabla_k \phi_k}{\phi_k} &=-2\alpha (x_k \vec e_1 + y_k \vec e_2 + \beta z_k \vec e_3), \\
-\frac{\nabla_k^2 \phi_k}{\phi_k}&=-2\alpha (d-1+\beta)+4\alpha^2 (x_k   + y_k^2 + \beta^2 z_k^2), \\
-\frac{\partial u_{kl}}{\partial r_{kl}}&= \frac{a}{r_{kl}(r_{kl}-a)}, \\
-\frac{\partial^2 u_{kl}}{\partial r^2_{kl}}&= \frac{a^2-2ar_{kl}}{r_{kl}^2(r_{kl}-a)^2}
-\end{align*}
-And drift force;
+The unperturbed wave function for the ground state of the two-electron system is given by
 \begin{equation*}
-F_k = \frac{2\nabla \Psi_T}{\Psi_T}= 2 \left(\ \frac{\nabla_k \phi_k}{\phi_k} + \sum_{l\ne k}\nabla_k u_{kl} \right) 
+\Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
 \end{equation*}
-Where $\nabla_k u_{kl}=\frac{\bm r_k - \bm r_l}{r_{kl}}\frac{\partial u_{kl}}{\partial r_{kl}}$
-
-\subsubsection{Scaling the system}
-As in \citep{VMCHJ} and \citep{VMCdubois}, the system is scaled using $a/a_{ho}=0.0045$, with units of length of $a_{ho}$, $r\rightarrow r/a_{ho}$ and energy units of $\hbar \omega_{ho}$. This means that $\nabla_i\rightarrow \frac{1}{a_{ho}} \nabla_i$, thus the Hamiltonian \eqref{eq:hamiltonian} can be written as;
-
-\begin{align}
-\begin{split}
-  H &= \sum_i^N \left(\frac{-\hbar^2}{2m}\frac{1}{a_{ho}^2} \nabla_i^2 +
-  \frac{1}{2}m \omega_{ho}^2a_{ho}^2(x^2+y^2+ \frac{\omega_z^2}{\omega_{ho}^2}z^2]  
-  \right)  +
-	 \sum_{i<j}^{N} V_{int}({\mathbf{r}}_i,{\mathbf{r}}_j) \\
-	 &= \sum_i^N \left(\frac{-\hbar^2}{2m}\frac{m \omega_{ho}}{\hbar} \nabla_i^2 +
-  \frac{1}{2}m   \omega_{ho}^2 \frac{\hbar}{m \omega_{ho}}(x^2+y^2+ \frac{\omega_z^2}{\omega_{ho}^2}z^2)  
-  \right)  +
-	 \sum_{i<j}^{N} V_{int}({\mathbf{r}}_i,{\mathbf{r}}_j) \\
-	  &= \sum_i^N \frac{1}{2} \left(- \nabla_i^2 +x^2+y^2+ \lambda^2 z^2  
-  \right)  +
-	 \sum_{i<j}^{N} V_{int}({\mathbf{r}}_i,{\mathbf{r}}_j) \label{eq:scaled_H}
-\end{split}
-\end{align}
-\subsection{Variational Monte Carlo} \label{S:VMC}
-There are various methods available to circumnavigate having to directly solve the Schrõdinger equation in order to find the eigenpair of the system we are looking for. An important underlying principle for the methods employed in this project is the variational principle \citep{Griffiths95}[p.256.]; 
-
-\begin{equation}
-E_0\leq E[H]= \langle H \rangle = \langle \Psi | H | \Psi \rangle
-\end{equation}
-
-This principle states that given a Hamiltonian, $H$, the ground-state energy, $E_0$, is upper bound by the expectation value $\langle H \rangle $, and holds for any normalized function $\Psi$. Thus, by using the Hamiltonian of the Bose gas, and trial wave function described earlier with variational parameters $\bm \alpha$, it possible to hone in on the minimal value of $\langle H \rangle$ and the desired ground-state energy, $E_0$, by solving the integral \footnote{Since $\Psi_T$ is not normalized, but normalizable, the favefunction $\frac{\Psi_T(\bm r)}{\sqrt{\int d\bm r \Psi_T^* (\bm r) \Psi_T(\bm r)}}$, is normalized};
-
-\begin{equation}
-E[H,\bm \alpha] = \langle H \rangle = \frac{\int d \bm r \Psi_T^* ( \bm r,\bm \alpha) H(\bm r) \Psi_T ( \bm r, \bm \alpha)}{\int d \bm r \Psi_T^* ( \bm r, \bm \alpha) \Psi_T ( \bm r, \bm \alpha)}.
-\label{eq:E_local_withintegral}
-\end{equation}
-
-\textit{Direct dependence on $\bm \alpha$ is omitted from the rest of this project, but is included here to show that the energy also depends on the variational parameters.}
-
-Instead of solving this multi-dimentional integral analytically, which for more than a single particle becomes complicated, if not impossible, I've used Monte Carlo integration. Monte Carlo integration \citep{CMP}[Ch. 3] is a stochastic method aimed at evaluating a deterministic and high dimensional integral. This involves drawing a sequence of $i=1,...,M$ random evens with a probability $P_i$, multiplying each event by it's probability, and taking the average - which will converge to the desired integral. The following shows this method applied to evaluating the ground energy of the Boson gas, based on local energy samples;
-
-\begin{equation}
-E[H]=\int P(\bm r) E_L(\bm r) \approx \frac{1}{M}\sum_{i=1}^M P(\bm r_i) E_L(\bm r_i)
-\end{equation}
-, where $E_L(\bm r_i)$ \eqref{eq:locale} is the local energy of the system in configuration $\bm r_i$, and $P(\bm r_i)$ the probability of that local energy.
-
-\begin{equation}
-P(\bm r)=\frac{|\Psi_T (\bm r) |^2}{\int |\Psi_T (\bm r)|^2 d\bm r }
-\label{eq:PDF}
-\end{equation}
+with $C$ being a normalization constant and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$. Note that the vector $\bm{r}_i$ 
+refers to the $x$ and $y$ position for a given particle.
+What is the total spin of this wave function? Find arguments for why the ground state should have
+this specific total spin. 
 
 
-\subsubsection{Metropolis algorithm}
-The Metropolis algorithm \citep{CMP}[p.86-88] is a highly adaptable method which generates a sequence of random samples from a probability distribution. The method makes iterative changes to a single degree of freedom and either accepts or rejects each change. By using the relative probability between samples, the method does not rely on directly sampling from a probability distribution, making the methods well suited for problems which involve complex probability distributions. 
-The probability of the system being in state $i$ at time $t+\epsilon$ can be expressed through the probabilities of all states at time $t$; $P_i(t+\epsilon)=\sum_j w(j\rightarrow i)P_j(t)$, where $w(j\rightarrow i)$ is the transition probability from $j$ to $i$.  \eqref{eq:PDF} can be used to find the probability density, but the transition probabilities are unknown. These probabilities can be expressed as $w(j\rightarrow i)=A(j\rightarrow i) T(j\rightarrow i)$, where $T$ is the likelihood of making a transition, and $A$ the likelihood of that transition being accepted. The Metropolis algorithm works by initializing the system is a certain state, then using a random walker to suggest new states. By assuming $T(j\rightarrow i)=T(i\rightarrow j)$, or what is known as detailed balance \citep{CMP}[p.86], one obtains; \begin{align*}
-\frac{P_i}{P_j}= \frac{W(j\rightarrow i)}{W(i\rightarrow j}= \frac{A(j\rightarrow i)T(j\rightarrow i)}{A(i\rightarrow j)T(i\rightarrow j)}=\frac{A(j\rightarrow i)}{A(i\rightarrow j)}.
-\end{align*}
-Using the probability ratio means that normalization is unnecessary, but more importantly this ratio also tells whether or not the random walker is moving into a region of high probability. Since the acceptance probability is unknown, brute force Metropolis uses $A(j\rightarrow i)=min(1,\frac{P_i}{P_j})$. The adaptation of the algorithm used in this project reads as; 
+\subsection{Algorithms}
+Trene en RBM til å foreslå en god $\Psi$ slik at variational principle gir et godt estimat på $E_0$, det vil si lavest mulig - altså et tak. 
 
-\begin{center}\fbox{\parbox{\textwidth}{{\textbf{Algorithm: Brute Force Metropolis}}
-\begin{enumerate}
-\item Initialize algorithm
-\subitem - Set the number of Monte Carlo cycles, $M$, and step length, $l$
-\subitem - Set variational parameters $\bm \alpha$ 
-\subitem - Set particle positions, $\vec r$
-\subitem - Set energy $E=E_L(\bm r)$
-\item Propose new configuration
-\subitem - Select random particle 
-\subitem - Randomly move particle up to a threshold \textit{l}. Store proposed particle position $\vec r*$
-\item Evaluate proposal
-\subitem - Calculate $w=\frac{P(\vec r*)}{P(\vec r)}=\frac{|\Psi_T (\vec r*)|^2}{|\Psi_T(\vec r)|^2}$
-\subitem - Generate a random number $q$ between $0$ and $1$. 
-\subitem - If $w \geq q$, accept proposal, calculate $E_L$ and set $E=E+E_L$. Else, reject proposal.
-\item If the number of cycles from step $2$ to $4$ is less than $M$, go to step 2. Else calculate $\langle H \rangle = \frac{E}{M}$ and end simulation.  
-\end{enumerate}}}\end{center}
-\subsubsection{Importance sampling} \label{importance_sampling}
-A problem with the brute force methodology described above is that one may end up with a lot of proposed configurations from regions of relatively lower probability, or in other words, wasted cycles. A method that can be used to reduce the wastage is Importance sampling, a variance reducing technique which instead of suggesting random moves, suggest moves based on the current configuration of the system.
+Den foreslår en spesfik boltzmann distribusjon. Hvorfor er det riktig? Foreslår masse posisjoner ??
 
-The new particle position is based on the stochastic differential equation
-\begin{equation}
-\frac{\partial x(t)}{\partial t}=DF(x(t)) + \eta
-\end{equation}
-where $F$ is the drift force, $D$ the diffusion constant (in atomic units, $D=1/2$) , and $\eta$ is random noise. Based on this, using Euler's method, the new position, $\bm r*$ of the randomly chosen particle is suggested by
-\begin{equation}
-\bm r*=\bm r+DF(\bm r)\Delta t + \xi \sqrt{\Delta t}
-\end{equation}
-where $\bm \xi $ is a vector of Gaussian random variables, and $\Delta t$ the time step. To accommodate this, the ratio of probabilities used in the brute force method needs to be altered: 
+Hva er poenget med maskinen? Skjønner ikke
 
-For a time-dependent probability density, $T(x,t)$, the one-dimensional time evolution may be modeled using the Fokker-Planck equation, which comes from fluid mechanics;
-\begin{equation}
-\frac{\partial T}{\partial t} = D (\frac{\partial^2}{\partial x^2}-F) T(x,t).
-\end{equation}
-The most likely state corresponds to having a constant transition probability, $dT/dt=0$, so; 
-\begin{equation}
-\frac{\partial^2}{\partial x_i^2} T(x,t) = T \frac{\partial}{\partial x_i} F_i + F_i \frac{\partial }{\partial x_i} T
-\end{equation}
-Inserting $F= g(x) \partial T/\partial x$;
-\begin{equation}
-\frac{\partial^2}{\partial x_i^2} T(x,t) = T \frac{\partial g }{\partial x_i}( \frac{\partial T }{\partial x_i})^2  + T g  \frac{\partial^2 T }{\partial x_i^2} + g(\frac{\partial T}{\partial x_i})^2
-\end{equation}
-means that $g=\frac{1}{T}$, and in the case of $P=\Psi$, the drift force is
-\begin{equation}
-F=2\frac{1}{\Psi} \nabla \Psi.
-\end{equation}
-The solution to the Fokker-Planck equation using this drift force can be approximated by the Green's function;
-\begin{equation}
-G(\bm r,\bm r*,\Delta t) = \frac{1}{(4 \pi D \Delta t)^{dN/2}} exp\left(-\frac{(\bm r-\bm r*-D\Delta t F(\bm r*))^2}{4D\Delta t}\right)
-\end{equation}
-,where $\Delta t$ is time time step, $d$ the number of dimensions. Having obtained an expression which approximates the transition probability, detailed balance is no longer required. This means that an improved approach to the acceptance probability can be written as
-\begin{equation}
-q=\frac{G(\bm r,\bm r*)|\Psi_T(y)|^2}{G(\bm r*,\bm r)|\Psi_T(x)|^2}
-\end{equation}
-Meaning that only the ratio of the exponentials in the Green's function needs to be calculated.
+Gi $d \times n$ $x_i$ 
+Interacting vs non-interacting?
+\begin{itemize}
+\item Initiate positions $X$, weights $W$, and biases $b$ and $a$
+\item Use $X$ as positions for $VMC$
+\subitem When moving a particle, change $d$ weights that are "coupled" (one particle)
+\subitem Sample some stuff
+\subitem Estimate $E$
+\item Use the stuff and $E$ estimate to adjust $W,b,a$
+\item Repeat.
+\end{itemize}
 
-\subsubsection{Gradient Descent} \label{SD}
-By including the Jastrow factor, or the correlation part of the wave equation, the ground energy of a system is expected to increase when compared to a corresponding single-particle evaluation. Because of the particle interaction, $\alpha=0.5$ will necessarily no longer be the correct parameter value for all values of $N$. As such, I have opted to implement gradient descent on iterative runs in order to better approximate the value of $\alpha$.
-
-As the desired outcome is to find an $\alpha$ s.t the energy is minimized, the energy may be viewed as a cost function to be minimized.  In general, the minimization of a cost function may in some cases be carried out analytically, in this case however this is not feasible. For problems such as this one, numerical methods for obtaining the desired parameters $\bm \alpha$ is instead applied. One such method is the gradient descent (GD) \eqref{eq:GD} \citep{MLMurphy}[p.247], also known as steepest descent. When utilizing GD, one makes an initial guess for $\bm{\alpha}$, evaluates the gradient, $\bm g$ of the cost function in order to obtain an estimate closer to the desired minimizing value. This process is then iteratively repeated till the sufficient convergence of the coefficients is reached. In order to not overshoot the $k+1$'th estimate, a \textit{learning rate} of $\eta$ is applied to the gradient. The value of the learning rate can either be fixed, usually by trial and error, such that it works well for the problem at hand, or it may be adapted to each step. 
-
-\begin{equation}
-\bm{\beta}_{k+1}=\bm{\beta}_{k}-\eta_k  \bm g (\bm{\beta}_k)
-\label{eq:GD}
-\end{equation}
-In order to implement this method for the energy of the system, $\bm g (\bm \alpha)=\nabla_{\alpha} \langle E_L \rangle$ is required, or the gradient of the local energy w.r.t $\alpha$. By applying the chain rule to \eqref{eq:E_local_withintegral}, the following expression is obtained;
-\begin{align*}
-\nabla_{\alpha} \langle E_L \rangle = 2 \left( \langle \frac{\bar \Psi_{\alpha}}{\Psi [\alpha]} E_L[\alpha] \rangle - \langle \frac{\bar \Psi_{\alpha}}{\Psi [\alpha]} \rangle \langle E_L[\alpha] \rangle  \right)
-\end{align*}
-Where $\bar \Psi_{\alpha} = \frac{d \Psi[\alpha]}{d \alpha} =  \left(- \sum_i (x_i^2 +y_i^2+\beta z_i^2) \right) \Psi[\alpha]$. In a computational perspective, this means accumulating the values of $\sum-( x_i^2 +y_i^2+\beta z_i^2)$, and it's product with $E_L$ at each cycle, then calculating the averages after all cycles are completed. Thus, as higher numbers of cycles is expected to bring $\bar{E}$ closer to $\mu_E$, higher numbers of cycles should also produce a more accurate $\alpha$ gradient.
-
-
-\subsection{Error analysis} \label{importance_sampling}
-The ground-state energy of the system is estimated by the sample mean of the local energies over $M$ cycles (or the fraction left after equilibration);
-
-\begin{equation}
-\bar{E}=\frac{1}{M}\sum^M E_L(\vec r_i)
-\label{eq:estimated_energy}
-\end{equation}
-
-This means that the error of the sample mean, or sample error (squared) \eqref{eq:sampleerror}, coincides with the estimation error of $E_0$;
-
-\begin{equation}
-err^2_{\bar{E}}=var(\bar E)=\frac{1}{M} \sum^M (E_L(\vec r_i) - \mu_{\bar{E_L}})^2,
-\label{eq:sampleerror}
-\end{equation}
-where $\mu_{\bar{E_L}}$ is the true mean of $E_L$. Assuming that the samples are independent of one another, then by the law of large numbers\footnote{ $ lim_{n\rightarrow \infty} \frac{1}{n} \sum^n_{i=1} x_i p(x_i)= \mu_x $}, the difference between the sample mean and the true mean will decreases as the number of samples increase. For a sufficiently large number of Monte Carlo cycles, this would reduce the sample error arbitrarily close to zero, as long as $\mu_{\bar{E_L}}=E_0$, which depends on having chosen the correct variational parameters. Assuming that $\bar{E}=\mu_{\bar{E_L}}=E_0$, the error of the sample mean can be directly compared to the variance of the ground-energy;
-In general, $H\Psi = E_0 \Psi$ when $\Psi$ is the exact ground-state (the same holds for any eigenpair) of the system. This means that $\langle H^n \rangle=\langle \Psi \rvert H^n \lvert \Psi \rangle=E^n$, which also means that the exact wave function has variance of zero;
-\begin{equation}
-var(E)= \langle H^2 \rangle-\langle H \rangle^2 = E^2 -(E)^2= 0
-\end{equation}
-
-In other words, the sample error should be (machine precision) equal to the energy variance, which is zero, if the variational parameters are correct and the number of cycles sufficiently large. If the paramters are not correct, then the closer the parameters are to the correct values, the smaller the sample error. The magnitude of this sample error however, will only be correct if the assumption of independent samples holds, which it in this case does not.
-
-\subsubsection{Error estimate of correlated energy samples; the "blocking" method} 
-Any system state, other than the initial, is directly dependent on the previous configuration of the system through the use of a random walker. Because of this, the associated energy samples are correlated. The error estimate \eqref{eq:sampleerror} above does not reflect this correlation, which means that the error estimate will be less accurate. In order to remedy this, I have chosen to use the "blocking" or "bunching" meothd \cite {flyvebjerg}, which benefits from being more accurate the larger the sample size, unlike for example bootstrapping.
-
-As the series of energy samples from the VMC is ordered as a function of time, it is a time series of finite length. In general, a time series of $n$ samples can be used to form an $n$-vector or $n$-tuple, $\vec X$, where $(X_i)$ denotes the $i$'th sample in the series. In order to estimate the variance of the sample mean, $var (\bar X)$, by use of  the "blocking" method, the time series is divided into blocks of increasing size. By combining these transformations with theorems on strictly stationary time series an automated "blocking" method (explained in detail in \cite{Jonsson}) may be applied to the VMC sample series. Pivotal for this method is the distribution of the quantity $M$ \eqref{eq:M}, which depends on a small number different statistical quantities from the transformed series. Using this, the automated "blocking" method may be applied to the VMC sample series. Below is a brief outline of the automated "blocking" method.
-
-Starting with one block per sample, followed by two samples per block and so on, the sample variance, $\hat \sigma^2$ is calculated. As these blocks increase in size, $\hat \sigma^2$ of the time series gradually unravels from the sample covariance. From $\bm X_0=\bm X$, the subsequent "blocking" transformation, $\bm X_0 \rightarrow \bm X_1$, produces a new time series $\bm X_1$ with length $n_1=n/2$ \footnote{In the case where a time series is not divisible by two, a random sample is omitted.}. The subsequent "blocking" number $k$, continues in the same fashion, where each transformation is achieved through 
-\begin{align}
-(X_i)_k=\frac{1}{2} (X_{2i-1})_{k-1} + (X_{2i})_{k-1}
-\end{align}
-for $i=1,..,n_k$, where $n_k$ is the length of the $\bm X_k$. These transformations are carried out until only one block remains.
-
-The estimate for the variance of the sample mean can be expressed as $var(\bar X) = \frac{\sigma_k}{n_k}+\epsilon_k$, where $\epsilon_k$ is the truncation error, which after a certain number of transformations is expected to become constant. Finding the lowest $k$, such that $\epsilon_k=\epsilon_{k+1}$ is the goal of the last step. By calculating $M$ \eqref{eq:M}, where $d$ comes from $n=2^d$, the smallest $k$ such that $M_k\leq q_{d-k}(1-\alpha)$ gives which $k$ to use when calculating $\hat {var} (\bar x) = \sigma_k^2/n_k$ to use as an estimate for the sample mean \footnote{$q_{d-k}(1-\alpha)$ may be found in a table for the $\chi$ distribution.}, with confidence interval $(1-\alpha)$. Because $M$ requires both $\sigma_k$, and $ \gamma_k(1)$, these quantities should be calculated after each transformation.
-
-
-\begin{equation}
-\hat \gamma(h)=\frac{1}{n} \sum_{i=1}^{n-h} (X_i-\bar X)(X_{i+h}-\bar X) 
-\label{eq:samplecovar}
-\end{equation}
-which is a measure of the $h$-order ($h=|i-j|$) covariance of a time series series with length $n$. 
-
-\begin{equation}
-\hat \gamma_k=\frac{1}{4}
-\end{equation}
-
-
-\begin{equation}
-M_j=\sum_{k=j}^{d-1} \frac{n_k\left[(n_k-1)\hat \sigma_k^2/(n_k^2)+\hat \gamma_k(1)\right]^2}{\sigma_k^4}
-\label{eq:M}
-\end{equation}
-
-When tailored to finding an estimate for the variance of $\bar E_L$, from the VMC calculations, the automatic "blocking" algorithm reads as;
-\begin{center}\fbox{\parbox{\textwidth}{{\textbf{Algorithm: The automated "blocking" method}}
-\begin{enumerate}
-\item Initialize algorithm
-\subitem - Set $\alpha$
-\subitem - Estimate $var(\bar E)$
-\subitem - Set $i=0$
-\item Iterative "blocking" while size of $E_{i+1}\geq 2$:
-\subitem - If $n_i\%2 \neq 0$, remove a random energy sample from $E_i$
-\subitem - Compute $\hat \sigma_i^2, \hat \gamma_i(1)$
-\subitem - Transform data $\vec E_i \rightarrow \vec E_{i+1}$, and set $i=i+1$
-\item Calculate final values
-\subitem - Compute $M_j$ from $\hat \sigma_j^2, \hat \gamma_j(i)$
-\subitem - Find smallest $k$ such that $M_k \leq q_{d-k} (1-\alpha)$
-\subitem - Calculate $\hat{ var }( \bar E)  = \hat \sigma_k^2/n_k$ 
-\end{enumerate}}}\end{center}
-where $E_i$ is the time series of energy samples after a number of $i$ "blocking" transformations.
 
 
 \section{Results} \label{results}
@@ -588,38 +356,53 @@ where $E_i$ is the time series of energy samples after a number of $i$ "blocking
 
 \begin{appendices}
 \section{Appendix 1.} \label{APP_1}
-
-\subsection{Analytical expression for $E_L$}
 \begin{align*}
-\frac{1}{\Psi_T} \nabla_k \Psi = \nabla_k \ln \Psi_t
+\Psi (\mathbf{X}) &= F_{rbm}(\mathbf{X}) \\
+&= \frac{1}{Z}\sum_{\{h_j\}} e^{-E(\mathbf{X}, \mathbf{h})} \\
+&= \frac{1}{Z} \sum_{\{h_j\}} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} + \sum_j^N b_j h_j + \sum_{i,j}^{M,N} \frac{X_i w_{ij} h_j}{\sigma^2}} \\
+&= \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \\
 \end{align*}
+\subsection{Analytic expression for the local energy}
+\begin{equation}
+\begin{aligned}
+E_L=\frac{1}{\Psi_T}\hat H \Psi_T = \sum_{i=1}^N -\frac{1}{2} \frac{1}{\Psi_T} \nabla^2 \Psi_T + \frac{1}{2}\omega^2r_i^2)
+\end{aligned}
+\label{eq:Appendix_localenergy}
+\end{equation}
+Where
+\begin{equation}
+\begin{aligned}
+\frac{1}{\Psi_T}\nabla^2 \Psi_T &=  \frac{1}{\Psi_T}\nabla (\Psi _T \frac{1}{\Psi_T} \nabla \frac{1}{\Psi_T})\\
+&= (\frac{1}{\Psi_T} \nabla \Psi_T) ^2 + \nabla (\frac{1}{\Psi_T}\nabla \Psi_T)\\ 
+&= (\nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T
+\end{aligned}
+\label{eq:Appendix_rewrite}
+\end{equation}
 
-\begin{align*}
-v(\bm X)=b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}
-\end{align*}
-
-
-\begin{align*}
-\nabla_k  \ln \Psi_T &= \nabla_k  \big( \ln \frac{1}{Z} \ln -\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} + \ln \prod_j^N (1 + e^{ v(\bm X)}) \big) \\
+First derivative:
+\begin{equation}
+\begin{aligned}
+\frac{1}{\Psi_T} \nabla_k \Psi &= \nabla_k  \ln \Psi_T \\
+&= \nabla_k  \big( \ln \frac{1}{Z}  -\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} +  \sum_j^N \ln (1 + e^{ b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \big) \\
 &= 
-  - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N v'(\bm X) u( v(\bm x))  \\
-&=
-  - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{W_{kj}}{\sigma^2} u( v(\bm x))  \\
-\end{align*}
+  - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N w_{kj}\frac{\exp (b_j + \sum_i^M \frac{x_i w_{ij}}{\sigma^2})}{1 + e^{ b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}}  \\
+&= - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-v(\bm X,j)}}
+\end{aligned}
+\label{eq:Appendix_1derivative}
+\end{equation}
 
-Where $u(x)=\frac{1}{1+e^x}$
-
-And 
-
-
-\begin{align*}
+Second derivative:
+\begin{equation}
+\begin{aligned}
 \nabla_k^2  \ln \Psi_T &= \nabla_k  \big( 
-  - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{W_{kj}}{\sigma^2} u( v(\bm x))  \big) \\
+   - \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-b_j  -\sum_i^M \frac{X_i w_{ij}}{\sigma^2}}}  \big) \\
   &=
-   - \frac{1}{\sigma^2} +  \sum_{i}^N \frac{W_{kj}}{\sigma^2} u( v(\bm x)) u'(v(\bm x)) v'(\bm x) \\
-     &=
-   - \frac{1}{\sigma^2} +  \sum_{i}^N \frac{W_{kj}}{\sigma^2} u( v(\bm x)) u'(v(\bm x)) v'(\bm x) \\
-\end{align*}
+ - \frac{1}{\sigma^2} + \sum_{i}^N \frac{w_{kj}^2}{\sigma^4}\frac{e^{-v(\bm X,j)}}{ ( 1 + e^{-v(\bm X,j)} )^2}  
+\end{aligned}
+\label{eq:Appendix_2derivative}
+\end{equation}
+
+Thus to calculate \eqref{eq:Appendix_localenergy}, one may use \eqref{eq:Appendix_rewrite}, \eqref{eq:Appendix_1derivative} and \eqref{eq:Appendix_2derivative}.
 
 
 \end{appendices}

@@ -27,6 +27,11 @@ public:
     std::vector<class Particle*>    getParticles()      { return m_particles; }
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }
+
+    int getM()            { return m_M; }
+    int getN()            { return m_N; }
+
+
     int getNumberOfMetropolisSteps()    { return m_numberOfMetropolisSteps; }
     double getEquilibrationFraction()   { return m_equilibrationFraction; }
 
@@ -36,6 +41,10 @@ public:
     double getR_jk(int j, int k);
 
 private:
+    int                             m_M = 0; // # visible nodes
+    int                             m_N = 0; // # hidden nodes
+
+
     int                             m_numberOfParticles = 0;
     int                             m_numberOfDimensions = 0;
     int                             m_numberOfMetropolisSteps = 0;

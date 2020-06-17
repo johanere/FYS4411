@@ -1,0 +1,7 @@
+m_parameters.reserve(1);  hva er greia med dette? Hva bør jeg gjøre når mtp. vektene feks?
+
+nabla_i er mhp. partikkel i, som har flere X_i er avhengig av P
+
+burde hatt et smartere oppsett på å hente vekter
+
+lage en sigma^2 evnt flytte ut av loop i RBM_simpleWF
