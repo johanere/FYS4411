@@ -1,0 +1,47 @@
+\begin{thebibliography}{1}
+
+\bibitem{VMCdubois}
+J.~L. Dubois and H.~R. Glyde.
+\newblock Bose-einstein condensation in trapped bosons: A variational monte
+  carlo analysis.
+\newblock {\em Physical Review A}, 63(2), 2001.
+
+\bibitem{flyvebjerg}
+H.~Flyvbjerg and H.~G. Petersen.
+\newblock Error estimates on averages of correlated data, 1989.
+
+\bibitem{Griffiths95}
+David~J Griffiths.
+\newblock Introduction to quantum mechanics, 1995.
+
+\bibitem{CMP}
+A.~Weisse H.~Fehske, R.~Schneider.
+\newblock Computational many-particle physics, 2008.
+
+\bibitem{Hogberget}
+Jørgen Høgberget.
+\newblock Quantum monte-carlo studies of generalized many-body systems, 2013.
+
+\bibitem{Jonsson}
+Marius Jonsson.
+\newblock Standard error estimation by an automated blocking method, 2018.
+
+\bibitem{MLMurphy}
+Kevin~P. Murphy.
+\newblock {\em Machine learning : a probabilistic perspective}.
+\newblock Adaptive computation and machine learning. MIT Press, Cambridge,
+  2012.
+
+\bibitem{VMCHJ}
+J.~K. Nilsen, Jordi Mur~Petit, Montserrat Guilleumas, M.~Hjorth~Jensen, and
+  Artur Polls~Martí.
+\newblock Vortices in atomic bose-einstein condensates in the
+  large-gas-parameter region.
+\newblock {\em Physical Review A}, 2005.
+
+\bibitem{numpy}
+Travis~E Oliphant.
+\newblock {\em A guide to NumPy}, volume~1.
+\newblock Trelgol Publishing USA, 2006.
+
+\end{thebibliography}
