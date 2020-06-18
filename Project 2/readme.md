@@ -1,10 +1,10 @@
-## FYS 4411 - Project 1
-The project report ("FYSSTK4411project1_JN.pdf") may be found in this folder.
+## FYS 4411 - Project 2
+The project report ("FYSSTK4411project2_JN.pdf") may be found in this folder.
 #### Folders
 All tex files used to compile the project report may be found under "Tex".  All programs used to obtain the results described in the report is under "Code". Python code used to analyse output from the C++ VMC engine may be found under "data_analysis" in "Results".
 
 ### Abstract
-
+UPDATE ABSTRACT!
 This project aimed to examine using Vartiational Monte Carlo (VMC) in making an estimate, 
 <img src="https://render.githubusercontent.com/render/math?math=\bar E">, of the ground state energy, 
 <img src="https://render.githubusercontent.com/render/math?math=E_0">, of a trapped, hard sphere Bose gas. The error of the energy estimate was evaluated by using the sample error with "blocking", 
