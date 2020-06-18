@@ -39,7 +39,7 @@ int numberOfDimensions = 1;
 int interaction = 0;
 int n=2;
 int GD_iters = 1;
-int runs = 1;
+int runs = 2;
 int m= numberOfParticles*numberOfDimensions ;
 double equilibration = 0.3;
 double stepLength = 0.5;
@@ -49,17 +49,45 @@ int method=0;
 
 double alpha = 0.5;
 double beta = 1;
+double learningrate=0.1;
+int seed=123;
 
+RBM* rbm = new RBM(GD_iters,m,n,learningrate,seed);
+
+// TESTING RBM UPDATE
+std::vector <double>        a_grad;
+std::vector <double>        b_grad;
+std::vector <double>        W_grad;
+  double r=0.1;
+
+  for (int i=0; i<m;i++)
+  {
+    a_grad.push_back( r ) ;
+  }
+
+  for (int j=0; j<n;j++)
+  {
+    b_grad.push_back(r) ;
+  }
+    r=0.4;
+  for (int i=0; i<m;i++)
+  {
+    for (int j=0; j<n;j++)
+    {
+      W_grad.push_back( r );
+    }
+  }
+// END OF TESTING RBM UPDATE
 
   for (int run=1; run<=runs;run++)
     {
-    System* system = new System();
+    System* system = new System(seed);
 
     system->setInitialState             (new RandomUniform(system, numberOfDimensions, numberOfParticles, a,  interaction ));
     system->setDistances                (interaction,a);
 
 
-    system->setRBM                      (new RBM(system,GD_iters,m,n) );
+    system->setRBM                      (rbm,run);
 
     // Pick the right wave function
     if (interaction==0){
@@ -84,6 +112,7 @@ double beta = 1;
 
     // update weights here
     system->getSampler()->printOutputToTerminal();
+    rbm->Update_gradients(a_grad,b_grad,W_grad);
     } // end of run loop
     return 0;
 }

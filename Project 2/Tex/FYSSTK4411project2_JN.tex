@@ -325,6 +325,20 @@ F_i = \frac{2\nabla \Psi_T}{\Psi_T} = 2 \left[- \frac{(X_k - a_k)}{\sigma^2} + \
 F_i = \frac{2\nabla \Psi_T}{\Psi_T}= =2 \nabla_i \ln \Psi_T
 \end{equation}
 
+\subsubsection{Updating parameters}
+\begin{equation}
+\bm{\beta}_{k+1}=\bm{\beta}_{k}-\eta_k  \bm g (\bm{\beta}_k)
+\label{eq:GD}
+\end{equation}
+gradient of the local energy w.r.t the parameters $\bm \beta$ which can either be$\bm a$, $\bm b$, $\bm X$; $\bm g (\bm \beta)=\nabla_{\beta} \langle E_L \rangle$:
+
+\begin{align*}
+\nabla_{\beta} \langle E_L \rangle = 2 \left( \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} E_L[\beta] \rangle - \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} \rangle \langle E_L[\beta] \rangle  \right)
+\end{align*}
+
+$\partial$ eller $d$ ???
+Where $\frac{\bar \Psi_{\beta}}{\Psi [\beta]} = \frac{1}{\Psi_T [\beta]}\frac{d \Psi[\beta]}{d \beta} $
+
 
 \subsubsection{neste greie}
 
@@ -440,7 +454,37 @@ Second derivative:
 
 Thus to calculate \eqref{eq:Appendix_localenergy}, one may use \eqref{eq:Appendix_rewrite}, \eqref{eq:Appendix_1derivative} and \eqref{eq:Appendix_2derivative}.
 
+\section{Appendix 2.} \label{APP_2}
+\subsection{Derivatives w.r.t RBM parameters}
+Where $\frac{\bar \Psi_{\beta}}{\Psi [\beta]} = \frac{1}{\Psi_T [\beta]}\frac{d \Psi[\beta]}{d \beta}$. For parameter $k$: $\frac{1}{\Psi_T}\frac{\partial \Psi_T}{\partial \beta_k}=\frac{\partial}{\partial \beta_k} \log \Psi_T$
 
+for $\beta=\bm a$:
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial a_k} \log \Psi_T = \frac{X_k-a_k}{\sigma^2}
+\end{aligned}
+\label{eq:Appendix2_grad_a}
+\end{equation}
+
+for $\beta=\bm b$:
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial b_k} \log \Psi_T 
+= 
+  \frac{1}{1 + e^{-v(\bm X,k)}}
+\end{aligned}
+\label{eq:Appendix2_grad_b}
+\end{equation}
+
+for $\beta=\bm W$:
+\begin{equation}
+\begin{aligned}
+\frac{\partial}{\partial W_k} \log \Psi_T = 
+  \frac{X_k e^{v(\bm X,k)} }{(1 + e^{v(\bm X,k)}) \sigma^2} =
+  \frac{X_k} {(1 + e^{-v(\bm X,k)}) \sigma^2} 
+\end{aligned}
+\label{eq:Appendix2_grad_b}
+\end{equation}
 \end{appendices}
 
 

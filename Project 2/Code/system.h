@@ -28,8 +28,8 @@ public:
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }
 
-    void setRBM                     (class RBM* rbm);
-    
+    void setRBM                     (class RBM* rbm,int current_run);
+
     class RBM*                  getRBM()        { return m_rbm; }
 
     int getNumberOfMetropolisSteps()    { return m_numberOfMetropolisSteps; }

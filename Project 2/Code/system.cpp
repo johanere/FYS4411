@@ -132,11 +132,12 @@ bool System::importance_sampling_Step() {
 } //end of improtance sampling step
 
 void System::runMetropolisSteps(int numberOfMetropolisSteps, int method,int GD_iters) {
+    cout<<"in system "<<numberOfMetropolisSteps<<endl;
     m_particles                 = m_initialState->getParticles();
     m_sampler                   = new Sampler(this,GD_iters);
 
     m_numberOfMetropolisSteps   = numberOfMetropolisSteps;
-    m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps);
+    m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps,numberOfMetropolisSteps-m_equilibrationFraction*numberOfMetropolisSteps);
     InitiateR(); //calculate distances
 
     oldWF = m_waveFunction->evaluate(m_particles);
@@ -194,11 +195,11 @@ void System::setDistances(int interaction,double a) {
   m_a=a;
 }
 
-void System::setRBM(RBM* rbm) {
+void System::setRBM(RBM* rbm, int current_run) {
     m_rbm = rbm;
-    m_M=m_rbm -> get_m() ;
+    m_M=m_rbm -> get_m();
     m_N=m_rbm -> get_n();
-    m_rbm -> InitiateWeightsAndBiases();
+    m_rbm -> WeightsAndBiases(current_run);
 }
 
 void System::InitiateR( ){

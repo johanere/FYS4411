@@ -18,9 +18,15 @@ Sampler::Sampler(System* system,int GD_iters) {
     m_GDiters=GD_iters;
 }
 
-void Sampler::setNumberOfMetropolisSteps(int steps) {
+void Sampler::setNumberOfMetropolisSteps(int steps, int steps_after_eq) {
     m_numberOfMetropolisSteps = steps;
-    m_EnergySamples.reserve(steps);
+    m_EnergySamples.reserve(steps_after_eq);
+    m_psi_a_EL.reserve(steps_after_eq);
+    m_psi_b_EL.reserve(steps_after_eq);
+    m_psi_W_EL.reserve(steps_after_eq);
+    m_psi_a.reserve(steps_after_eq);
+    m_psi_b.reserve(steps_after_eq);
+    m_psi_W.reserve(steps_after_eq);
 }
 
 void Sampler::sample(bool acceptedStep) {
@@ -36,27 +42,13 @@ void Sampler::sample(bool acceptedStep) {
     m_cumulativeEnergy2 += m_DeltaE*m_DeltaE;
     m_stepNumber++;
     m_EnergySamples.push_back(m_DeltaE);
+
     if (acceptedStep==true){m_acceptedSteps++;}
     else {;}
 
     if (m_GDiters>1)
     {
-      double r2;
-      for (int i=0;i<m_system->getNumberOfParticles();i++)
-      {
-        r2=0;
-        for (int dim=0;dim<m_system->getNumberOfDimensions();dim++)
-        {
-          if (dim==2){r2-=(m_system->getParticles().at(i))->getPosition().at(dim)
-            * (m_system->getParticles().at(i))->getPosition().at(dim);} // add *times parameter[1]
-          else{r2-=(m_system->getParticles().at(i))->getPosition().at(dim)
-            * (m_system->getParticles().at(i))->getPosition().at(dim);}
 
-
-        }
-      }
-        m_ElR+=m_DeltaE*(r2);
-        m_sumR2+=r2;
     }
 }
 

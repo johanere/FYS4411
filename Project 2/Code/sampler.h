@@ -4,7 +4,7 @@
 class Sampler {
 public:
     Sampler(class System* system,int GD_iters);
-    void setNumberOfMetropolisSteps(int steps);
+    void setNumberOfMetropolisSteps(int steps,int steps_after_eq);
     void sample(bool acceptedStep);
     void printOutputToTerminal();
     void computeAverages();
@@ -33,5 +33,11 @@ private:
     class System* m_system = nullptr;
     std::vector <double> m_EnergySamples;
 
+    std::vector <double>        m_psi_a_EL;
+    std::vector <double>        m_psi_b_EL;
+    std::vector <double>        m_psi_W_EL;
 
+    std::vector <double>        m_psi_a;
+    std::vector <double>        m_psi_b;
+    std::vector <double>        m_psi_W;
 };
