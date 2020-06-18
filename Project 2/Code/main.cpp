@@ -4,9 +4,17 @@
 #include "WaveFunctions/wavefunction.h"
 #include "WaveFunctions/simplegaussian.h"
 #include "WaveFunctions/interaction.h"
+
+#include "WaveFunctions/RBM_SimpleWF.h"
+
 #include "Hamiltonians/hamiltonian.h"
 #include "Hamiltonians/harmonicoscillator.h"
 #include "Hamiltonians/interactingHO.h"
+
+#include "Hamiltonians/H_RBM_Simple.h"
+
+#include "RBM.h"
+
 #include "InitialStates/initialstate.h"
 #include "InitialStates/randomuniform.h"
 #include "Math/random.h"
@@ -22,6 +30,25 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
+double a = 0.0000000001; // hard shell exclusion
+
+double omega = 1.0;
+double sigma = 1.0;
+int numberOfParticles = 1;
+int numberOfDimensions = 1;
+int interaction = 0;
+int n=2;
+int GD_iters = 1;
+int runs = 1;
+int m= numberOfParticles*numberOfDimensions ;
+double equilibration = 0.3;
+double stepLength = 0.5;
+int numberOfSteps = 100;
+int method=0;
+
+
+double alpha = 0.5;
+double beta = 1;
 
 
   for (int run=1; run<=runs;run++)
@@ -31,10 +58,14 @@ int main(int argc, char* argv[]) {
     system->setInitialState             (new RandomUniform(system, numberOfDimensions, numberOfParticles, a,  interaction ));
     system->setDistances                (interaction,a);
 
+
+    system->setRBM                      (new RBM(system,GD_iters,m,n) );
+
     // Pick the right wave function
     if (interaction==0){
-    system->setHamiltonian              (new HarmonicOscillator(system, 1));
-    system->setWaveFunction             (new SimpleGaussian(system, numberOfDimensions,alpha,beta));
+    system->setHamiltonian              (new H_RBM_Simple(system,omega,sigma));
+    system->setWaveFunction             (new RBM_SimpleWF(system, numberOfDimensions,omega,sigma) );
+
     }
     else if (interaction==1){
     system->setHamiltonian              (new interactingHO(system, 1,a));
@@ -42,18 +73,21 @@ int main(int argc, char* argv[]) {
     }
 
     system->setEquilibrationFraction    (equilibration);
+
     system->setStepLength               (stepLength);
+
     // Run metropolis
+
     system->runMetropolisSteps          (numberOfSteps,method,GD_iters);
 
     system->getWaveFunction()->evaluate(system->getParticles());
 
     // update weights here
-
+    system->getSampler()->printOutputToTerminal();
     } // end of run loop
-
-  return 0;
+    return 0;
 }
+
 
 
 // remember to change seed in randomuniform

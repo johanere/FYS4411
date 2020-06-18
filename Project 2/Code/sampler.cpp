@@ -61,7 +61,6 @@ void Sampler::sample(bool acceptedStep) {
 }
 
 void Sampler::printOutputToTerminal() {
-    cout << "alpha: " << m_system->getWaveFunction()->getParameters().at(0) << endl;
     cout << "E:     " << m_energy << endl;
     cout << "E/N:   "<<m_energy/m_system->getNumberOfParticles()<<endl;
     cout << std::scientific;

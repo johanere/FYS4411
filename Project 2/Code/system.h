@@ -28,9 +28,9 @@ public:
     int getNumberOfParticles()          { return m_numberOfParticles; }
     int getNumberOfDimensions()         { return m_numberOfDimensions; }
 
-    int getM()            { return m_M; }
-    int getN()            { return m_N; }
-
+    void setRBM                     (class RBM* rbm);
+    
+    class RBM*                  getRBM()        { return m_rbm; }
 
     int getNumberOfMetropolisSteps()    { return m_numberOfMetropolisSteps; }
     double getEquilibrationFraction()   { return m_equilibrationFraction; }
@@ -43,7 +43,6 @@ public:
 private:
     int                             m_M = 0; // # visible nodes
     int                             m_N = 0; // # hidden nodes
-
 
     int                             m_numberOfParticles = 0;
     int                             m_numberOfDimensions = 0;
@@ -74,6 +73,7 @@ private:
     std::vector<double> m_particleDistances = std::vector<double>();
     class Random*                   m_random = nullptr;
 
+    class RBM*                      m_rbm = nullptr;
 
 
 };

@@ -1,4 +1,4 @@
-#include "interactingHO.h"
+#include "H_RBM_Simple.h"
 #include <cassert>
 #include <iostream>
 #include "../system.h"
@@ -10,45 +10,91 @@
 using std::cout;
 using std::endl;
 
-H_RBM_Simple::interactingHO(System* system, double omega,double a) :
+H_RBM_Simple::H_RBM_Simple(System* system,double omega,double sigma) :
         Hamiltonian(system) {
-    assert(omega > 0);
-    // set number of nodes
-    // initiate W, b, a
-}
+
+    for (int i=0; i<m_system->getNumberOfParticles();i++)
+    {
+      for (int dim=0; dim <m_system->getNumberOfDimensions();dim++)
+      {
+        m_X.push_back(0.0);
+      }
+    }
+
+    m_M = m_system ->getRBM()  -> get_m() ;
+    m_N = m_system ->getRBM()  -> get_n() ;
+
+
+    assert(m_M == (int) m_X.size());
+
+    m_a =  m_system->getRBM() -> get_a() ;
+    m_b =  m_system->getRBM() -> get_b() ;
+    m_W =  m_system->getRBM() -> get_W() ;
+
+    m_sigma = sigma;
+    m_omega = omega;
+} // end of constructor
 
 double H_RBM_Simple::computeLocalEnergy(std::vector<Particle*> particles) {
-    sigma =1
-    m_a =1
+    double nabla,nabla2,E_K=0,E_P=0;
 
-    std::vector<double> paramters=(m_system->getWaveFunction())->getParameters();
-
-    int n_particles=m_system->getNumberOfParticles();
-
-
-    for (int i=0; i<m_system->getM();i++)  // loop over visible nodes
+    //update X vector
+    for (int i=0; i<m_system->getNumberOfParticles();i++)
     {
-      term1=0
-      for (int dim=0; dim <m_system->getNumberOfDimensions();dim++)  // a_k-X_k/sigma
+      for (int dim=0; dim <m_system->getNumberOfDimensions();dim++)
       {
-        term1+=( (particles[i]->getPosition()[dim]) -m_a[i+dim] ) / sigma
-      }
-
-      for (int j=0; j<n;j++) //w_kj / sigma (1+exp(-bj - ))
-      {
-        for (int dim=0; dim <m_system->getNumberOfDimensions();dim++)
-        {
-          term1+=( (particles[i]->getPosition()[dim]) -m_a[i+dim] ) / sigma
-        }
-
+        m_X[i+dim]= particles[i]->getPosition()[dim];
       }
     }
 
 
 
-    double EL=0.5*sum;
 
-    if (EL<0){cout<<EL<<endl;}
+    for (int k=0; k<m_M;k++)  // loop over visible nodes
+    {
+      nabla=compute_nabla_ln_psi(k);
+      nabla2=compute_nabla2_ln_psi(k);
+      E_K+=nabla*nabla+nabla2 ;
+      E_P=m_X[k]*m_X[k] ;
+    }
 
+
+
+    double EL= -0.5 * E_K  + 0.5 * m_omega * m_omega * E_P;
     return EL;
-}
+} // end of local energy
+
+
+double H_RBM_Simple::compute_v_j(int j) {
+  double sum=0;
+  for (int i=0; i<m_M;i++)
+  {
+    sum+=m_X[i]*m_W[i*m_M+j]/(m_sigma*m_sigma);
+  }
+  return m_b[j]+sum ;
+} // end of v_j
+
+
+
+double H_RBM_Simple::compute_nabla_ln_psi(int k) {
+  double sum=0;
+  for (int j=0; j<m_N;j++) //w_kj / sigma (1+exp(-bj - ))
+  {
+    sum+= m_W[k*m_M+j]/(m_sigma*m_sigma) * (1.0/( 1.0 + exp(- compute_v_j(j) ) ));
+  }
+  return -(m_X[k]-m_a[k])/(m_sigma*m_sigma)+sum;
+} //end of nabla ln psi
+
+
+
+double H_RBM_Simple::compute_nabla2_ln_psi(int k) {
+  double sum=0;
+  double exponential;
+  for (int j=0; j<m_M;j++) //w_kj / sigma (1+exp(-bj - ))
+  {
+    exponential =  exp(- compute_v_j(j) ) ;
+    sum+= m_W[k*m_M+j]*m_W[k*m_M+j]/(m_sigma*m_sigma*m_sigma*m_sigma) *
+    exponential/( (1+exponential)*(1+exponential) )  ;
+  }
+  return -1/(m_sigma*m_sigma)+sum ;
+} // end of nabla2 ln psi

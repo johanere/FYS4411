@@ -7,8 +7,13 @@
 #include "InitialStates/initialstate.h"
 #include "Math/random.h"
 
+#include "RBM.h"
+
+//#include "WaveFunctions/RBM_SimpleWF.h"
+//#include "Hamiltonians/H_RBM_Simple.h"
 
 #include <math.h>
+
 
 //remove
 #include <iostream>
@@ -129,9 +134,11 @@ bool System::importance_sampling_Step() {
 void System::runMetropolisSteps(int numberOfMetropolisSteps, int method,int GD_iters) {
     m_particles                 = m_initialState->getParticles();
     m_sampler                   = new Sampler(this,GD_iters);
+
     m_numberOfMetropolisSteps   = numberOfMetropolisSteps;
     m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps);
     InitiateR(); //calculate distances
+
     oldWF = m_waveFunction->evaluate(m_particles);
 
 
@@ -185,6 +192,13 @@ void System::setInitialState(InitialState* initialState) {
 void System::setDistances(int interaction,double a) {
   m_interaction=interaction;
   m_a=a;
+}
+
+void System::setRBM(RBM* rbm) {
+    m_rbm = rbm;
+    m_M=m_rbm -> get_m() ;
+    m_N=m_rbm -> get_n();
+    m_rbm -> InitiateWeightsAndBiases();
 }
 
 void System::InitiateR( ){

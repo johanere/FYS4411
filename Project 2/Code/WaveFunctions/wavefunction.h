@@ -14,6 +14,6 @@ protected:
     int     m_numberOfParameters = 0;
     std::vector<double> m_parameters = std::vector<double>();
     class System* m_system = nullptr;
-    std::vector<double> m_qForce=std::vector<double>();
+    std::vector<double> m_qForce=std::vector<double>(); 
 
 };
