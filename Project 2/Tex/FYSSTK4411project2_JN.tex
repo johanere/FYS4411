@@ -293,8 +293,8 @@ E_L(\mathbf{r})
 Where
 \begin{equation}
 \begin{aligned}
-\frac{1}{\Psi_T} \nabla_k \Psi 
-&= - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-v(\bm X,j)}}
+\nabla \ln \Psi_T
+&= - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N \frac{w_{kj}}{\sigma^2} \text {logistic} ( -v(j) ) 
 \end{aligned}
 \label{eq:Appendix_1derivative}
 \end{equation}
@@ -302,11 +302,22 @@ Where
 and
 \begin{equation}
 \begin{aligned}
-\nabla_k^2  \ln \Psi_T 
+\nabla^2 \ln \Psi_T
   &=
- - \frac{1}{\sigma^2} + \sum_{j}^N \frac{w_{kj}^2}{\sigma^4}\frac{e^{-v(\bm X,j)}}{ ( 1 + e^{-v(\bm X,j)} )^2}  
+ - \frac{1}{\sigma^2} + \sum_{j}^N \frac{w_{kj}^2}{\sigma^4}  \text {logistic}^2 ( -v(j) ) \exp(-v(j))
 \end{aligned}
 \label{eq:Appendix_2derivative}
+\end{equation}
+
+
+Or:
+
+\begin{equation}
+\begin{aligned}
+E_L(\mathbf{r})
+&= -\frac{1}{2}  \sum_{k=1}^{M} \left( \nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T \right) + \sum_{k=1}^{M} \frac{1}{2} \omega^2r_i^2    +  \sum_{i<j}\frac{1}{r_{ij}}  \\
+\end{aligned}
+\label{eq:Appendix_rewrite}
 \end{equation}
 
 \textbf{Interacting, using $H=H_0+H_1$}
@@ -320,9 +331,18 @@ F_i = \frac{2\nabla \Psi_T}{\Psi_T} = 2 \left[- \frac{(X_k - a_k)}{\sigma^2} + \
 
 
 \subsubsection{Force}
+Defined as
+\begin{equation}
+F_i = \frac{2\nabla \Psi_T}{\Psi_T}= 2 \nabla_i \ln \Psi_T
+\end{equation}
+or (see \hyperref[APP_2:le_1]{Appendix 1: Analytic expression for the local energy}):
 
 \begin{equation}
-F_i = \frac{2\nabla \Psi_T}{\Psi_T}= =2 \nabla_i \ln \Psi_T
+\begin{aligned}
+F_i
+&= - 2\frac{(X_k - a_k)}{\sigma^2} + 2\sum_{j}^N \frac{w_{kj}}{\sigma^2} \text {logistic} ( -v(j) ) 
+\end{aligned}
+\label{eq:qforce}
 \end{equation}
 
 \subsubsection{Updating parameters}
@@ -371,6 +391,24 @@ with $C$ being a normalization constant and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$. 
 refers to the $x$ and $y$ position for a given particle.
 What is the total spin of this wave function? Find arguments for why the ground state should have
 this specific total spin. 
+
+\subsection{Gibbs Sampling}
+
+\begin{equation}
+\begin{aligned}
+\Psi_{T,Gibbs}=\sqrt{F_{RBM}(\bm X)}
+\end{aligned}
+\label{eq:wfgibs}
+\end{equation}
+
+\begin{equation}
+\begin{aligned}
+P(H_j=1|\bm X) & = \text{logistic} (-(v(j)) \\
+P(H_j01|\bm X) &= \text{logistic} ((v(j))
+\end{aligned}
+\label{eq:probsgibs}
+\end{equation}
+where 
 
 
 \subsection{Algorithms}
@@ -451,8 +489,15 @@ Second derivative:
 \end{aligned}
 \label{eq:Appendix_2derivative}
 \end{equation}
-
+mak
 Thus to calculate \eqref{eq:Appendix_localenergy}, one may use \eqref{eq:Appendix_rewrite}, \eqref{eq:Appendix_1derivative} and \eqref{eq:Appendix_2derivative}.
+
+
+
+
+
+
+
 
 \section{Appendix 2.} \label{APP_2}
 \subsection{Derivatives w.r.t RBM parameters}
@@ -479,9 +524,9 @@ for $\beta=\bm b$:
 for $\beta=\bm W$:
 \begin{equation}
 \begin{aligned}
-\frac{\partial}{\partial W_k} \log \Psi_T = 
-  \frac{X_k e^{v(\bm X,k)} }{(1 + e^{v(\bm X,k)}) \sigma^2} =
-  \frac{X_k} {(1 + e^{-v(\bm X,k)}) \sigma^2} 
+\frac{\partial}{\partial W_{kl}} \log \Psi_T = 
+  \frac{X_k e^{v(\bm X,l)} }{(1 + e^{v(\bm X,l)}) \sigma^2} =
+  \frac{X_k} {(1 + e^{-v(\bm X,l)}) \sigma^2} 
 \end{aligned}
 \label{eq:Appendix2_grad_b}
 \end{equation}

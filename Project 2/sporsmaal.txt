@@ -5,3 +5,17 @@ nabla_i er mhp. partikkel i, som har flere X_i er avhengig av P
 burde hatt et smartere oppsett på å hente vekter
 
 lage en sigma^2 evnt flytte ut av loop i RBM_simpleWF
+
+
+
+issue på github om N - #partikler eller #hidden nodes
+
+
+
+
+
+delete alt som er *new
+
+for å delete hamiltonian i main, lage klassen i main, passere som arg til system.
+
+valgrind
