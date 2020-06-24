@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 # Check if the user has specified a build type via the command line, e.g., (in the
 # build-directory)
 #
-#   $cmake .. -DCMAKE_BUILD_TYPE=Debug
+#   $cmake .. -DCMAKE_BUILD_TYPE=Release
 #
 # if not, set Debug as the default build type.
 if(NOT CMAKE_BUILD_TYPE)

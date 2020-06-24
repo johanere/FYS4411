@@ -143,6 +143,10 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \usepackage{multirow} %multirow
 
 
+\usepackage{float}
+\usepackage{subfig}
+
+
 %-------------------- end preamble ----------------------
 
 \begin{document}
@@ -202,12 +206,17 @@ her kjem det greier
 
 
 \section{Introduction}
- method and the "automated blocking" algorithm from \citep{Jonsson}.
+This is an extention paper to my previous project paper \textit{VMC: Effects of Importance Sampling and Jastrow factor on error estimates} \cite{JN_P1}, which is not published and not in review (not intended for publishing) \url{https://github.com/johanere/FYS4411/tree/master/Project\%201} . As such, this extention paper will not include descriptions of the theory already covered in \cite{JN_P1}. 
 
+\paragraph{This project}introduces a new system, namely electrons in a harmonic oscillator, as such, the Hamiltonian of the system is changed from that of \cite{JN_P1}. As the state of the system is represented by a neural network quantum state(NQS), the trial wave function is also new. These two alterations result in a different expression for the local energy, and parameter gradients. In addition, this project introduces a new VMC sampling method, Gibbs sampling. 
+
+As this is an extention paper, I will often reference the "orignail?" paaper, which in turns has relavnanat theory refkenmrken blalbal. USe some of the results from the orgina lpaper
+method and the "automated blocking" algorithm from \citep{Jonsson}.
+
+ Trene en RBM til å foreslå en god $\Psi$ slik at variational principle gir et godt estimat på $E_0$, det vil si lavest mulig - altså et tak. 
  
 In order to write this project paper and the code required to produce the results, I used a variety of tools, including: C++, Python 3.7.7, NumPy \cite{numpy}, as well as a number of books, web-pages and articles - of which most are listed under 
  \hyperref[refer]{references}. All the code required to reproduce the results may be found on my \href{https://github.com/johanere/FYS4411}{github page }.  
- 
 \section{Material and methods} \label{theory}
 
 
@@ -217,223 +226,168 @@ The system consists of $P$ electrons in a $D$ dimensional isotropic harmoinc osc
 \label{eq:finalH}
 H=\sum_{i=1}^{P} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right)+\sum_{i=1}^P \sum_{j=1}^i \frac{1}{r_{ij}},
 \end{equation}
-Where $\omega$ is the oscillator frequency  $\omega$, $r_{ij}=\vert \bm{r}_1-\bm{r}_2\vert$, and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$.  Furthermore,
+Where $\omega$ is the oscillator frequency. 
 \begin{equation*}
-\hat{H}_0=\sum_{i=1}^{P} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
+H_0=\sum_{i=1}^{P} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
 \end{equation*}
 is the standard HO part of the Hamiltonian, while
 \begin{equation*}
-\hat{H}_1=\sum_{i<j}\frac{1}{r_{ij}},
+H_1=\sum_{i<j}\frac{1}{r_{ij}},
 \end{equation*}
 is the interactive part, where $r_{ij}=\vert \bm{r}_1-\bm{r}_2\vert$, and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$.
 
-\subsection{Boltzmann}
+\paragraph{The Pauli exlusion principle}requires that that two identical fermions, such as electrons, cannot occupy the same state \citep{Griffiths95}. As this project concerns itself with the ground state of a system of two non-interacting electrons, these electrons must therefore have opposite spins. This also means that the total spin of the two electron system in question must be zero, and that $P$ must be either one or two.
 
-\subsubsection{Wave Function}
-Using $M=DP$ visible nodes, and $N$ hidden nodes;
-
-\begin{align*}
-\Psi (\mathbf{X}) &= F_{rbm}(\mathbf{X}) \\
-&= \frac{1}{Z}\sum_{\{h_j\}} e^{-E(\mathbf{X}, \mathbf{h})} \\
-&= \frac{1}{Z} \sum_{\{h_j\}} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} + \sum_j^N b_j h_j + \sum_{i,j}^{M,N} \frac{X_i w_{ij} h_j}{\sigma^2}} \\
-&= \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \\
-\end{align*}
-
-Så det går litt kjappere:
-\begin{equation}
-\begin{aligned}
-v(\bm X,j) = b_j + \sum_{i=1}^M \frac{X_i W_{ij} }{\sigma^2}
-\end{aligned}
-\label{eq:v_j}
-\end{equation}
-
-Så:
+\paragraph{Analytic solutions}for the system are available, which makes evaluating the performance of the algorithms possible under certain caveats.  The energy of an harmonic oscillator is in one dimension is \citep{Griffiths95};
 
 \begin{equation}
 \begin{aligned}
-\Psi (\mathbf{X}) = \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{v(\bm X,j)})
+E_n = \hbar \omega (n+\frac{1}{2}
 \end{aligned}
 \label{eq:TWF}
 \end{equation}
 
-\subsubsection{Local Energy}
-When using the Monte Carlo methods described later, the particles will be moved one at a time. After each such move, the local energy \eqref{eq:locale} will be evaluated, and used to calculate the ground energy of the system. 
- 
+Thus, for a system of $P=\{1,2\}$ non-interacting electrons in $D$ dimensions,
+
+\begin{equation}
+\begin{aligned}
+E_n = \hbar \omega (n+\frac{1}{2}
+\end{aligned}
+\label{eq:TWF}
+\end{equation}
+
+
+
+\subsection{Neural network quantum state}
+Instead of seeking to find suitable trial wave function ansatz for the system, this project represents the state of the system by a neural network quantum state (NQS), as was done in by Carleo and Troyer \citep{CarleoGiuseppe2017Stqm}. In their article, they suggest that one may view the wave function as a computational black box, which for a specific system configuration, outputs an amplitude corresponding to the value of the wave function. 
+
+As was done in \citep{CarleoGiuseppe2017Stqm}, I've chosen to use a Restricted Boltzmann machine \cite{MLMurphy}[p.983] (RBM) when representing the state of the system. RBM models latent variables, or variables that are not directly observed, but rather inferred from other quantities - in this case, the local energy. The network consists of a layer of $M$ so called \textit{visible nodes}, and a layer of $N$ \textit{hidden nodes}. These layers have associated weights and biases, with a two-way feed forward. This enables the network both to output values for the hidden nodes as a function of the visible nodes, and vice versa. This means that an RBM is a generative model, in this case a model which can generate particle positions from a distribution. This distribution is a function of the weights and biases, as well as the hidden nodes. 
+
+
+\paragraph{The marginal probability of the network} is given by
+\begin{equation*}
+\begin{aligned}
+F_{rbm}(\bm X) = \frac{1}{Z} \sum_h e^{-E(\bm X, \bm h} ,
+\end{aligned}
+\label{eq:TWF}
+\end{equation*}
+
+
+
+and corresponds to the probability of the system state, $\bm X$. As $\bm X$ in this case is a vector of continuous particle positions, the energy function, $E(\bm X, \bm h)$ of the network (not to be confused with the energy of the system), must be defined accordingly. There are various forms of RBMs with different energy functions, specialized to different types of data. The one used here, which enables continous $\bm X$, is known as a \textit{Gaussian-Binary RBM} \cite{MLMurphy}[p.986], and also includes binary hidden nodes $\bm H=\{h_j\}$ for $j=1,2,..,N$, and $h_j \in \{0,1\}$. Using it's associated energy function, and representing each particle position as $X_i$, such that $i=1,2,..,M$ where $M=PD$, results in the following NQS/wave form representation \cite{MLoppgave}; 
+
+\begin{equation}
+\begin{aligned}
+\Psi (\mathbf{X}) &= F_{rbm}(\mathbf{X}) \\
+&= \frac{1}{Z} \sum_{\{h_j\}} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} + \sum_j^N b_j h_j + \sum_{i,j}^{M,N} \frac{X_i w_{ij} h_j}{\sigma^2}} \\
+&= \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{ v(j)}) \\
+\end{aligned}
+\label{eq:TWF}
+\end{equation}
+\begin{equation}
+\begin{aligned}
+v(j) = b_j + \sum_{i=1}^M \frac{X_i W_{ij} }{\sigma^2}
+\end{aligned}
+\label{eq:v_j}
+\end{equation}
+
+Since all evaluations of the wave function is in the context of finding a ratio of probabilities; $\frac{\Psi_{rbm}^{new}}{\Psi_{rbm}^{old}}$, and all other quantities are derivatives of $\ln \Psi_{rbm}$, the normalization constant $Z$ is not relevant.
+
+
+\subsubsection{Local Energy and drift force}
+As described in project 1 \cite{JN_P1}[2.2], the results obtained through the VMC methods used in this project relies on the variational principle. As such, the local energy
 \begin{equation}
     E_L(\mathbf{r})=\frac{1}{\Psi_T(\mathbf{r})}H\Psi_T(\mathbf{r}).
     \label{eq:locale}
  \end{equation}
- 
-As the algorithms will involve repeatedly calculating the local energy, every reduction of floating point operations (FLOPs) involved in doing so will lead to a significant speed up - which is why an analytic expression for the local energy is desirable. Using the trial wave function \eqref{eq:TWF}, and \eqref{eq:locale} (see \hyperref[APP_2:le_1]{Appendix 1: Analytic expression for the local energy}):
-
-\textbf{Non-interacting, using $H=H_0$}
-\begin{equation}
-\begin{aligned}
-E_L(\mathbf{r})&=\frac{1}{\Psi_T(\mathbf{r})}   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right) \Psi_T(\mathbf{r}) + \frac{1}{\Psi_T(\mathbf{r})}  \sum_{i<j}\frac{1}{r_{ij}}  \Psi_T(\mathbf{r}) \\
-&=\frac{1}{\Psi_T(\mathbf{r})}   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 \Psi_T(\mathbf{r})\right) + \sum_{i=1}^{M} \frac{1}{2} \omega^2r_i^2    +  \sum_{i<j}\frac{1}{r_{ij}}  
-\end{aligned}
-\label{eq:Appendix_rewrite}
-\end{equation}
-Since
-\begin{equation}
-\begin{aligned}
-\frac{1}{\Psi_T}\nabla^2 \Psi_T & = (\nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T
-\end{aligned}
-\label{eq:Appendix_rewrite}
-\end{equation}
-$E_L$ equals
-\begin{equation}
-\begin{aligned}
-E_L(\mathbf{r})
-&= -\frac{1}{2}  \sum_{k=1}^{M} \left( \nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T \right) + \sum_{k=1}^{M} \frac{1}{2} \omega^2r_i^2    +  \sum_{i<j}\frac{1}{r_{ij}}  \\
-\end{aligned}
-\label{eq:Appendix_rewrite}
-\end{equation}
-
-Where
-\begin{equation}
-\begin{aligned}
-\nabla \ln \Psi_T
-&= - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N \frac{w_{kj}}{\sigma^2} \text {logistic} ( -v(j) ) 
-\end{aligned}
-\label{eq:Appendix_1derivative}
-\end{equation}
-
-and
-\begin{equation}
-\begin{aligned}
-\nabla^2 \ln \Psi_T
-  &=
- - \frac{1}{\sigma^2} + \sum_{j}^N \frac{w_{kj}^2}{\sigma^4}  \text {logistic}^2 ( -v(j) ) \exp(-v(j))
-\end{aligned}
-\label{eq:Appendix_2derivative}
-\end{equation}
-
-
-Or:
-
-\begin{equation}
-\begin{aligned}
-E_L(\mathbf{r})
-&= -\frac{1}{2}  \sum_{k=1}^{M} \left( \nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T \right) + \sum_{k=1}^{M} \frac{1}{2} \omega^2r_i^2    +  \sum_{i<j}\frac{1}{r_{ij}}  \\
-\end{aligned}
-\label{eq:Appendix_rewrite}
-\end{equation}
-
-\textbf{Interacting, using $H=H_0+H_1$}
-
-As will be discussed more under \hyperref[importance_sampling]{importance sampling}, the drift force of the  particles are also needed;
+is required in order to carry out the Monte Carlo integration for the ground state energy. Using the trial wave function \eqref{eq:TWF}, and \eqref{eq:locale} an analytic expression for the local energy may be fond. This is derived in detail in \hyperref[APP_1]{Appendix 1: Analytic expression for the local energy}, and will not be discussed further here. Based on the same appendix, the correponding drift force, needed for the importance sampling \cite{JN_P1}[2.2.2], is;
 
 \begin{equation}
 F_i = \frac{2\nabla \Psi_T}{\Psi_T} = 2 \left[- \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-v(\bm X,j)}} \right]
 \end{equation} 
 
-
-
-\subsubsection{Force}
-Defined as
+\subsection{Updating parameters}
+As the weights of the RBM are initialized randomly, the resulting energy is unlikely be the best approximation the algorithm is capable of. In \cite{JN_P1}, the aim was to find $\alpha$ s.t the energy was minimized. Here, the aim is instead to optimize the network.  This is done by optimizing the weights $\bm X$, and biases $\bm a$ and $\bm b$, using the energy as a cost function. Although this optimization is over multiple parameters of different types, the strategy for each parameter $\beta_i$ of parameter type $\beta$, which can either be $\bm a$, $\bm b$, or $\bm X$, is the same as for $\alpha$ described in more detail in \cite{JN_P1}[2.2.3]. The update scheme for parameter $\beta$ is;
 \begin{equation}
-F_i = \frac{2\nabla \Psi_T}{\Psi_T}= 2 \nabla_i \ln \Psi_T
+\bm{\beta}_{k+1}=\bm{\beta}_{k}-\eta_k  \bm g (\bm{\beta}_k),
+\label{eq:GD_beta}
 \end{equation}
-or (see \hyperref[APP_2:le_1]{Appendix 1: Analytic expression for the local energy}):
-
-\begin{equation}
-\begin{aligned}
-F_i
-&= - 2\frac{(X_k - a_k)}{\sigma^2} + 2\sum_{j}^N \frac{w_{kj}}{\sigma^2} \text {logistic} ( -v(j) ) 
-\end{aligned}
-\label{eq:qforce}
-\end{equation}
-
-\subsubsection{Updating parameters}
-\begin{equation}
-\bm{\beta}_{k+1}=\bm{\beta}_{k}-\eta_k  \bm g (\bm{\beta}_k)
-\label{eq:GD}
-\end{equation}
-gradient of the local energy w.r.t the parameters $\bm \beta$ which can either be$\bm a$, $\bm b$, $\bm X$; $\bm g (\bm \beta)=\nabla_{\beta} \langle E_L \rangle$:
+where $\eta$ is the learning rate. \eqref{eq:GD_beta} requires the gradient of the local energy w.r.t the parameters in $\bm \beta$, $\bm g (\bm \beta)=\nabla_{\beta} \langle E_L \rangle$. This is given by
 
 \begin{align*}
-\nabla_{\beta} \langle E_L \rangle = 2 \left( \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} E_L[\beta] \rangle - \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} \rangle \langle E_L[\beta] \rangle  \right)
+\nabla_{\beta} \langle E_L \rangle = 2 \left( \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} E_L[\beta] \rangle - \langle \frac{\bar \Psi_{\beta}}{\Psi [\beta]} \rangle \langle E_L[\beta] \rangle  \right),
 \end{align*}
 
-$\partial$ eller $d$ ???
-Where $\frac{\bar \Psi_{\beta}}{\Psi [\beta]} = \frac{1}{\Psi_T [\beta]}\frac{d \Psi[\beta]}{d \beta} $
-
-
-\subsubsection{neste greie}
-
-In this project  we will deal only with a system of
-two electrons in a quantum dot with a frequency of $\hbar\omega = 1$. 
-The reason for this is that we have exact closed form expressions 
-for the ground state energy from Taut's work for selected values of $\omega$, 
-see M. Taut, Phys. Rev. A \textbf{48}, 3561 (1993).
-The energy is given by $3$ a.u.  (atomic units) when the interaction between the electrons is included. We can however easily extend our system to say interacting bosons as in project 1.
-
-If only the harmonic oscillator part of the Hamiltonian is included,
-the so-called unperturbed part,
-\begin{equation*} 
-\hat{H}_0=\sum_{i=1}^{N} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2r_i^2  \right),
-\end{equation*}
-the energy is $2$ a.u.
-The wave function for one electron in an oscillator potential in two dimensions is
-\begin{equation*}
-\phi_{n_x,n_y}(x,y) = A H_{n_x}(\sqrt{\omega}x)H_{n_y}(\sqrt{\omega}y)\exp{(-\omega(x^2+y^2)/2}.
-\end{equation*}
-The functions $H_{n_x}(\sqrt{\omega}x)$ are so-called Hermite polynomials  while $A$ is a normalization constant. 
-For the lowest-lying state we have $n_x=n_y=0$ and an energy $\epsilon_{n_x,n_y}=\omega(n_x+n_y+1) = \omega$.
-Convince yourself that the lowest-lying energy for the two-electron system  is simply $2\omega$.
-
-The unperturbed wave function for the ground state of the two-electron system is given by
-\begin{equation*}
-\Phi(\bm{r}_1,\bm{r}_2) = C\exp{\left(-\omega(r_1^2+r_2^2)/2\right)},
-\end{equation*}
-with $C$ being a normalization constant and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$. Note that the vector $\bm{r}_i$ 
-refers to the $x$ and $y$ position for a given particle.
-What is the total spin of this wave function? Find arguments for why the ground state should have
-this specific total spin. 
+where $\frac{\bar \Psi_{\beta}}{\Psi [\beta]} = \frac{1}{\Psi_{rbm,\beta} } \frac{\partial \Psi_{rbm,\beta}}{\partial \beta}$. Expressions for $\beta = a,b,W$ can be found in \hyperref[APP_2]{Appendix 2: Derivatives w.r.t RBM parameters}.
 
 \subsection{Gibbs Sampling}
+Gibbs sampling \cite{MLMurphy}[ch.24.2] is a Markov Chain Monte Carlo algorithm, analogous to coordinate descent. In this implementation, the two-way feed forward network is used to sample the joint probability of $\bm X$ and bm $\bm H$ in a two step process. First, $P(\bm H|\bm X)$ is used to determine the state of the binary nodes $ H$, for the current system state $\bm X$. Then, after having updated $\bm H$, $P(\bm X|\bm H)$ is used to sample a new system state. In contrast to the Metropolis Hastings algorithm, the probability of accepting this proposed system state equals one \cite{Flugsrud}, ie. every proposal is accepted. The conditional probabilities are given by;
+\begin{equation}
+\begin{aligned}
+P(H_j=1|\bm X) & = \frac{1}{1+e^{-b_j-\sum_i^M \frac{X_i W_{ij}}{\sigma^2}}}=\text{logistic} (-(v(j)) \\
+P(H_j=0|\bm X) & =\text{logistic} ((v(j)) \\
+\end{aligned}
+\label{eq:gibbs_prob_h}
+\end{equation}
+
+and
 
 \begin{equation}
 \begin{aligned}
-\Psi_{T,Gibbs}=\sqrt{F_{RBM}(\bm X)}
+P(X_i|\bm H) = \mathcal{N} (X_i;a_i+\bm W_{i*}\bm H,\sigma^2) 
 \end{aligned}
-\label{eq:wfgibs}
+\label{eq:gibbs_prob_x}
 \end{equation}
 
-\begin{equation}
-\begin{aligned}
-P(H_j=1|\bm X) & = \text{logistic} (-(v(j)) \\
-P(H_j01|\bm X) &= \text{logistic} ((v(j))
-\end{aligned}
-\label{eq:probsgibs}
-\end{equation}
-where 
+In order to sample $\Psi_{T,Gibbs}(\bm X)$ s.t $\vert \Psi_{T,Gibbs}(\bm X) \vert^2$ can be interpreted as a probability, $\Psi_{T,Gibbs}(\bm X)=\sqrt{F_{rbm}(\bm X)}$, under the assumption that the wave function is positive definite. This slightly changes the expressions the local energy and parameter gradients, as is described briefly in \hyperref[APP_3]{Appendix 3: Local energy and parameter gradients for Gibbs sampling}. 
+
+\subsection{Algorithm} 
+ burn-in phase or equilibration phase \citep{MLMurphy}[p.856]
+\begin{center}\fbox{\parbox{\textwidth}{{\textbf{Algorithm: VMC using RBM with parameter optimization }}
+\begin{enumerate}
+\item Initialize algorithm
+\subitem - Set number of iterations, $G$
+\subitem - Set the number of Monte Carlo cycles, $MC$, and "burn in fraction".
+\subitem - Set VMC method
+\subsubitem - Set expression for $E_L$ and $\frac{\bar \Psi_{\beta}}{\Psi [\beta]}$ according to choice of method
+\subsubitem - If using a variant of the Metropolis Algorithm, set step length, $l$
+\subitem - Initialize RBM parameters $\bm a = \mathcal{U}(0,1/M), \bm b = \mathcal{U}(0,1/N),\bm W=\mathcal{U}(0,1/(M\times N)$ 
+\item Execute Monte Carlo scheme
+\subitem - Initialize visible nodes, $\bm X= \mathcal{U}(-1,1) $, set $E=0$ 
+\subitem - For $cycle=1,2,..,MC$
+\subsubitem - Propose new configuration according to VMC method
+\subsubitem - Evaluate proposal, reject or accept. 
+\subsubitem - If $cycle\geq MC \times$ "burn in fraction", calculate $E_L$ using current state.
+\item Calculate $\langle H \rangle = \frac{E}{M}$
+\item Optimize parameters $\bm a, \bm b, \bm W$ 
+\item If the number of iterations of step $2$ is less than $G$, go to step 2. Else, end simulation
+\end{enumerate}}}\end{center}
 
 
-\subsection{Algorithms}
-Trene en RBM til å foreslå en god $\Psi$ slik at variational principle gir et godt estimat på $E_0$, det vil si lavest mulig - altså et tak. 
-
-Den foreslår en spesfik boltzmann distribusjon. Hvorfor er det riktig? Foreslår masse posisjoner ??
-
-Hva er poenget med maskinen? Skjønner ikke
-
-Gi $d \times n$ $x_i$ 
-Interacting vs non-interacting?
-\begin{itemize}
-\item Initiate positions $X$, weights $W$, and biases $b$ and $a$
-\item Use $X$ as positions for $VMC$
-\subitem When moving a particle, change $d$ weights that are "coupled" (one particle)
-\subitem Sample some stuff
-\subitem Estimate $E$
-\item Use the stuff and $E$ estimate to adjust $W,b,a$
-\item Repeat.
-\end{itemize}
-
-
+\subsection{Error analysis}
+In \cite{JN_P1} I found that the error estimate, $\sigma$, on correlated data without methods such as "blocking" is large deceptive. Hence, I have chosen to evaluate the error by the error estimate using "blocking", $\hat \sigma$.
+As I am already using $\sigma$ as the variance of the distribution, this is okey. $\hat \sigma$ is the error, and will not use any other type of error.
 
 \section{Results} \label{results}
-\subsection{Non-interacting Boson gas}
+
+\subsection{Initial testing of VMC methods}
+In order to ascertain whether or not the implementation of the various VMC methods were successful, I ran an MC simulation over $2^{21}$ cycles $P=1$, $D=1$, $N=2$, using Brute Force ($l=1.0$), Importance Sampling ($\Delta t=1.0$), and Gibbs Sampling. 
+
+Figure \ref{fig:inital_1} shows the estimated energy $\bar E$ (left), and the absolute difference between the estimated energy at each cycle $\bar E(cycle)s$ and final estimated energy $\bar E$ (right), using the same seed for all three simulations. $\bar E$ is, as may be expected from an untrained network, relatively far from the exact energy. It is however clear that all three methods find a more-or-less stable value for $\bar E$ after a burn-in phase. As the blocking method requires data of a length which is a power of $2$, I will henceforth discard all samples taken in the first half of the MC cycles (as I run cycles in powers of 2). This should (more than) ensure that samples in the burn-in phase is discarded, as well as provide a suitable data format for the automated blocking method. Similarly stable $\bar E$ values after burn-in was observed in subsequent tests using different seeds. As such, the VMC methods are deemed successfully implemented.
+	\begin{figure}
+		\centering
+		\subfloat[Energy estimate]{{\includegraphics[width=8cm]{../Results/sim_0/initial_energies.pdf}}}
+		\subfloat[Difference in energy estimate from final estimate]{{\includegraphics[width=8cm]{../Results/sim_0/initial_energies_abs.pdf}}}
+		\caption{Initial test of the three VMC methods (same seed)}
+		   \label{fig:inital_1}   
+	\end{figure}
+	
+Having established working implementation, I did a survey of the effects of $l$ (BF) and $\Delta t$ (IS).  \hyperref[APP_4]{Appendix 4: Testing step length $l$ and $\Delta t$}
+\ref{fig:app_4_IS} and  \ref{fig:app_4_BF} 
+\subsection{Training the network, n=2}
+Based on figure \ref{fig:training_BF} and  \ref{fig:training_IS} 
+	
+
 
 \section{Conclusions} \label{conclusions}
 
@@ -444,33 +398,35 @@ Interacting vs non-interacting?
 
 \begin{appendices}
 \section{Appendix 1.} \label{APP_1}
-\begin{align*}
-\Psi (\mathbf{X}) &= F_{rbm}(\mathbf{X}) \\
-&= \frac{1}{Z}\sum_{\{h_j\}} e^{-E(\mathbf{X}, \mathbf{h})} \\
-&= \frac{1}{Z} \sum_{\{h_j\}} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} + \sum_j^N b_j h_j + \sum_{i,j}^{M,N} \frac{X_i w_{ij} h_j}{\sigma^2}} \\
-&= \frac{1}{Z} e^{-\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2}} \prod_j^N (1 + e^{b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \\
-\end{align*}
 \subsection{Analytic expression for the local energy}
 \begin{equation}
 \begin{aligned}
-E_L=\frac{1}{\Psi_T}\hat H \Psi_T = \sum_{i=1}^N -\frac{1}{2} \frac{1}{\Psi_T} \nabla^2 \Psi_T + \frac{1}{2}\omega^2r_i^2)
+E_L &=\frac{1}{ \Psi_{rbm}  }   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 + \frac{1}{2} \omega^2 X_i^2  \right) \Psi_{rbm} + \frac{1}{ \Psi_{rbm} }  \sum_{i<j}^P \frac{1}{r_{ij}}  \Psi_{rbm} \\
+&=\frac{1}{\Psi_{rbm}}   \sum_{i=1}^{M} \left(  -\frac{1}{2} \nabla_i^2 \Psi_{rbm} \right) + \sum_{i=1}^{M} \frac{1}{2} \omega^2 X_i^2    +  \sum_{i<j}^P\frac{1}{r_{ij}}  
 \end{aligned}
-\label{eq:Appendix_localenergy}
 \end{equation}
-Where
+And
 \begin{equation}
 \begin{aligned}
-\frac{1}{\Psi_T}\nabla^2 \Psi_T &=  \frac{1}{\Psi_T}\nabla (\Psi _T \frac{1}{\Psi_T} \nabla \frac{1}{\Psi_T})\\
-&= (\frac{1}{\Psi_T} \nabla \Psi_T) ^2 + \nabla (\frac{1}{\Psi_T}\nabla \Psi_T)\\ 
-&= (\nabla \ln \Psi_T)^2 + \nabla^2 \ln \Psi_T
+\frac{1}{\Psi_{rbm}}\nabla^2 \Psi_{rbm} &=  \frac{1}{\Psi_{rbm}}\nabla (\Psi_{rbm} \frac{1}{\Psi_{rbm}} \nabla \frac{1}{\Psi_{rbm}})\\
+&= (\frac{1}{\Psi_{rbm}} \nabla \Psi_T) ^2 + \nabla (\frac{1}{\Psi_{rbm}}\nabla \Psi_{rbm})\\ 
+&= (\nabla \ln \Psi_{rbm})^2 + \nabla^2 \ln \Psi_{rbm}
 \end{aligned}
-\label{eq:Appendix_rewrite}
 \end{equation}
+So
+\begin{equation}
+\begin{aligned}
+E_L
+&= -\frac{1}{2}  \sum_{k=1}^{M} \left( \nabla \ln \Psi_{rbm})^2 + \nabla^2 \ln \Psi_{rbm} \right) + \sum_{k=1}^{M} \frac{1}{2} \omega^2X_i^2    +  \sum_{i<j}^P\frac{1}{r_{ij}}  \\
+\label{eq:Appendix_1EL}
+\end{aligned}
+\end{equation}
+
 
 First derivative:
 \begin{equation}
 \begin{aligned}
-\frac{1}{\Psi_T} \nabla_k \Psi &= \nabla_k  \ln \Psi_T \\
+\frac{1}{\Psi_{rbm}} \nabla_k \Psi_{rbm} &= \nabla_k  \ln \Psi_{rbm} \\
 &= \nabla_k  \big( \ln \frac{1}{Z}  -\sum_i^M \frac{(X_i - a_i)^2}{2\sigma^2} +  \sum_j^N \ln (1 + e^{ b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}) \big) \\
 &= 
   - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N w_{kj}\frac{\exp (b_j + \sum_i^M \frac{x_i w_{ij}}{\sigma^2})}{1 + e^{ b_j + \sum_i^M \frac{X_i w_{ij}}{\sigma^2}}}  \\
@@ -482,15 +438,34 @@ First derivative:
 Second derivative:
 \begin{equation}
 \begin{aligned}
-\nabla_k^2  \ln \Psi_T &= \nabla_k  \big( 
+\nabla_k^2  \ln \Psi_{rbm} &= \nabla_k  \big( 
    - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-b_j  -\sum_i^M \frac{X_i w_{ij}}{\sigma^2}}}  \big) \\
   &=
  - \frac{1}{\sigma^2} + \sum_{j}^N \frac{w_{kj}^2}{\sigma^4}\frac{e^{-v(\bm X,j)}}{ ( 1 + e^{-v(\bm X,j)} )^2}  
 \end{aligned}
-\label{eq:Appendix_2derivative}
 \end{equation}
-mak
-Thus to calculate \eqref{eq:Appendix_localenergy}, one may use \eqref{eq:Appendix_rewrite}, \eqref{eq:Appendix_1derivative} and \eqref{eq:Appendix_2derivative}.
+or
+
+\begin{equation}
+\begin{aligned}
+\nabla \ln \Psi_{rbm}
+&= - \frac{(X_k - a_k)}{\sigma^2} + \sum_{j}^N \frac{w_{kj}}{\sigma^2} \text {logistic} ( -v(j) ) 
+\end{aligned}
+\label{eq:Appendix_1derivative_rw}
+\end{equation}
+
+and
+\begin{equation}
+\begin{aligned}
+\nabla^2 \ln \Psi_{rbm}
+  &=
+ - \frac{1}{\sigma^2} + \sum_{j}^N \frac{w_{kj}^2}{\sigma^4}  \text {logistic}^2 ( -v(j) ) \exp(-v(j))
+\end{aligned}
+\label{eq:Appendix_2derivative_rw}
+\end{equation}
+
+Thus to compute $E_L$, one may use \eqref{eq:Appendix_1EL}, \eqref{eq:Appendix_1derivative_rw} and \eqref{eq:Appendix_2derivative_rw}.
+
 
 
 
@@ -530,8 +505,74 @@ for $\beta=\bm W$:
 \end{aligned}
 \label{eq:Appendix2_grad_b}
 \end{equation}
+
+
+\section{Appendix 3.} \label{APP_3}
+\subsection{Appendix 3: Local energy and parameter gradients for Gibbs sampling}
+As the only parts of $\Psi_T$ that is traceable in $E_L$ for this system are the derivatives of $ln \Psi_T$, 
+\begin{equation}
+\begin{aligned}
+\Psi_{T,Gibbs}=\sqrt{F_{RBM}(\bm X)}=\sqrt{\Psi_{rbm} }
+\end{aligned}
+\label{eq:wfgibs}
+\end{equation}
+
+Means that the expression for $E_L$ remains the same as before, with the exceptions
+
+\begin{equation}
+\begin{aligned}
+\nabla \ln \Psi_{rbm} = \frac{1}{2} \nabla \ln \Psi_{rbm}
+\end{aligned}
+\end{equation}
+
+and
+
+\begin{equation}
+\begin{aligned}
+\nabla^2 \ln \Psi_{rbm} = \frac{1}{2} \nabla^2 \ln \Psi_{rbm}
+\end{aligned}
+\end{equation}
+
+And similarly for the parameter gradients, specifically for parameter number $k$ of $\bm \beta$;
+
+\begin{equation}
+\begin{aligned}
+ \frac{1}{\Psi_{T,Gibbs} }\frac{\partial \Psi_{T,Gibbs} }{\partial \beta_k}=\frac{1}{2}\frac{\partial}{\partial \beta_k} \log \Psi_{rbm}
+\end{aligned}
+\end{equation}
+
+\section{Appendix 4.} \label{APP_3}
+\subsection{Appendix 4: Testing step length $l$ and $\Delta t$}
+ I averaged the standard error (using blocking) $\hat \sigma$ from 12 experiments. In each experiment, I used $8$ MC simulations with parameter optimization (learning rate $\eta =0.3$), with $2^{21}$ MC cycles with a $0.5$ burn-in factor, for the shown values of $l$ and $\Delta t$ in figures \ref{fig:app_4_BF} and  \ref{fig:app_4_IS}.
+I found that $l=1.0$ and $\Delta t = 2.0$ gave the best results among the tested values.
+\begin{figure}[!h]
+        \centering 
+         \includegraphics[scale=0.6]{../Results/sim_2/error.pdf} 
+        \caption{Importance Sampling: $\hat \sigma$ as a function of $\Delta t$}
+        \label{fig:app_4_IS}   
+\end{figure}  
+
+\begin{figure}[!h]
+        \centering 
+         \includegraphics[scale=0.6]{../Results/sim_3/error.pdf} 
+        \caption{Brute Force $\hat \sigma$ as a function of $l$}
+        \label{fig:app_4_BF}   
+\end{figure}  
+
+\subsection{Appendix 4: Testing learning rate $\eta$}
+\begin{figure}[!h]
+        \centering 
+         \includegraphics[scale=0.6]{../Results/sim_4/BF_eta.pdf} 
+        \caption{Brute Force: $\bar E$ for different values of $\eta$ }
+        \label{fig:training_BF}   
+\end{figure}  
+
+\begin{figure}[!h]
+        \centering 
+         \includegraphics[scale=0.6]{../Results/sim_4/IS_eta.pdf} 
+        \caption{Importance Sampling:  $\bar E$ for different values of $\eta$ }
+        \label{fig:training_IS}   
+\end{figure}  
+
 \end{appendices}
-
-
-
 \end{document}

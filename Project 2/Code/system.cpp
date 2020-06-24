@@ -122,15 +122,68 @@ bool System::importance_sampling_Step() {
 
 } //end of improtance sampling step
 
+
+// functions needed for gibbs sampling
+double System::logistic(double x){
+  return (1.0/ (1.0+exp(x) ) ) ;
+}
+
+double System::v_j(int j,Eigen::VectorXd X){
+  double sum = 0;
+    for (int i=0; i<getRBM()->get_M();i++)
+    {
+      sum+= X(i)* getRBM()->get_W()(i,j) ;
+    }
+  //sum =  X.dot(m_W.col(j)) ;
+  return getRBM()->get_b()(j)+sum / (getRBM()->get_sigma() * getRBM()->get_sigma()) ;
+}
+
+double System::h_sampling(int j){
+  return logistic(-v_j(j,m_X));
+}
+
+void System::X_sampling(){
+  double mean;
+  double std = m_rbm->get_sigma() * m_rbm->get_sigma();
+  for (int i=0; i<m_M ;i++)
+  {
+    mean =0;
+    for (int j=0; j<m_N ;j++)
+    {
+      mean+=  getRBM()->get_W()(i,j)*m_H[j];
+    }
+    mean +=getRBM()->get_a()(i);
+    if (mean>1.0){
+    //cout<<mean<<endl;
+  ;}
+    m_X[i]=m_random->nextGaussian(mean, std);
+  }
+}
+
+bool System::gibbs_Step() {
+  for (int j=0; j<m_N ;j++)
+  {
+    double y=h_sampling(j);
+    if(y > m_random->nextDouble())
+    {      m_H[j]=1.0; }
+    else { m_H[j]=0.0; }
+  }
+  X_sampling();
+  return true;
+} //end of gibbs sampling
+
 void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
 
     m_X                         = Eigen::VectorXd::Random(m_M);
     m_sampler                   = new Sampler(this);
     m_numberOfMetropolisSteps   = numberOfMetropolisSteps;
+    if(method  == 2.0) m_gibbsfactor=0.5;
+    else  m_gibbsfactor=1;
 
 
 
-    m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps,numberOfMetropolisSteps-m_equilibrationFraction*numberOfMetropolisSteps,true);
+    m_sampler->setNumberOfMetropolisSteps(numberOfMetropolisSteps,
+      numberOfMetropolisSteps-m_equilibrationFraction*numberOfMetropolisSteps,true);
 
     //InitiateR(); //calculate distances
 
@@ -141,6 +194,7 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
 
         if (method == 0) acceptedStep = brute_force_Step();
         else if (method == 1) acceptedStep = importance_sampling_Step();
+        else if (method == 2) acceptedStep = gibbsStep11();
         else { cout<<"Provide valid method selection"<<endl; abort(); }
 
         // sample
@@ -151,20 +205,21 @@ void System::runMetropolisSteps(int numberOfMetropolisSteps, int method) {
 
         }
       }
-
     m_sampler->computeAverages();
 }
 
 
-void System::setStepLength(double stepLength) {
+
+
+void System::setParameters(double equilibrationFraction,double stepLength, double D, double P, int interaction) {
+    assert(equilibrationFraction >= 0);
     assert(stepLength >= 0);
     m_stepLength = stepLength;
     m_stepLengthsqrt=sqrt(m_stepLength);
-}
-
-void System::setEquilibrationFraction(double equilibrationFraction) {
-    assert(equilibrationFraction >= 0);
     m_equilibrationFraction = equilibrationFraction;
+    m_D=D;
+    m_P=P;
+    m_interaction=interaction;
 }
 
 void System::setHamiltonian(Hamiltonian* hamiltonian) {
@@ -182,104 +237,31 @@ void System::setRBM(RBM* rbm, int current_run) {
     m_N=m_rbm -> get_N();
     m_rbm -> WeightsAndBiases(current_run);
     m_X= 2*(Eigen::VectorXd::Random(m_M)-0.5*Eigen::VectorXd::Ones(m_M));
+    m_H= Eigen::VectorXd::Zero(m_N);
 }
 
-/*
-void System::InitiateR( ){
-  if (m_interaction>0)
-  {
-  // Calculates the distance between all particles and stores the values in m_particleDistances
-    double distance;
-    std::vector<double> r_i,r_j;
+bool System::gibbsStep11(){
+    /*
+    Adjust positions of particles according to the Gibbs sampling rule
+    */
 
-    for (int i=0; i<m_M;i++)
-    {
-      X_i=m_X[i];
-      for (int j=i; j<m_numberOfParticles;j++)
-      {
-        distance=0;
-        if (i<j)
-        {
-          r_j=m_particles[j]->getPosition();
-          for (int dim=0; dim < m_numberOfDimensions; dim++)
-          {
-            distance=distance+( r_i.at(dim)-r_j.at(dim) )*( r_i.at(dim)-r_j.at(dim) );
-          }
-        }
-        m_particleDistances.push_back(sqrt(distance));
-     }
-   }
-  }
-  else {;}
-} */
-
-/*
-void System::calculateR_jk(std::vector<Particle*> particles, int particle_i){
-  // Calculates the distance between particle i and all other particles
-  if (m_interaction==0) return;
-  double distance;
-  int index;
-  std::vector<double> r_i,r_j;
-
-  r_i=particles[particle_i]->getPosition();
-
-  for (int j=0; j<m_numberOfParticles;j++)
-  {
-    distance=0;
-    if (particle_i!=j)
-    {
-      r_j=particles[j]->getPosition();
-      for (int dim=0; dim < m_numberOfDimensions; dim++)
-      {
-        distance+=(r_i[dim]-r_j[dim])*(r_i[dim]-r_j[dim]);
-      }
-      if (distance<=m_a){m_break_eval=1;}
+    // Calculate conditional probabilities of the hidden nodes
+    for(int j = 0; j < getRBM()->get_N(); j++){
+         double z = getRBM()->get_b()(j) + m_X.dot(getRBM()->get_W().col(j))/(m_rbm->get_sigma()*m_rbm->get_sigma() );
+         m_H(j) = m_random->nextDouble() < sigmoid(z);
     }
 
-    if (particle_i <= j)
-    {
-      index=particle_i * (m_numberOfParticles) - (particle_i - 1) * particle_i / 2 + j - particle_i;
-    }
-    else
-    {
-      index=j * (m_numberOfParticles) - (j - 1) * j / 2 + particle_i - j;
-    }
-    m_particleDistances.at(index)=sqrt(distance);
-  }
-}
+    // Update particle positions
+    for(int i = 0; i < getRBM()->get_M(); i++){
 
-double System::getR_jk(int i, int j){
-  // returns the distance between particle i and particle j
-  assert(m_particleDistances.size() == (unsigned int) m_numberOfParticles*(m_numberOfParticles+1)/2.0);
-  if (m_interaction>0)
-  {
-  int index;
-  if (i <= j)
-  {
-    index= i * (m_numberOfParticles) - (i - 1) * i / 2 + j - i;
-  }
-  else
-  {
-    index= j * (m_numberOfParticles) - (j - 1) * j / 2 + i - j;
-  }
-  if ( m_particleDistances.at(index))
-  return  m_particleDistances.at(index);
-}
-else {return 0;}
-}
+        double meanPos = getRBM()->get_a()(i) + getRBM()->get_W().row(i)*m_H;
 
-std::vector<double> System::getRadialDistances(){
-  std::vector<double> radial_distances = std::vector<double>();
-  for (int i=0; i<m_numberOfParticles;i++)
-  {
-    double r=0;
-    for (int dim=0; dim <m_numberOfDimensions; dim++)
-    {
-          r+=(m_particles[i]->getPosition().at(dim) )*( m_particles[i]->getPosition().at(dim) );
+        double posDistribution = m_random->nextGaussian(meanPos, m_rbm->get_sigma());
+        m_X(i) = posDistribution;
+    }
+      return true;
     }
 
-    radial_distances.push_back(sqrt(r));
-  }
-    return radial_distances;
+double System::sigmoid(double z){
+    return 1.0/(1 + exp(-z));
 }
-*/

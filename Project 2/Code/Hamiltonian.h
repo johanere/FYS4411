@@ -5,7 +5,7 @@
 class Hamiltonian{
 public:
     Hamiltonian(class System* system);
-    ~Hamiltonian();  
+    ~Hamiltonian();
     double computeLocalEnergy(Eigen::VectorXd X);
 
     double logistic(double x);

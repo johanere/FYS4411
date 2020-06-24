@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  20 JUN 2020 21:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  24 JUN 2020 02:00
 entering extended mode
 **./FYSSTK4411project2_JN.tex
 (FYSSTK4411project2_JN.tex
@@ -981,66 +981,108 @@ Package: multirow 2016/11/25 v2.2 Span multiple rows of a table
 \multirow@dima=\skip76
 \bigstrutjot=\dimen285
 )
+(C:\Johan\Miktex\tex\latex\float\float.sty
+Package: float 2001/11/08 v1.3d Float enhancements (AL)
+\c@float@type=\count182
+\float@exts=\toks50
+\float@box=\box77
+\@float@everytoks=\toks51
+\@floatcapt=\box78
+)
+(C:\Johan\Miktex\tex\latex\subfig\subfig.sty
+Package: subfig 2005/06/28 ver: 1.3 subfig package
+
+(C:\Johan\Miktex\tex\latex\caption\caption.sty
+Package: caption 2018/05/01 v3.3-147 Customizing captions (AR)
+
+(C:\Johan\Miktex\tex\latex\caption\caption3.sty
+Package: caption3 2018/05/27 v1.8a caption3 kernel (AR)
+Package caption3 Info: TeX engine: e-TeX on input line 64.
+\captionmargin=\dimen286
+\captionmargin@=\dimen287
+\captionwidth=\dimen288
+\caption@tempdima=\dimen289
+\caption@indent=\dimen290
+\caption@parindent=\dimen291
+\caption@hangindent=\dimen292
+)
+\c@ContinuedFloat=\count183
+Package caption Info: float package is loaded.
+Package caption Info: hyperref package is loaded.
+Package caption Info: listings package is loaded.
+Package caption Info: longtable package is loaded.
+
+(C:\Johan\Miktex\tex\latex\caption\ltcaption.sty
+Package: ltcaption 2013/06/09 v1.4-94 longtable captions (AR)
+))
+\c@KVtest=\count184
+\sf@farskip=\skip77
+\sf@captopadj=\dimen293
+\sf@capskip=\skip78
+\sf@nearskip=\skip79
+\c@subfigure=\count185
+\c@subfigure@save=\count186
+\c@lofdepth=\count187
+\c@subtable=\count188
+\c@subtable@save=\count189
+\c@lotdepth=\count190
+\sf@top=\skip80
+\sf@bottom=\skip81
+)
 (C:\Johan\Miktex\tex\latex\ms\ragged2e.sty
 Package: ragged2e 2009/05/21 v2.1 ragged2e Package (MS)
 
 (C:\Johan\Miktex\tex\latex\ms\everysel.sty
 Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 )
-\CenteringLeftskip=\skip77
-\RaggedLeftLeftskip=\skip78
-\RaggedRightLeftskip=\skip79
-\CenteringRightskip=\skip80
-\RaggedLeftRightskip=\skip81
-\RaggedRightRightskip=\skip82
-\CenteringParfillskip=\skip83
-\RaggedLeftParfillskip=\skip84
-\RaggedRightParfillskip=\skip85
-\JustifyingParfillskip=\skip86
-\CenteringParindent=\skip87
-\RaggedLeftParindent=\skip88
-\RaggedRightParindent=\skip89
-\JustifyingParindent=\skip90
+\CenteringLeftskip=\skip82
+\RaggedLeftLeftskip=\skip83
+\RaggedRightLeftskip=\skip84
+\CenteringRightskip=\skip85
+\RaggedLeftRightskip=\skip86
+\RaggedRightRightskip=\skip87
+\CenteringParfillskip=\skip88
+\RaggedLeftParfillskip=\skip89
+\RaggedRightParfillskip=\skip90
+\JustifyingParfillskip=\skip91
+\CenteringParindent=\skip92
+\RaggedLeftParindent=\skip93
+\RaggedRightParindent=\skip94
+\JustifyingParindent=\skip95
 ) (FYSSTK4411project2_JN.aux
 
-LaTeX Warning: Label `eq:Appendix_rewrite' multiply defined.
+LaTeX Warning: Label `eq:TWF' multiply defined.
 
 
-LaTeX Warning: Label `eq:Appendix_rewrite' multiply defined.
+LaTeX Warning: Label `eq:TWF' multiply defined.
 
 
-LaTeX Warning: Label `eq:Appendix_rewrite' multiply defined.
-
-
-LaTeX Warning: Label `eq:Appendix_rewrite' multiply defined.
-
-
-LaTeX Warning: Label `eq:Appendix_1derivative' multiply defined.
-
-
-LaTeX Warning: Label `eq:Appendix_2derivative' multiply defined.
+LaTeX Warning: Label `eq:TWF' multiply defined.
 
 
 LaTeX Warning: Label `eq:Appendix2_grad_b' multiply defined.
 
+
+LaTeX Warning: Label `APP_3' multiply defined.
+
 )
 \openout1 = `FYSSTK4411project2_JN.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 148.
-LaTeX Font Info:    ... okay on input line 148.
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 148.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
+LaTeX Font Info:    ... okay on input line 152.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 152.
  (C:\Johan\Miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
@@ -1080,17 +1122,17 @@ File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 
 (C:\Johan\Miktex\tex\context\base\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count182
-\scratchdimen=\dimen286
-\scratchbox=\box77
-\nofMPsegments=\count183
-\nofMParguments=\count184
-\everyMPshowfont=\toks50
-\MPscratchCnt=\count185
-\MPscratchDim=\dimen287
-\MPnumerator=\count186
-\makeMPintoPDFobject=\count187
-\everyMPtoPDFconversion=\toks51
+\scratchcounter=\count191
+\scratchdimen=\dimen294
+\scratchbox=\box79
+\nofMPsegments=\count192
+\nofMParguments=\count193
+\everyMPshowfont=\toks52
+\MPscratchCnt=\count194
+\MPscratchDim=\dimen295
+\MPnumerator=\count195
+\makeMPintoPDFobject=\count196
+\everyMPtoPDFconversion=\toks53
 ) (C:\Johan\Miktex\tex\latex\oberdiek\epstopdf-base.sty
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
 
@@ -1104,7 +1146,7 @@ Package grfext Info: Graphics extension search list:
 G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
-LaTeX Info: Redefining \microtypecontext on input line 148.
+LaTeX Info: Redefining \microtypecontext on input line 152.
 Package microtype Info: Generating PDF output.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
@@ -1127,71 +1169,76 @@ ABD: EveryShipout initializing macros
 Package pgfplots Warning: running in backwards compatibility mode (unsuitable t
 ick labels; missing features). Consider writing \pgfplotsset{compat=1.16} into 
 your preamble.
- on input line 148.
+ on input line 152.
 
-\AtBeginShipoutBox=\box78
-Package hyperref Info: Link coloring ON on input line 148.
+\AtBeginShipoutBox=\box80
+Package hyperref Info: Link coloring ON on input line 152.
 (C:\Johan\Miktex\tex\latex\hyperref\nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
 (C:\Johan\Miktex\tex\generic\oberdiek\gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count188
+\c@section@level=\count197
 )
-LaTeX Info: Redefining \ref on input line 148.
-LaTeX Info: Redefining \pageref on input line 148.
-LaTeX Info: Redefining \nameref on input line 148.
+LaTeX Info: Redefining \ref on input line 152.
+LaTeX Info: Redefining \pageref on input line 152.
+LaTeX Info: Redefining \nameref on input line 152.
 
 (FYSSTK4411project2_JN.out) (FYSSTK4411project2_JN.out)
 \@outlinefile=\write7
 \openout7 = `FYSSTK4411project2_JN.out'.
 
-\c@lstlisting=\count189
+\c@lstlisting=\count198
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: subfig package v1.3 is loaded.
+Package caption Info: End \AtBeginDocument code.
 
 ABD: EverySelectfont initializing macros
-LaTeX Info: Redefining \selectfont on input line 148.
+LaTeX Info: Redefining \selectfont on input line 152.
  [1
 
 {C:/Users/Johan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 209.
 
-Package natbib Warning: Citation `Jonsson' on page 3 undefined on input line 20
-5.
+ (C:\Johan\Miktex\tex\latex\lm\t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 209.
 
-
-Package natbib Warning: Citation `numpy' on page 3 undefined on input line 208.
-
-
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 215.
 
 (C:\Johan\Miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 215.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 209.
 
 
 (C:\Johan\Miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 215
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 209
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 215
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 209
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 215.
+(Font)              <10> on input line 209.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 215.
+(Font)              <7> on input line 209.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 215.
-LaTeX Font Info:    Try loading font information for U+msa on input line 215.
+(Font)              <5> on input line 209.
+LaTeX Font Info:    Try loading font information for U+msa on input line 209.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1199,7 +1246,7 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Johan\Miktex\tex\latex\microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 215.
+LaTeX Font Info:    Try loading font information for U+msb on input line 209.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1209,39 +1256,142 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 (C:\Johan\Miktex\tex\latex\ucs\uni-0.def
 File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-) [3]
+) [3] [4] [5]
+Overfull \hbox (5.9821pt too wide) in paragraph at lines 342--343
+[]\T1/lmr/m/n/10 (-20) In or-der to sam-ple $\OT1/lmr/m/n/10 (-20) 	[](\OML/cmm
+/b/it/10 X\OT1/lmr/m/n/10 (-20) )$ \T1/lmr/m/n/10 (-20) s.t $\OMS/lmsy/m/n/10 j
+\OT1/lmr/m/n/10 (-20) 	[](\OML/cmm/b/it/10 X\OT1/lmr/m/n/10 (-20) )\OMS/lmsy/m/
+n/10 j[]$ \T1/lmr/m/n/10 (-20) can be in-ter-preted as a prob-a-bil-ity, $\OT1/
+lmr/m/n/10 (-20) 	[](\OML/cmm/b/it/10 X\OT1/lmr/m/n/10 (-20) ) =
+ []
 
-LaTeX Warning: Hyper reference `APP_2:le_1' on page 4 undefined on input line 2
-67.
+
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 364--364
+ [] 
+ []
+
+[6]
+<../Results/sim_0/initial_energies.pdf, id=202, pagebox=cropbox, 462.52798pt x 
+346.89601pt>
+File: ../Results/sim_0/initial_energies.pdf Graphic file (type pdf)
+<use ../Results/sim_0/initial_energies.pdf>
+Package pdftex.def Info: ../Results/sim_0/initial_energies.pdf  used on input l
+ine 379. on input line 379.
+Package pdftex.def Info: Requested size: 227.62204pt x 170.71628pt on input lin
+e 379.
+<../Results/sim_0/initial_energies_abs.pdf, id=203, pagebox=cropbox, 462.52798p
+t x 346.89601pt>
+File: ../Results/sim_0/initial_energies_abs.pdf Graphic file (type pdf)
+<use ../Results/sim_0/initial_energies_abs.pdf>
+Package pdftex.def Info: ../Results/sim_0/initial_energies_abs.pdf  used on inp
+ut line 380. on input line 380.
+Package pdftex.def Info: Requested size: 227.62204pt x 170.71628pt on input lin
+e 380.
+
+Overfull \hbox (21.62408pt too wide) in paragraph at lines 379--381
+ [][][][] 
+ []
+
+[7]
+
+LaTeX Warning: Hyper reference `APP_4' on page 8 undefined on input line 385.
+
+(FYSSTK4411project2_JN.bbl [8 <../Results/sim_0/initial_energies.pdf> <../Resul
+ts/sim_0/initial_energies_abs.pdf
+
+pdfTeX warning: pdflatex (file ../Results/sim_0/initial_energies_abs.pdf): PDF 
+inclusion: multiple pdfs with page group included in a single page
+>]) [9] [10]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 545.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 545.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 545.
 
 
-LaTeX Warning: Hyper reference `importance_sampling' on page 4 undefined on inp
-ut line 325.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 545.
 
-[4]
 
-LaTeX Warning: Hyper reference `APP_2:le_1' on page 5 undefined on input line 3
-38.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 545.
 
-[5]
-LaTeX Font Info:    Try loading font information for OMS+lmr on input line 424.
 
- (C:\Johan\Miktex\tex\latex\lm\omslmr.fd
-File: omslmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Font shape `OMS/lmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/lmsy/m/n' tried instead on input line 424.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 545.
 
-No file FYSSTK4411project2_JN.bbl.
-[6] [7]
 
-Package natbib Warning: There were undefined citations.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\Delta' on input line 545.
 
-[8]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 537.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 537.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 545.
+
+<../Results/sim_2/error.pdf, id=298, pagebox=cropbox, 462.52798pt x 346.89601pt
+>
+File: ../Results/sim_2/error.pdf Graphic file (type pdf)
+<use ../Results/sim_2/error.pdf>
+Package pdftex.def Info: ../Results/sim_2/error.pdf  used on input line 550. on
+ input line 550.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 550.
+<../Results/sim_3/error.pdf, id=299, pagebox=cropbox, 462.52798pt x 346.89601pt
+>
+File: ../Results/sim_3/error.pdf Graphic file (type pdf)
+<use ../Results/sim_3/error.pdf>
+Package pdftex.def Info: ../Results/sim_3/error.pdf  used on input line 557. on
+ input line 557.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 557.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 562.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\eta' on input line 562.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 562.
+
+<../Results/sim_4/BF_eta.pdf, id=300, pagebox=cropbox, 462.52798pt x 346.89601p
+t>
+File: ../Results/sim_4/BF_eta.pdf Graphic file (type pdf)
+<use ../Results/sim_4/BF_eta.pdf>
+Package pdftex.def Info: ../Results/sim_4/BF_eta.pdf  used on input line 565. o
+n input line 565.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 565.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+<../Results/sim_4/IS_eta.pdf, id=301, pagebox=cropbox, 462.52798pt x 346.89601p
+t>
+File: ../Results/sim_4/IS_eta.pdf Graphic file (type pdf)
+<use ../Results/sim_4/IS_eta.pdf>
+Package pdftex.def Info: ../Results/sim_4/IS_eta.pdf  used on input line 572. o
+n input line 572.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 572.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[11 <../Results/sim_2/error.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 578.
+ [12 <../Results/sim_3/error.pdf> <../Results/sim_4/BF_eta.pdf
+
+pdfTeX warning: pdflatex (file ../Results/sim_4/BF_eta.pdf): PDF inclusion: mul
+tiple pdfs with page group included in a single page
+>] [13 <../Results/sim_4/IS_eta.pdf>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 578.
  (FYSSTK4411project2_JN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 537.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 578.
 
 
  *File List*
@@ -1358,6 +1508,11 @@ placeins.sty    2005/04/18  v 2.2
   natbib.sty    2010/09/13 8.31b (PWD, AO)
 appendix.sty    2009/09/02 v1.2b extra appendix facilities
 multirow.sty    2016/11/25 v2.2 Span multiple rows of a table
+   float.sty    2001/11/08 v1.3d Float enhancements (AL)
+  subfig.sty    2005/06/28 ver: 1.3 subfig package
+ caption.sty    2018/05/01 v3.3-147 Customizing captions (AR)
+caption3.sty    2018/05/27 v1.8a caption3 kernel (AR)
+ltcaption.sty    2013/06/09 v1.4-94 longtable captions (AR)
 ragged2e.sty    2009/05/21 v2.1 ragged2e Package (MS)
 everysel.sty    2011/10/28 v1.2 EverySelectfont Package (MS)
    t1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
@@ -1371,6 +1526,7 @@ RS)
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
 FYSSTK4411project2_JN.out
 FYSSTK4411project2_JN.out
+  t1lmtt.fd    2009/10/30 v1.6 Font defs for Latin Modern
   ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
   omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
  omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
@@ -1380,12 +1536,18 @@ FYSSTK4411project2_JN.out
     umsb.fd    2013/01/14 v3.01 AMS symbols B
   mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
    uni-0.def    2013/05/13 UCS: Unicode data U+0000..U+00FF
-  omslmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
+../Results/sim_0/initial_energies.pdf
+../Results/sim_0/initial_energies_abs.pdf
+FYSSTK4411project2_JN.bbl
+../Results/sim_2/error.pdf
+../Results/sim_3/error.pdf
+../Results/sim_4/BF_eta.pdf
+../Results/sim_4/IS_eta.pdf
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 537.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 578.
 Package rerunfilecheck Info: File `FYSSTK4411project2_JN.out' has not changed.
-(rerunfilecheck)             Checksum: 16110DC78DBF6CBA9E01C42A625038C1;1237.
+(rerunfilecheck)             Checksum: A42DC32C7FC7B88B7BBA007FC0F2C0A0;1652.
 
 LaTeX Warning: There were undefined references.
 
@@ -1394,33 +1556,36 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 33064 strings out of 493312
- 744369 string characters out of 3144112
- 973595 words of memory out of 3000000
- 35879 multiletter control sequences out of 15000+200000
- 81044 words of font info for 85 fonts, out of 3000000 for 9000
+ 34589 strings out of 493312
+ 771369 string characters out of 3144112
+ 1002055 words of memory out of 3000000
+ 37293 multiletter control sequences out of 15000+200000
+ 109203 words of font info for 128 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,12n,98p,904b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
-{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/
-dvips/lm/lm-rm.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-mathit.enc}{C:/Johan/
-Miktex/fonts/enc/dvips/lm/lm-mathex.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-
-ec.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mi
+ 69i,12n,98p,1015b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-rm.enc}{C:/Johan/Miktex/fonts/enc/dvip
+s/lm/lm-mathit.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Johan/Mikt
+ex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-math
+ex.enc}<C:/Johan/Miktex/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Johan/Mi
 ktex/fonts/type1/public/amsfonts/cmextra/cmmib7.pfb><C:/Johan/Miktex/fonts/type
 1/public/lm/lmbx10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbx12.pfb><C:/Jo
-han/Miktex/fonts/type1/public/lm/lmbx7.pfb><C:/Johan/Miktex/fonts/type1/public/
-lm/lmbx9.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmbxi10.pfb><C:/Johan/Mikte
-x/fonts/type1/public/lm/lmex10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi1
-0.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/t
-ype1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><C:/J
-ohan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex/fonts/type1/public/
-lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb><C:/Johan/Miktex/fo
-nts/type1/public/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy10.pf
-b><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb><C:/Johan/Miktex/fonts/type1
-/public/lm/lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/amsfonts/symbols/msbm1
-0.pfb>
-Output written on FYSSTK4411project2_JN.pdf (8 pages, 332260 bytes).
+han/Miktex/fonts/type1/public/lm/lmbx9.pfb><C:/Johan/Miktex/fonts/type1/public/
+lm/lmbxi10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmex10.pfb><C:/Johan/Mikt
+ex/fonts/type1/public/lm/lmmi10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi
+12.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/
+type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><C:/
+Johan/Miktex/fonts/type1/public/lm/lmr12.pfb><C:/Johan/Miktex/fonts/type1/publi
+c/lm/lmr17.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex
+/fonts/type1/public/lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr8.pfb
+><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb><C:/Johan/Miktex/fonts/type1/p
+ublic/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmss12.pfb><C:/Johan
+/Miktex/fonts/type1/public/lm/lmss17.pfb><C:/Johan/Miktex/fonts/type1/public/lm
+/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb><C:/Johan/Miktex/f
+onts/type1/public/lm/lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmtt10.pf
+b><C:/Johan/Miktex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on FYSSTK4411project2_JN.pdf (13 pages, 1222339 bytes).
 PDF statistics:
- 253 PDF objects out of 1000 (max. 8388607)
- 51 named destinations out of 1000 (max. 500000)
- 20645 words of extra memory for PDF output out of 20736 (max. 10000000)
+ 501 PDF objects out of 1000 (max. 8388607)
+ 85 named destinations out of 1000 (max. 500000)
+ 30955 words of extra memory for PDF output out of 35830 (max. 10000000)
 

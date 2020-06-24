@@ -33,21 +33,32 @@ Hamiltonian::~Hamiltonian(void) {
 
 
 double Hamiltonian::computeLocalEnergy(Eigen::VectorXd X) {
-    double e_K=0,e_P=0;
-    double term1;
+    double e_K=0,e_P=0, e_intr=0;
+    double term1,gibbsfactor;
+
+    gibbsfactor=m_system->get_gibbsfactor();
+
+    if (m_system->get_interacting()>0){
+      assert(m_system->get_P() ==2);
+      assert(m_system->get_D() ==2);
+      double rx,ry;
+      rx= ( X(0)-X(2) ) * ( X(0)-X(2) )  ;
+      ry= ( X(1)-X(3) ) * ( X(1)-X(3) )  ;
+
+      e_intr=1.0/sqrt(rx+ry);
+    }
 
     for (int i=0; i<m_M;i++)
     {
-      term1=nabla(i,X);
-      e_K+= term1*term1+nabla2(i,X);
-    ;
+      term1=gibbsfactor*nabla(i,X);
+      e_K+= term1*term1+gibbsfactor*nabla2(i,X);
     }
 
     for (int i=0; i<m_M;i++)
     {
       e_P+=X(i)*X(i)*m_omega*m_omega;
     }
-    return -0.5*e_K + 0.5*e_P;
+    return -0.5*e_K + 0.5*e_P+e_intr;
 } // end of local energy
 
 

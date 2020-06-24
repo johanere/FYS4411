@@ -56,7 +56,6 @@ public:
     ) {
         // Produces normal distributed random floating-point values with mean
         // ``mean`` and standard deviation ``standardDeviation``.
-
         std::normal_distribution<double> dist(mean, standardDeviation);
         return dist(m_engine);
     }

@@ -18,6 +18,7 @@ public:
     int get_N()                    { return m_N;  }
     double get_sigma()             { return m_sigma;  }
     double get_omega()             { return m_sigma;  }
+
 private:
     int                         m_GDiters = 0;
 

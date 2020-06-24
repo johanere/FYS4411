@@ -1,19 +1,24 @@
 \BOOKMARK [1][-]{section.1}{Introduction}{}% 1
 \BOOKMARK [1][-]{section.2}{Material and methods}{}% 2
 \BOOKMARK [2][-]{subsection.2.1}{System: Electrons in 2D isotropic HO}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Boltzmann}{section.2}% 4
-\BOOKMARK [3][-]{subsubsection.2.2.1}{Wave Function}{subsection.2.2}% 5
-\BOOKMARK [3][-]{subsubsection.2.2.2}{Local Energy}{subsection.2.2}% 6
-\BOOKMARK [3][-]{subsubsection.2.2.3}{Force}{subsection.2.2}% 7
-\BOOKMARK [3][-]{subsubsection.2.2.4}{Updating parameters}{subsection.2.2}% 8
-\BOOKMARK [3][-]{subsubsection.2.2.5}{neste greie}{subsection.2.2}% 9
-\BOOKMARK [2][-]{subsection.2.3}{Gibbs Sampling}{section.2}% 10
-\BOOKMARK [2][-]{subsection.2.4}{Algorithms}{section.2}% 11
-\BOOKMARK [1][-]{section.3}{Results}{}% 12
-\BOOKMARK [2][-]{subsection.3.1}{Non-interacting Boson gas}{section.3}% 13
-\BOOKMARK [1][-]{section.4}{Conclusions}{}% 14
-\BOOKMARK [1][-]{section*.1}{Appendices}{}% 15
+\BOOKMARK [2][-]{subsection.2.2}{Neural network quantum state}{section.2}% 4
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Local Energy and drift force}{subsection.2.2}% 5
+\BOOKMARK [2][-]{subsection.2.3}{Updating parameters}{section.2}% 6
+\BOOKMARK [2][-]{subsection.2.4}{Gibbs Sampling}{section.2}% 7
+\BOOKMARK [2][-]{subsection.2.5}{Algorithm}{section.2}% 8
+\BOOKMARK [2][-]{subsection.2.6}{Error analysis}{section.2}% 9
+\BOOKMARK [1][-]{section.3}{Results}{}% 10
+\BOOKMARK [2][-]{subsection.3.1}{Initial testing of VMC methods}{section.3}% 11
+\BOOKMARK [2][-]{subsection.3.2}{Training the network, n=2}{section.3}% 12
+\BOOKMARK [1][-]{section.4}{Conclusions}{}% 13
+\BOOKMARK [1][-]{section.4}{References}{}% 14
+\BOOKMARK [1][-]{section*.6}{Appendices}{}% 15
 \BOOKMARK [1][-]{Appendix.1.A}{Appendix 1.}{}% 16
 \BOOKMARK [2][-]{subsection.1.A.1}{Analytic expression for the local energy}{Appendix.1.A}% 17
 \BOOKMARK [1][-]{Appendix.1.B}{Appendix 2.}{}% 18
 \BOOKMARK [2][-]{subsection.1.B.1}{Derivatives w.r.t RBM parameters}{Appendix.1.B}% 19
+\BOOKMARK [1][-]{Appendix.1.C}{Appendix 3.}{}% 20
+\BOOKMARK [2][-]{subsection.1.C.1}{Appendix 3: Local energy and parameter gradients for Gibbs sampling}{Appendix.1.C}% 21
+\BOOKMARK [1][-]{Appendix.1.D}{Appendix 4.}{}% 22
+\BOOKMARK [2][-]{subsection.1.D.1}{Appendix 4: Testing step length l and t}{Appendix.1.D}% 23
+\BOOKMARK [2][-]{subsection.1.D.2}{Appendix 4: Testing learning rate }{Appendix.1.D}% 24

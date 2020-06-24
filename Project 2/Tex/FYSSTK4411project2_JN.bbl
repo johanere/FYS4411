@@ -1,0 +1,47 @@
+\begin{thebibliography}{1}
+
+\bibitem{CarleoGiuseppe2017Stqm}
+Giuseppe Carleo and Matthias Troyer.
+\newblock Solving the quantum many-body problem with artificial neural
+  networks.
+\newblock {\em Science (New York, N.Y.)}, 355(6325):602--606, 2017.
+
+\bibitem{Flugsrud}
+Vilde~Moe Flugsrud.
+\newblock Solving quantum mechanical problems with machine learning.
+\newblock Master's thesis, University of Oslo, 2018.
+
+\bibitem{MLoppgave}
+{FYS4411 Project 2: The restricted Boltzmann machine applied to the quantum
+  many body problem.}
+\newblock
+  \url{https://github.com/CompPhysics/ComputationalPhysics2/tree/gh-pages/doc/Projects/2020},
+  2020.
+
+\bibitem{Griffiths95}
+David~J Griffiths.
+\newblock Introduction to quantum mechanics, 1995.
+
+\bibitem{Jonsson}
+Marius Jonsson.
+\newblock Standard error estimation by an automated blocking method, 2018.
+
+\bibitem{MLMurphy}
+Kevin~P. Murphy.
+\newblock {\em Machine learning : a probabilistic perspective}.
+\newblock Adaptive computation and machine learning. MIT Press, Cambridge,
+  2012.
+
+\bibitem{JN_P1}
+Johan Nereng.
+\newblock Vmc: Effects of importance sampling and jastrow factor on error
+  estimates.
+\newblock \url{https://github.com/johanere/FYS4411/tree/master/Project%201},
+  2019.
+
+\bibitem{numpy}
+Travis~E Oliphant.
+\newblock {\em A guide to NumPy}, volume~1.
+\newblock Trelgol Publishing USA, 2006.
+
+\end{thebibliography}

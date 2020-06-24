@@ -1,20 +1,19 @@
 #include "writefile.h"
+#include <string>
 
-void write_LocalEnergy(std::vector<double>& energySamples, std::string filename)
+void write_LocalEnergy(std::vector<double> energySamples, std::string filename, std::string foldername)
 {
-  /*
-  Writes the sampled local energy to a file
-  */
 
-filename.append("_E.dat");
+
+foldername.append(filename);
+foldername.append(".dat");
+
+filename=foldername;
+cout<<filename<<endl;
+
 ofstream outfile;
-/*
-outfile.open(filename, ios::out | ios::binary | ios::trunc);
-outfile.write(reinterpret_cast<const char*> (energySamples.data()),energySamples.size()*sizeof(double));
-*/
 outfile.open(filename);
 outfile << setiosflags(ios::showpoint | ios::uppercase);
-
 for (unsigned int i=0; i<energySamples.size();i++){
   outfile << setw(15) << setprecision(8) <<energySamples[i]<<endl;
 }

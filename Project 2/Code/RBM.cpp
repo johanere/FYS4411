@@ -38,14 +38,15 @@ void RBM::WeightsAndBiases(int current_run) {
     InitiateWeightsAndBiases();
   }
   else{
-    m_learningrate*=0.9;
+    ;//m_learningrate*=0.9;
   }
 } //end of WeightsAndBiases
 
 void RBM::InitiateWeightsAndBiases() {
-     m_a = Eigen::VectorXd::Random(m_M).cwiseAbs()*0.5;
-     m_b = Eigen::VectorXd::Random(m_N).cwiseAbs()*0.5;
-     m_W = Eigen::MatrixXd::Random(m_M,m_N).cwiseAbs()*0.5;
+     m_a = Eigen::VectorXd::Random(m_M).cwiseAbs()/m_M;
+     m_b = Eigen::VectorXd::Random(m_N).cwiseAbs()/m_N;
+     m_W = Eigen::MatrixXd::Random(m_M,m_N).cwiseAbs()/(m_N*m_M);
+
 
 }// end of InitiateWeightsAndBiases
 
@@ -60,5 +61,6 @@ Eigen::VectorXd grad_b, Eigen::MatrixXd grad_W) {
   m_a-=m_learningrate*grad_a;
   m_b-=m_learningrate*grad_b;
   m_W-=m_learningrate*grad_W;
+
 
 } //end of WeightsAndBiases

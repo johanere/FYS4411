@@ -63,10 +63,10 @@ void Sampler::sample(bool acceptedStep) {
 
 void Sampler::printOutputToTerminal() {
     cout << "E:     " << m_energy << endl;
-    cout << std::scientific;
-    cout << "S:     " << m_error << endl;
-    cout << std::fixed;
-    cout << "A:     " <<  ((double) m_acceptedSteps)/m_stepNumber << endl;
+  //  cout << std::scientific;
+  //  cout << "S:     " << m_error << endl;
+  //  cout << std::fixed;
+  //  cout << "A:     " <<  ((double) m_acceptedSteps)/m_stepNumber << endl;
     cout << " \n" <<endl;
 } //end of printOutputToTerminal
 
@@ -80,9 +80,9 @@ void Sampler::computeAverages() {
 
 void Sampler::blocking() {
    Blocker block(m_EnergySamples);
-   mse_mean=block.mse_mean;
-   stdErr=block.stdErr;
-   mse_stdErr=block.mse_stdErr;
+   m_mse_mean=block.mse_mean;
+   m_stdErr=block.stdErr;
+   m_mse_stdErr=block.mse_stdErr;
    printf("Expected value = %g (with mean sq. err. = %g) \n", block.mean, block.mse_mean);
    printf("Standard error = %g (with mean sq. err. = %g) \n", block.stdErr, block.mse_stdErr);
 }
@@ -94,22 +94,23 @@ void Sampler::Update_expectations(double m_DeltaE){
   Eigen::VectorXd b= m_system->getRBM()->get_b();
   Eigen::MatrixXd W= m_system->getRBM()->get_W();
   double sigma =  m_system->getRBM()->get_sigma();
-  m_psi_a    +=  (X - a)/(sigma*sigma);
-  m_psi_a_EL +=  (X - a)/(sigma*sigma)   * m_DeltaE;
+
+  m_psi_a    +=  m_system->get_gibbsfactor()* (X - a)/(sigma*sigma);
+  m_psi_a_EL +=  m_system->get_gibbsfactor()* (X - a)/(sigma*sigma)   * m_DeltaE;
 
   for (int j=0; j<m_system->getRBM()->get_N();j++)
   {
 
-    m_psi_b(j)    += logistic(-v_j(j,X));
-    m_psi_b_EL(j) += logistic(-v_j(j,X)) * m_DeltaE;
+    m_psi_b(j)    += m_system->get_gibbsfactor()* logistic(-v_j(j,X));
+    m_psi_b_EL(j) += m_system->get_gibbsfactor()* logistic(-v_j(j,X)) * m_DeltaE;
   }
 
   for (int i=0; i<m_system->getRBM()->get_M();i++)
   {
     for (int j=0; j<m_system->getRBM()->get_N();j++)
     {
-      m_psi_W(i,j)    += X(i) * logistic(-v_j(j,X))  /(sigma*sigma) ;
-      m_psi_W_EL(i,j) += X(i) * logistic(-v_j(j,X))  /(sigma*sigma) * m_DeltaE;
+      m_psi_W(i,j)    += m_system->get_gibbsfactor()* X(i) * logistic(-v_j(j,X))  /(sigma*sigma) ;
+      m_psi_W_EL(i,j) += m_system->get_gibbsfactor()* X(i) * logistic(-v_j(j,X))  /(sigma*sigma) * m_DeltaE;
     }
   }
 
@@ -122,21 +123,24 @@ double Sampler::logistic(double x){
 
 double Sampler::v_j(int j,Eigen::VectorXd X){
   double sum = 0;
-  for (int i=0; i<m_system->getRBM()->get_M();i++)
-  {
-    sum+= X(i)* m_system->getRBM()->get_W()(i,j) ;
-  }
+    for (int i=0; i<m_system->getRBM()->get_M();i++)
+    {
+      sum+= X(i)* m_system->getRBM()->get_W()(i,j) ;
+    }
   //sum =  X.dot(m_W.col(j)) ;
-  return m_system->getRBM()->get_b()(j)+sum / (m_system->getRBM()->get_sigma()*m_system->getRBM()->get_sigma()) ;
+  return m_system->getRBM()->get_b()(j)+sum / (m_system->getRBM()->get_sigma() * m_system->getRBM()->get_sigma()) ;
   }
 
 Eigen::VectorXd Sampler::Return_gradients_a(){
-  return 2*(m_psi_a_EL/m_stepNumber-m_energy*m_psi_a/m_stepNumber);
+
+  return  2*(m_psi_a_EL/m_stepNumber-m_energy*m_psi_a/m_stepNumber);
 }
 Eigen::VectorXd Sampler::Return_gradients_b(){
-  return 2*(m_psi_b_EL/m_stepNumber-m_energy*m_psi_b/m_stepNumber);
+
+  return  2*(m_psi_b_EL/m_stepNumber-m_energy*m_psi_b/m_stepNumber);
 }
 
 Eigen::MatrixXd Sampler::Return_gradients_W(){
-  return 2*(m_psi_W_EL/m_stepNumber-m_energy*m_psi_W/m_stepNumber);
+
+  return  2*(m_psi_W_EL/m_stepNumber-m_energy*m_psi_W/m_stepNumber);
 }

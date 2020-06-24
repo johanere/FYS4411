@@ -5,7 +5,7 @@
 class Sampler {
 public:
     Sampler(class System* system);
-    ~Sampler();  
+    ~Sampler();
 
     void setNumberOfMetropolisSteps(int steps,int steps_after_eq,bool store_samples);
     void sample(bool acceptedStep);
@@ -16,6 +16,9 @@ public:
     double getError()          { return m_error; }
     double getAcceptanceRate()  {return m_A;}
     std::vector <double> getEnergySamples() { return m_EnergySamples; }
+
+    double getSE()          { return m_stdErr; }
+    double getSE_mse()          { return m_mse_stdErr; }
 
     void blocking();
 
@@ -42,9 +45,9 @@ private:
     std::vector <double> m_EnergySamples;
 
 
-    double mse_mean;
-    double stdErr;
-    double mse_stdErr;
+    double m_mse_mean=0;
+    double m_stdErr=0;
+    double m_mse_stdErr=0;
 
 
     Eigen::VectorXd m_psi_a;

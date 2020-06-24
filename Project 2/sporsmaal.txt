@@ -10,7 +10,7 @@ lage en sigma^2 evnt flytte ut av loop i RBM_simpleWF
 
 issue på github om N - #partikler eller #hidden nodes
 
-
+isssue burde få oppgiittt en dx og dt - blir for mange parametere å kryssjekke - krever torrsss alt ikke ML kurs
 
 
 
