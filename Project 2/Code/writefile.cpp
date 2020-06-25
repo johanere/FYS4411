@@ -1,5 +1,25 @@
 #include "writefile.h"
 #include <string>
+#include "Eigen/Dense"
+
+void write_vector(Eigen::VectorXd vector, std::string filename, std::string foldername)
+{
+
+
+foldername.append(filename);
+foldername.append(".dat");
+
+filename=foldername;
+cout<<filename<<endl;
+
+ofstream outfile;
+outfile.open(filename);
+outfile << setiosflags(ios::showpoint | ios::uppercase);
+for (unsigned int i=0; i<vector.size();i++){
+  outfile << setw(15) << setprecision(8) <<vector[i]<<endl;
+}
+outfile.close();
+}
 
 void write_LocalEnergy(std::vector<double> energySamples, std::string filename, std::string foldername)
 {

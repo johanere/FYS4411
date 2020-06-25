@@ -83,8 +83,8 @@ void Sampler::blocking() {
    m_mse_mean=block.mse_mean;
    m_stdErr=block.stdErr;
    m_mse_stdErr=block.mse_stdErr;
-   printf("Expected value = %g (with mean sq. err. = %g) \n", block.mean, block.mse_mean);
-   printf("Standard error = %g (with mean sq. err. = %g) \n", block.stdErr, block.mse_stdErr);
+  // printf("Expected value = %g (with mean sq. err. = %g) \n", block.mean, block.mse_mean);
+//   printf("Standard error = %g (with mean sq. err. = %g) \n", block.stdErr, block.mse_stdErr);
 }
 
 void Sampler::Update_expectations(double m_DeltaE){

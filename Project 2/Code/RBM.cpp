@@ -33,6 +33,10 @@ RBM::RBM(int GD_iters,int m, int n, double learningrate,double sigma, double ome
     m_omega=omega;
 }
 
+RBM::~RBM(void) {
+}
+
+
 void RBM::WeightsAndBiases(int current_run) {
   if (current_run==1){
     InitiateWeightsAndBiases();

@@ -7,15 +7,16 @@ import glob, os
 
 
 from matplotlib import rc
-#rc('text', usetex=True)
-#rc('font', size=14)
-#rc('legend', fontsize=13)
-#rc('text.latex', preamble=r'\usepackage{lmodern}')
+rc('text', usetex=True)
+rc('font', size=14)
+rc('legend', fontsize=13)
+rc('text.latex', preamble=r'\usepackage{lmodern}')
 
 
 #["$\\Delta t= 0.005$ ","$\\Delta t= 0.05$ ","$\\Delta t= 0.5$ ","$\\Delta t= 1.0$ "]
 
-label=np.linspace(0.1,1,10)
+
+label=np.linspace(0.26,0.44,10)
 
 plt.figure()
 
@@ -57,8 +58,8 @@ for file in glob.glob("*.dat"):
 
 
     #plot
-    start_plot=5#int(round(step*0.0005))
-    if file_number == 0 or file_number == 8 or file_number == 1 or file_number == 4:
+    start_plot=6#int(round(step*0.0005))
+    if file_number == 123 or file_number == 8123 or file_number == 351 or file_number == 1234:
         pass
     else:
         print("kk")
@@ -71,5 +72,5 @@ plt.legend(frameon=False, loc="best")
 plt.grid("on")
 plt.xlabel(r' iterations ')#, fontsize=10)
 plt.ylabel(r'$\bar{E}$')#,fontsize=10)
-plt.savefig("BF_eta_selected.pdf")
+plt.savefig("../IS_eta_narrow.pdf")
 plt.show()

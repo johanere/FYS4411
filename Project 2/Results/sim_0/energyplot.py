@@ -7,10 +7,10 @@ import glob, os
 
 
 from matplotlib import rc
-rc('text', usetex=True)
-rc('font', size=16)
-rc('legend', fontsize=16)
-rc('text.latex', preamble=r'\usepackage{lmodern}')
+#rc('text', usetex=True)
+#rc('font', size=16)
+#rc('legend', fontsize=16)
+#rc('text.latex', preamble=r'\usepackage{lmodern}')
 
 label=["Brute Force","Importance Sampling","Gibbs Sampling"]
 
@@ -59,7 +59,7 @@ for file in glob.glob("*.dat"):
     #plot
     start_plot=0#int(round(step*0.0005))
 
-    plt.plot(np.log2(mcs[start_plot:]),E_avr[start_plot:],label="%s"%(label[file_number]))
+    plt.plot(np.log2(mcs[start_plot:]),E[start_plot:],label="%s"%(label[file_number]))
     file_number+=1
 
 

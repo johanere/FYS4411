@@ -7,10 +7,10 @@ import glob, os
 
 
 from matplotlib import rc
-#rc('text', usetex=True)
-#rc('font', size=14)
-#rc('legend', fontsize=13)
-#rc('text.latex', preamble=r'\usepackage{lmodern}')
+rc('text', usetex=True)
+rc('font', size=14)
+rc('legend', fontsize=13)
+rc('text.latex', preamble=r'\usepackage{lmodern}')
 
 
 #["$\\Delta t= 0.005$ ","$\\Delta t= 0.05$ ","$\\Delta t= 0.5$ ","$\\Delta t= 1.0$ "]
@@ -57,7 +57,7 @@ for file in glob.glob("*.dat"):
 
 
     #plot
-    start_plot=10#int(round(step*0.0005))
+    start_plot=6#int(round(step*0.0005))
     if file_number == 1110 or file_number == 118 or file_number == 111 or file_number == 114:
         pass
     else:
@@ -67,7 +67,7 @@ for file in glob.glob("*.dat"):
 
 
 plt.axhline(y=0.5, label="Exact",color='k', linestyle='-',)
-plt.legend(frameon=False, loc="best")
+#plt.legend(frameon=False, loc="best")
 plt.grid("on")
 plt.xlabel(r' iterations ')#, fontsize=10)
 plt.ylabel(r'$\bar{E}$')#,fontsize=10)

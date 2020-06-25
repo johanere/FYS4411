@@ -6,6 +6,7 @@ class RBM {
 public:
     RBM(int GD_iters, int m, int n, double learningrate, double sigma,  double omega);
     RBM(int GD_iters, int m, int n, double learningrate, double sigma,  double omega, int seed);
+    ~RBM();
     void InitiateWeightsAndBiases();
     void WeightsAndBiases(int current_run);
     void Update_gradients(Eigen::VectorXd grad_a, Eigen::VectorXd grad_b, Eigen::MatrixXd grad_W);
