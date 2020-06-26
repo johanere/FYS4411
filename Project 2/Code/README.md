@@ -1,4 +1,4 @@
-Class structure forked from https://github.com/mortele/variational-monte-carlo-fys4411, then expanded to include working functions for both interacting and non-interacting systems.
+Class structure forked from https://github.com/mortele/variational-monte-carlo-fys4411, then tailored to this specific project.
 
 ### Compiling the project using CMake
 In a Linux/Mac terminal this can be done by the following commands
