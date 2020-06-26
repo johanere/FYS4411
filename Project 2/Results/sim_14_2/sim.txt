@@ -1,0 +1,21 @@
+P=D=2
+N=2
+
+int interaction = 1;
+
+int numberOfSteps = (int) pow(2,21);
+double equilibration = 0.5;
+int GD_iters = 20;
+
+if (method == 0) {
+  learningrate = 0.38;
+  stepLength = 1.0;
+ }
+else if (method == 1) {
+  learningrate = 0.34;
+  stepLength = 2.0;
+}
+else if (method == 2) {
+  learningrate = 0.26;
+  sigma=0.914;
+  }

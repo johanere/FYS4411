@@ -44,4 +44,10 @@ Travis~E Oliphant.
 \newblock {\em A guide to NumPy}, volume~1.
 \newblock Trelgol Publishing USA, 2006.
 
+\bibitem{taut}
+M.~Taut.
+\newblock Two electrons in an external oscillator potential: Particular
+  analytic solutions of a coulomb correlation problem.
+\newblock {\em Phys. Rev. A}, 48:3561--3566, Nov 1993.
+
 \end{thebibliography}

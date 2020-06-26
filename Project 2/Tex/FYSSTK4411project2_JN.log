@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  25 JUN 2020 04:15
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (MiKTeX 2.9.6500 64-bit) (preloaded format=pdflatex 2018.1.3)  26 JUN 2020 02:47
 entering extended mode
 **./FYSSTK4411project2_JN.tex
 (FYSSTK4411project2_JN.tex
@@ -1049,14 +1049,7 @@ Package: everysel 2011/10/28 v1.2 EverySelectfont Package (MS)
 \RaggedLeftParindent=\skip93
 \RaggedRightParindent=\skip94
 \JustifyingParindent=\skip95
-) (FYSSTK4411project2_JN.aux
-
-LaTeX Warning: Label `eq:Appendix2_grad_b' multiply defined.
-
-
-LaTeX Warning: Label `APP_3' multiply defined.
-
-)
+) (FYSSTK4411project2_JN.aux)
 \openout1 = `FYSSTK4411project2_JN.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 152.
@@ -1074,7 +1067,8 @@ LaTeX Font Info:    ... okay on input line 152.
 LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 152.
 LaTeX Font Info:    ... okay on input line 152.
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 152.
- (C:\Johan\Miktex\tex\latex\lm\t1lmr.fd
+
+(C:\Johan\Miktex\tex\latex\lm\t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 *geometry* driver: auto-detecting
@@ -1187,53 +1181,37 @@ Package caption Info: End \AtBeginDocument code.
 
 ABD: EverySelectfont initializing macros
 LaTeX Info: Redefining \selectfont on input line 152.
- [1
-
-{C:/Users/Johan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] (C:\Johan\M
-iktex\tex\latex\ucs\uni-0.def
-File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
-)
-[2]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 214.
-
- (C:\Johan\Miktex\tex\latex\lm\t1lmtt.fd
-File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-Package microtype Info: Loading generic protrusion settings for font family
-(microtype)             `lmtt' (encoding: T1).
-(microtype)             For optimal results, create family-specific settings.
-(microtype)             See the microtype manual for details.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 214.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 197.
 
 
 (C:\Johan\Miktex\tex\latex\lm\ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 214.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 197.
 
 
 (C:\Johan\Miktex\tex\latex\lm\omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 214
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 197
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 214
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 197
 .
 
 (C:\Johan\Miktex\tex\latex\lm\omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 214.
+(Font)              <9> on input line 197.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7> on input line 214.
+(Font)              <6> on input line 197.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <5> on input line 214.
-LaTeX Font Info:    Try loading font information for U+msa on input line 214.
+(Font)              <5> on input line 197.
+LaTeX Font Info:    Try loading font information for U+msa on input line 197.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
@@ -1241,15 +1219,25 @@ File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 (C:\Johan\Miktex\tex\latex\microtype\mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 214.
+LaTeX Font Info:    Try loading font information for U+msb on input line 197.
 
 (C:\Johan\Miktex\tex\latex\amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 (C:\Johan\Miktex\tex\latex\microtype\mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
-) [3] [4] [5]
-Overfull \hbox (5.9821pt too wide) in paragraph at lines 344--345
+) [1
+
+{C:/Users/Johan/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+(C:\Johan\Miktex\tex\latex\ucs\uni-0.def
+File: uni-0.def 2013/05/13 UCS: Unicode data U+0000..U+00FF
+) [2]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <10> on input line 227.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <7> on input line 227.
+ [3] [4] [5]
+Overfull \hbox (5.9821pt too wide) in paragraph at lines 346--347
 []\T1/lmr/m/n/10 (-20) In or-der to sam-ple $\OT1/lmr/m/n/10 (-20) 	[](\OML/cmm
 /b/it/10 X\OT1/lmr/m/n/10 (-20) )$ \T1/lmr/m/n/10 (-20) s.t $\OMS/lmsy/m/n/10 j
 \OT1/lmr/m/n/10 (-20) 	[](\OML/cmm/b/it/10 X\OT1/lmr/m/n/10 (-20) )\OMS/lmsy/m/
@@ -1258,37 +1246,31 @@ lmr/m/n/10 (-20) 	[](\OML/cmm/b/it/10 X\OT1/lmr/m/n/10 (-20) ) =
  []
 
 [6]
-Overfull \hbox (6.79999pt too wide) in paragraph at lines 375--375
+Overfull \hbox (6.79999pt too wide) in paragraph at lines 377--377
  [] 
  []
 
 [7]
-<../Results/sim_0/initial_energies.pdf, id=247, pagebox=cropbox, 462.52798pt x 
+<../Results/sim_0/initial_energies.pdf, id=261, pagebox=cropbox, 462.52798pt x 
 346.89601pt>
 File: ../Results/sim_0/initial_energies.pdf Graphic file (type pdf)
 <use ../Results/sim_0/initial_energies.pdf>
 Package pdftex.def Info: ../Results/sim_0/initial_energies.pdf  used on input l
-ine 389. on input line 389.
+ine 392. on input line 392.
 Package pdftex.def Info: Requested size: 227.62204pt x 170.71628pt on input lin
-e 389.
-<../Results/sim_0/initial_energies_abs.pdf, id=248, pagebox=cropbox, 462.52798p
+e 392.
+<../Results/sim_0/initial_energies_abs.pdf, id=262, pagebox=cropbox, 462.52798p
 t x 346.89601pt>
 File: ../Results/sim_0/initial_energies_abs.pdf Graphic file (type pdf)
 <use ../Results/sim_0/initial_energies_abs.pdf>
 Package pdftex.def Info: ../Results/sim_0/initial_energies_abs.pdf  used on inp
-ut line 390. on input line 390.
+ut line 393. on input line 393.
 Package pdftex.def Info: Requested size: 227.62204pt x 170.71628pt on input lin
-e 390.
+e 393.
 
-Overfull \hbox (21.62408pt too wide) in paragraph at lines 389--391
+Overfull \hbox (21.62408pt too wide) in paragraph at lines 392--394
  [][][][] 
  []
-
-
-LaTeX Warning: Hyper reference `APP_4' on page 8 undefined on input line 401.
-
-
-LaTeX Warning: Hyper reference `APP_4' on page 8 undefined on input line 404.
 
 [8 <../Results/sim_0/initial_energies.pdf> <../Results/sim_0/initial_energies_a
 bs.pdf
@@ -1297,229 +1279,258 @@ pdfTeX warning: pdflatex (file ../Results/sim_0/initial_energies_abs.pdf): PDF
 inclusion: multiple pdfs with page group included in a single page
 >] [9]
 
-LaTeX Warning: Hyper reference `APP_4' on page 10 undefined on input line 445.
-
-
 LaTeX Warning: Reference `GS_sigma_initial' on page 10 undefined on input line 
-445.
+448.
 
-
-LaTeX Warning: Hyper reference `APP_4' on page 10 undefined on input line 447.
-
-<../Results/sim_8/GS_sigma.pdf, id=315, pagebox=cropbox, 462.52798pt x 346.8960
+[10]
+<../Results/sim_8/GS_sigma.pdf, id=339, pagebox=cropbox, 462.52798pt x 346.8960
 1pt>
 File: ../Results/sim_8/GS_sigma.pdf Graphic file (type pdf)
 <use ../Results/sim_8/GS_sigma.pdf>
-Package pdftex.def Info: ../Results/sim_8/GS_sigma.pdf  used on input line 450.
- on input line 450.
+Package pdftex.def Info: ../Results/sim_8/GS_sigma.pdf  used on input line 453.
+ on input line 453.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 453.
+ [11 <../Results/sim_8/GS_sigma.pdf>] [12]
+<../Results/sim_15/ns_interacting_de2_large.pdf, id=394, pagebox=cropbox, 462.5
+2798pt x 346.89601pt>
+File: ../Results/sim_15/ns_interacting_de2_large.pdf Graphic file (type pdf)
+<use ../Results/sim_15/ns_interacting_de2_large.pdf>
+Package pdftex.def Info: ../Results/sim_15/ns_interacting_de2_large.pdf  used o
+n input line 540. on input line 540.
 Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 450.
+e 540.
+ [13] [14 <../Results/sim_15/ns_interacting_de2_large.pdf>]
+<../Results/sim_15/ns_interacting_de2.pdf, id=462, pagebox=cropbox, 462.52798pt
+ x 346.89601pt>
+File: ../Results/sim_15/ns_interacting_de2.pdf Graphic file (type pdf)
+<use ../Results/sim_15/ns_interacting_de2.pdf>
+Package pdftex.def Info: ../Results/sim_15/ns_interacting_de2.pdf  used on inpu
+t line 581. on input line 581.
+Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
+e 581.
+ [15] [16 <../Results/sim_15/ns_interacting_de2.pdf>] (FYSSTK4411project2_JN.bb
+l
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 18.
+ (C:\Johan\Miktex\tex\latex\lm\t1lmtt.fd
+File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+Package microtype Info: Loading generic protrusion settings for font family
+(microtype)             `lmtt' (encoding: T1).
+(microtype)             For optimal results, create family-specific settings.
+(microtype)             See the microtype manual for details.
+ [17])
+[18]
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <12> on input line 749.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <8> on input line 749.
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 749.
 
 
-LaTeX Warning: Hyper reference `APP_4' on page 10 undefined on input line 457.
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 749.
 
-[10] [11 <../Results/sim_8/GS_sigma.pdf>]
-<../Results/sim_12/training_interacting.pdf, id=347, pagebox=cropbox, 462.52798
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 749.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\Delta' on input line 749.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 749.
+
+<../Results/sim_2/error.pdf, id=541, pagebox=cropbox, 462.52798pt x 346.89601pt
+>
+File: ../Results/sim_2/error.pdf Graphic file (type pdf)
+<use ../Results/sim_2/error.pdf>
+Package pdftex.def Info: ../Results/sim_2/error.pdf  used on input line 754. on
+ input line 754.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 754.
+[19]
+<../Results/sim_3/error.pdf, id=556, pagebox=cropbox, 462.52798pt x 346.89601pt
+>
+File: ../Results/sim_3/error.pdf Graphic file (type pdf)
+<use ../Results/sim_3/error.pdf>
+Package pdftex.def Info: ../Results/sim_3/error.pdf  used on input line 761. on
+ input line 761.
+Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
+ 761.
+ [20 <../Results/sim_2/error.pdf>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 766.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\eta' on input line 766.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 766.
+
+<../Results/sim_4/BF_eta.pdf, id=582, pagebox=cropbox, 462.52798pt x 346.89601p
+t>
+File: ../Results/sim_4/BF_eta.pdf Graphic file (type pdf)
+<use ../Results/sim_4/BF_eta.pdf>
+Package pdftex.def Info: ../Results/sim_4/BF_eta.pdf  used on input line 769. o
+n input line 769.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 769.
+<../Results/sim_4/IS_eta.pdf, id=583, pagebox=cropbox, 462.52798pt x 346.89601p
+t>
+File: ../Results/sim_4/IS_eta.pdf Graphic file (type pdf)
+<use ../Results/sim_4/IS_eta.pdf>
+Package pdftex.def Info: ../Results/sim_4/IS_eta.pdf  used on input line 776. o
+n input line 776.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 776.
+[21 <../Results/sim_3/error.pdf> <../Results/sim_4/BF_eta.pdf
+
+pdfTeX warning: pdflatex (file ../Results/sim_4/BF_eta.pdf): PDF inclusion: mul
+tiple pdfs with page group included in a single page
+>]
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\sigma' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `\eta' on input line 781.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
+(hyperref)                removing `math shift' on input line 781.
+
+<../Results/sim_7/GS_initial.pdf, id=640, pagebox=cropbox, 462.52798pt x 346.89
+601pt>
+File: ../Results/sim_7/GS_initial.pdf Graphic file (type pdf)
+<use ../Results/sim_7/GS_initial.pdf>
+Package pdftex.def Info: ../Results/sim_7/GS_initial.pdf  used on input line 78
+4. on input line 784.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 784.
+<../Results/sim_9/GS_eta.pdf, id=641, pagebox=cropbox, 462.52798pt x 346.89601p
+t>
+File: ../Results/sim_9/GS_eta.pdf Graphic file (type pdf)
+<use ../Results/sim_9/GS_eta.pdf>
+Package pdftex.def Info: ../Results/sim_9/GS_eta.pdf  used on input line 791. o
+n input line 791.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 791.
+[22 <../Results/sim_4/IS_eta.pdf> <../Results/sim_7/GS_initial.pdf
+
+pdfTeX warning: pdflatex (file ../Results/sim_7/GS_initial.pdf): PDF inclusion:
+ multiple pdfs with page group included in a single page
+>]
+<../Results/sim_12/training_interacting.pdf, id=668, pagebox=cropbox, 462.52798
 pt x 346.89601pt>
 File: ../Results/sim_12/training_interacting.pdf Graphic file (type pdf)
 <use ../Results/sim_12/training_interacting.pdf>
 Package pdftex.def Info: ../Results/sim_12/training_interacting.pdf  used on in
-put line 506. on input line 506.
-Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 506.
-<../Results/sim_12/error_interacting.pdf, id=348, pagebox=cropbox, 462.52798pt 
+put line 799. on input line 799.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 799.
+<../Results/sim_13/n2_training_interacting.pdf, id=669, pagebox=cropbox, 462.52
+798pt x 346.89601pt>
+File: ../Results/sim_13/n2_training_interacting.pdf Graphic file (type pdf)
+<use ../Results/sim_13/n2_training_interacting.pdf>
+Package pdftex.def Info: ../Results/sim_13/n2_training_interacting.pdf  used on
+ input line 806. on input line 806.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 806.
+ [23 <../Results/sim_9/GS_eta.pdf> <../Results/sim_12/training_interacting.pdf
+
+pdfTeX warning: pdflatex (file ../Results/sim_12/training_interacting.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+>]
+<../Results/sim_13/n2_error_interacting.pdf, id=734, pagebox=cropbox, 462.52798
+pt x 346.89601pt>
+File: ../Results/sim_13/n2_error_interacting.pdf Graphic file (type pdf)
+<use ../Results/sim_13/n2_error_interacting.pdf>
+Package pdftex.def Info: ../Results/sim_13/n2_error_interacting.pdf  used on in
+put line 814. on input line 814.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 814.
+<../Results/sim_12/error_interacting.pdf, id=735, pagebox=cropbox, 462.52798pt 
 x 346.89601pt>
 File: ../Results/sim_12/error_interacting.pdf Graphic file (type pdf)
 <use ../Results/sim_12/error_interacting.pdf>
 Package pdftex.def Info: ../Results/sim_12/error_interacting.pdf  used on input
- line 514. on input line 514.
-Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 514.
+ line 821. on input line 821.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 821.
+ [24 <../Results/sim_13/n2_training_interacting.pdf> <../Results/sim_13/n2_erro
+r_interacting.pdf
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../Results/sim_12/regression/Regression_BF_IS.pdf, id=349, pagebox=cropbox, 46
+pdfTeX warning: pdflatex (file ../Results/sim_13/n2_error_interacting.pdf): PDF
+ inclusion: multiple pdfs with page group included in a single page
+>]
+<../Results/sim_12/regression/Regression_BF_IS.pdf, id=839, pagebox=cropbox, 46
 2.52798pt x 346.89601pt>
 File: ../Results/sim_12/regression/Regression_BF_IS.pdf Graphic file (type pdf)
 
 <use ../Results/sim_12/regression/Regression_BF_IS.pdf>
 Package pdftex.def Info: ../Results/sim_12/regression/Regression_BF_IS.pdf  use
-d on input line 521. on input line 521.
-Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 521.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../Results/sim_12/regression/Regression_GS.pdf, id=350, pagebox=cropbox, 462.5
+d on input line 830. on input line 830.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 830.
+ [25 <../Results/sim_12/error_interacting.pdf>]
+<../Results/sim_12/regression/Regression_GS.pdf, id=895, pagebox=cropbox, 462.5
 2798pt x 346.89601pt>
 File: ../Results/sim_12/regression/Regression_GS.pdf Graphic file (type pdf)
 <use ../Results/sim_12/regression/Regression_GS.pdf>
 Package pdftex.def Info: ../Results/sim_12/regression/Regression_GS.pdf  used o
-n input line 529. on input line 529.
+n input line 838. on input line 838.
+Package pdftex.def Info: Requested size: 323.76736pt x 242.82555pt on input lin
+e 838.
+<../Results/sim_15/n2_error_interacting_long.pdf, id=896, pagebox=cropbox, 462.
+52798pt x 346.89601pt>
+File: ../Results/sim_15/n2_error_interacting_long.pdf Graphic file (type pdf)
+<use ../Results/sim_15/n2_error_interacting_long.pdf>
+Package pdftex.def Info: ../Results/sim_15/n2_error_interacting_long.pdf  used 
+on input line 845. on input line 845.
 Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 529.
+e 845.
+ [26 <../Results/sim_12/regression/Regression_BF_IS.pdf> <../Results/sim_12/reg
+ression/Regression_GS.pdf
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[12 <../Results/sim_12/training_interacting.pdf>] [13 <../Results/sim_12/error_
-interacting.pdf>] [14 <../Results/sim_12/regression/Regression_BF_IS.pdf>]
-[15 <../Results/sim_12/regression/Regression_GS.pdf>]
-(FYSSTK4411project2_JN.bbl) [16
-
-] [17]
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 714.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 714.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 714.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 714.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 714.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 714.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\Delta' on input line 714.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 714.
-
-<../Results/sim_2/error.pdf, id=523, pagebox=cropbox, 462.52798pt x 346.89601pt
->
-File: ../Results/sim_2/error.pdf Graphic file (type pdf)
-<use ../Results/sim_2/error.pdf>
-Package pdftex.def Info: ../Results/sim_2/error.pdf  used on input line 719. on
- input line 719.
-Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
- 719.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../Results/sim_3/error.pdf, id=524, pagebox=cropbox, 462.52798pt x 346.89601pt
->
-File: ../Results/sim_3/error.pdf Graphic file (type pdf)
-<use ../Results/sim_3/error.pdf>
-Package pdftex.def Info: ../Results/sim_3/error.pdf  used on input line 726. on
- input line 726.
-Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
- 726.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 731.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\eta' on input line 731.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 731.
-
-<../Results/sim_4/BF_eta.pdf, id=525, pagebox=cropbox, 462.52798pt x 346.89601p
-t>
-File: ../Results/sim_4/BF_eta.pdf Graphic file (type pdf)
-<use ../Results/sim_4/BF_eta.pdf>
-Package pdftex.def Info: ../Results/sim_4/BF_eta.pdf  used on input line 734. o
-n input line 734.
-Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
- 734.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../Results/sim_4/IS_eta.pdf, id=526, pagebox=cropbox, 462.52798pt x 346.89601p
-t>
-File: ../Results/sim_4/IS_eta.pdf Graphic file (type pdf)
-<use ../Results/sim_4/IS_eta.pdf>
-Package pdftex.def Info: ../Results/sim_4/IS_eta.pdf  used on input line 741. o
-n input line 741.
-Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
- 741.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 746.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\sigma' on input line 746.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 746.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 746.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\eta' on input line 746.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 746.
-
-<../Results/sim_7/GS_initial.pdf, id=527, pagebox=cropbox, 462.52798pt x 346.89
-601pt>
-File: ../Results/sim_7/GS_initial.pdf Graphic file (type pdf)
-<use ../Results/sim_7/GS_initial.pdf>
-Package pdftex.def Info: ../Results/sim_7/GS_initial.pdf  used on input line 74
-9. on input line 749.
-Package pdftex.def Info: Requested size: 277.51892pt x 208.1392pt on input line
- 749.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../Results/sim_9/GS_eta.pdf, id=528, pagebox=cropbox, 462.52798pt x 346.89601p
-t>
-File: ../Results/sim_9/GS_eta.pdf Graphic file (type pdf)
-<use ../Results/sim_9/GS_eta.pdf>
-Package pdftex.def Info: ../Results/sim_9/GS_eta.pdf  used on input line 756. o
-n input line 756.
-Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
-e 756.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[18]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 762.
- [19 <../Results/sim_2/error.pdf> <../Results/sim_3/error.pdf
-
-pdfTeX warning: pdflatex (file ../Results/sim_3/error.pdf): PDF inclusion: mult
-iple pdfs with page group included in a single page
->] [20 <../Results/sim_4/BF_eta.pdf> <../Results/sim_4/IS_eta.pdf
-
-pdfTeX warning: pdflatex (file ../Results/sim_4/IS_eta.pdf): PDF inclusion: mul
-tiple pdfs with page group included in a single page
->] [21 <../Results/sim_7/GS_initial.pdf> <../Results/sim_9/GS_eta.pdf
-
-pdfTeX warning: pdflatex (file ../Results/sim_9/GS_eta.pdf): PDF inclusion: mul
-tiple pdfs with page group included in a single page
+pdfTeX warning: pdflatex (file ../Results/sim_12/regression/Regression_GS.pdf):
+ PDF inclusion: multiple pdfs with page group included in a single page
 >]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 762.
+<../Results/sim_15/Regression_GS_inter.pdf, id=925, pagebox=cropbox, 462.52798p
+t x 346.89601pt>
+File: ../Results/sim_15/Regression_GS_inter.pdf Graphic file (type pdf)
+<use ../Results/sim_15/Regression_GS_inter.pdf>
+Package pdftex.def Info: ../Results/sim_15/Regression_GS_inter.pdf  used on inp
+ut line 852. on input line 852.
+Package pdftex.def Info: Requested size: 370.02287pt x 277.51718pt on input lin
+e 852.
+ [27 <../Results/sim_15/n2_error_interacting_long.pdf>] [28 <../Results/sim_15/
+Regression_GS_inter.pdf>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 859.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 859.
  (FYSSTK4411project2_JN.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 762.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 859.
 
 
  *File List*
@@ -1654,8 +1665,6 @@ RS)
 gettitlestring.sty    2016/05/16 v1.5 Cleanup title references (HO)
 FYSSTK4411project2_JN.out
 FYSSTK4411project2_JN.out
-   uni-0.def    2013/05/13 UCS: Unicode data U+0000..U+00FF
-  t1lmtt.fd    2009/10/30 v1.6 Font defs for Latin Modern
   ot1lmr.fd    2009/10/30 v1.6 Font defs for Latin Modern
   omllmm.fd    2009/10/30 v1.6 Font defs for Latin Modern
  omslmsy.fd    2009/10/30 v1.6 Font defs for Latin Modern
@@ -1664,40 +1673,45 @@ FYSSTK4411project2_JN.out
   mt-msa.cfg    2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
     umsb.fd    2013/01/14 v3.01 AMS symbols B
   mt-msb.cfg    2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
+   uni-0.def    2013/05/13 UCS: Unicode data U+0000..U+00FF
 ../Results/sim_0/initial_energies.pdf
 ../Results/sim_0/initial_energies_abs.pdf
 ../Results/sim_8/GS_sigma.pdf
-../Results/sim_12/training_interacting.pdf
-../Results/sim_12/error_interacting.pdf
-../Results/sim_12/regression/Regression_BF_IS.pdf
-../Results/sim_12/regression/Regression_GS.pdf
+../Results/sim_15/ns_interacting_de2_large.pdf
+../Results/sim_15/ns_interacting_de2.pdf
 FYSSTK4411project2_JN.bbl
+  t1lmtt.fd    2009/10/30 v1.6 Font defs for Latin Modern
 ../Results/sim_2/error.pdf
 ../Results/sim_3/error.pdf
 ../Results/sim_4/BF_eta.pdf
 ../Results/sim_4/IS_eta.pdf
 ../Results/sim_7/GS_initial.pdf
 ../Results/sim_9/GS_eta.pdf
+../Results/sim_12/training_interacting.pdf
+../Results/sim_13/n2_training_interacting.pdf
+../Results/sim_13/n2_error_interacting.pdf
+../Results/sim_12/error_interacting.pdf
+../Results/sim_12/regression/Regression_BF_IS.pdf
+../Results/sim_12/regression/Regression_GS.pdf
+../Results/sim_15/n2_error_interacting_long.pdf
+../Results/sim_15/Regression_GS_inter.pdf
  ***********
 
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 762.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 859.
 Package rerunfilecheck Info: File `FYSSTK4411project2_JN.out' has not changed.
-(rerunfilecheck)             Checksum: 11C07CE284CC13381558926673F96F4A;2439.
+(rerunfilecheck)             Checksum: 9A907425C18F32D729254D8A7F0343B7;2552.
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
  ) 
 Here is how much of TeX's memory you used:
- 34755 strings out of 493312
- 774563 string characters out of 3144112
- 1003492 words of memory out of 3000000
- 37352 multiletter control sequences out of 15000+200000
- 112119 words of font info for 162 fonts, out of 3000000 for 9000
+ 34896 strings out of 493312
+ 777508 string characters out of 3144112
+ 1005541 words of memory out of 3000000
+ 37411 multiletter control sequences out of 15000+200000
+ 119451 words of font info for 196 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,19n,98p,1024b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 69i,19n,98p,1852b,609s stack positions out of 5000i,500n,10000p,200000b,50000s
 {C:/Johan/Miktex/fonts/enc/dvips/lm/lm-rm.enc}{C:/Johan/Miktex/fonts/enc/dvip
 s/lm/lm-mathit.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-ec.enc}{C:/Johan/Mikt
 ex/fonts/enc/dvips/lm/lm-mathsy.enc}{C:/Johan/Miktex/fonts/enc/dvips/lm/lm-math
@@ -1708,19 +1722,22 @@ han/Miktex/fonts/type1/public/lm/lmbx9.pfb><C:/Johan/Miktex/fonts/type1/public/
 lm/lmbxi10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmex10.pfb><C:/Johan/Mikt
 ex/fonts/type1/public/lm/lmmi10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi
 12.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi5.pfb><C:/Johan/Miktex/fonts/
-type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><C:/
-Johan/Miktex/fonts/type1/public/lm/lmr12.pfb><C:/Johan/Miktex/fonts/type1/publi
-c/lm/lmr17.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex
-/fonts/type1/public/lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr8.pfb
-><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb><C:/Johan/Miktex/fonts/type1/p
-ublic/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmss12.pfb><C:/Johan
-/Miktex/fonts/type1/public/lm/lmss17.pfb><C:/Johan/Miktex/fonts/type1/public/lm
-/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb><C:/Johan/Miktex/f
-onts/type1/public/lm/lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmtt10.pf
-b><C:/Johan/Miktex/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on FYSSTK4411project2_JN.pdf (21 pages, 1363167 bytes).
+type1/public/lm/lmmi7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmmi9.pfb><C:/
+Johan/Miktex/fonts/type1/public/lm/lmr10.pfb><C:/Johan/Miktex/fonts/type1/publi
+c/lm/lmr12.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr17.pfb><C:/Johan/Mikte
+x/fonts/type1/public/lm/lmr5.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr6.pf
+b><C:/Johan/Miktex/fonts/type1/public/lm/lmr7.pfb><C:/Johan/Miktex/fonts/type1/
+public/lm/lmr8.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmr9.pfb><C:/Johan/Mi
+ktex/fonts/type1/public/lm/lmri10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lm
+ss12.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmss17.pfb><C:/Johan/Miktex/fon
+ts/type1/public/lm/lmsy10.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy5.pfb>
+<C:/Johan/Miktex/fonts/type1/public/lm/lmsy6.pfb><C:/Johan/Miktex/fonts/type1/p
+ublic/lm/lmsy7.pfb><C:/Johan/Miktex/fonts/type1/public/lm/lmsy9.pfb><C:/Johan/M
+iktex/fonts/type1/public/lm/lmtt10.pfb><C:/Johan/Miktex/fonts/type1/public/amsf
+onts/symbols/msbm10.pfb>
+Output written on FYSSTK4411project2_JN.pdf (28 pages, 1551954 bytes).
 PDF statistics:
- 761 PDF objects out of 1000 (max. 8388607)
- 112 named destinations out of 1000 (max. 500000)
- 31054 words of extra memory for PDF output out of 35830 (max. 10000000)
+ 1133 PDF objects out of 1200 (max. 8388607)
+ 128 named destinations out of 1000 (max. 500000)
+ 33652 words of extra memory for PDF output out of 35830 (max. 10000000)
 

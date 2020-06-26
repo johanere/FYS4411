@@ -1,4 +1,4 @@
-   \documentclass[%
+\documentclass[%
 oneside,                 % oneside: electronic viewing, twoside: printing
 final,                   % draft: marks overfull hboxes, figures with paths
 10pt]{article}
@@ -167,7 +167,7 @@ final,                   % draft: marks overfull hboxes, figures with paths
 \begin{center}
 {\LARGE\bf
 \begin{spacing}{1.25}
-BOLTZIEMANMACHINE YO!
+VMC: Optimization trajectories for Restricted Boltzmann Machines
 \end{spacing}
 }
 \end{center}
@@ -194,34 +194,32 @@ Spring, 2020
 \vspace{3cm}
 \vspace{3cm}
 \begin{abstract}
-her kjem det greier
+In this project, which is an extension paper to of a previous project paper on Variational Monte Carlo (VMC) methods, training a restricted Boltzmann machine (RBM), with $N$ hidden nodes, and $M$ visible nodes, using VMC methods is the main focus. Two Metropolis Hastings methods, the brute force approach (BF) and Importance Sampling (IS) are tested and compared to Gibbs Sampling (GS). The methods are evaluated using the estimated energy $\bar E$ for both a system of one electron in a one-dimensional harmonic oscillator (HO) and an interacting system of two electrons in a two-dimensional HO. BF (using learning rate $\eta=0.38$) and IS ($\eta=0.34$) is shown to results in similar optimization trajectories for the RBM; a short initial phase ($\sim 10$ iterations) of rapid optimization, followed by ($\sim 50$ to $\sim 100$ training iterations for $N=2$ and $N=4$ respectively) of a slow and close-to linear optimization trajectory (regression coefficient $\sim 10^{-3}$ on iterations $10$ to $20$). Lastly, a phase of exponentially decaying training rates, which converged both for $N=2$ and $N=4$, was observed (up to $200$ iterations). RBM optimization using Gibbs Sampling (GS) was conclusively shown to follow different optimization trajectories than BF and IS. GS ($\eta=0.26$) only exhibited two different training behaviors; rapid initial training ($<10$  iterations), and a phase of close to no optimization with constant $\bar E$ (regression coefficient $\sim 10^{-4}$, persistently up to $200$ training iterations). The value of the standard deviation of the position distribution from GS, $\sigma$, was shown to directly control $\bar E$ in the "no training-phase" of GS.
 \end{abstract}
 
 
 \newpage
 
 
-\textit{\textbf{Author's comments:} HAdde en enorm motivasjonknekk midt i smesteret, og endte opp med å henge bakpå. takk for utvida frist, og igjen takk til Ø for masse god hjælp. Fant igjen motivasjonen med dette prosjektet - det var knallgøy! 
-This was a blast! I found it really interesting to go into detail on my results. For once, I did not put that much effort into the theory section, and instead focused on interpreting the results. lalalala
-I chose to mainly focus on examining results and discussing observations, rather than having a fleshed out theory section. As I have described the theory of neural networks, and VMC in other projects (in this course and FYS-STK), I found that I most of all wanted more experience in interpreting results.}
+\textit{ \textbf{Author's comments:}
+This spring I experienced an unprecedented loss of motivation and enthusiasm for my education after being ill for a few weeks. Happily, I found that this project thoroughly reminding me of why I study computational physics, as I found it very interesting to examine the training RBMS. In contrast to my previous projects in this course and similar courses, I did not focus very much at all on theory. Having understood what I judged to be a sufficient, I spent most of my time writing the C++ implementation and examining results. As I have previously spent a lot of time on the theory sections, I found it refreshing, challenging and fun to spend more time evaluating the simulations. As such, I know that my theory section is rather thin on details, but I hope that I have already proved that I am able to understand and describe theory well enough to pass muster. 
+I would like to thank both Morten and Øyvind for being flexible with the hand-in of this project, as I am uncertain whether or not I would have passed my other exams if I could not have worked on this project through the last weeks of June. 
+}
 \newpage
 
 
 \section{Introduction}
+This is an extention paper to \href{https://github.com/johanere/FYS4411/tree/master/Project\%201}{my previous project paper} \textit{VMC: Effects of Importance Sampling and Jastrow factor on error estimates} \cite{JN_P1}, which is not published and not in review (not intended for publishing). As such, this extention paper will not include descriptions of theory already covered in \cite{JN_P1}, and should be read in context with said project paper.
 
+\paragraph{This project}introduces a new system, namely electrons in a harmonic oscillator, as such, the Hamiltonian of the system is changed from that in \cite{JN_P1}. As the state of the system is represented by a neural network quantum state(NQS), the trial wave function is also new. These two alterations result in a different expression for the local energy, and parameter gradients. In this paper, I also introduce a new VMC method; Gibbs Sampling, which generate system states from a distribution. First and foremost however, this paper examines the training of a neural network, more specifically a restricted Boltzmann Machine (RBM), using VMC methods. 
 
+I start by introducing the system of electrons in an isotropic harmonic oscillator. Here I present the Hamiltonian of the system, as well as the exact energy values of the systems that are later used in simulation experiements. Then, the RBM is described briefly, and the transition to an NQS is stated, as well as the associated expressions for the local energy and drift force. I then go on to repeating the most crucial information from \cite{JN_P1} on optimizing parameters, and derive the relevant expressions used in this project. The Gibbs Sampling scheme is then outlined, before presenting the algorithm used to train the RBM. I then restate (again, in context with \cite{JN_P1}), my approach to the error analysis using the "automated blocking" method \cite{Jonsson}. Lastly, I present simulation results for a system of a single particle in a one-dimensional harmonic oscillator, and then a system of two interacting electrons in a two-dimensional HO. The main focus when interpreting these results is the optimization of the RBM parameters, it's weights and biases. 
 
-This is an extention paper to my previous project paper \textit{VMC: Effects of Importance Sampling and Jastrow factor on error estimates} \cite{JN_P1}, which is not published and not in review (not intended for publishing) \url{https://github.com/johanere/FYS4411/tree/master/Project\%201} . As such, this extention paper will not include descriptions of the theory already covered in \cite{JN_P1}. 
-
-\paragraph{This project}introduces a new system, namely electrons in a harmonic oscillator, as such, the Hamiltonian of the system is changed from that of \cite{JN_P1}. As the state of the system is represented by a neural network quantum state(NQS), the trial wave function is also new. These two alterations result in a different expression for the local energy, and parameter gradients. In addition, this project introduces a new VMC sampling method, Gibbs sampling. 
-
-As this is an extention paper, I will often reference the "orignail?" paaper, which in turns has relavnanat theory refkenmrken blalbal. USe some of the results from the orgina lpaper
-method and the "automated blocking" algorithm from \citep{Jonsson}.
-
- Trene en RBM til å foreslå en god $\Psi$ slik at variational principle gir et godt estimat på $E_0$, det vil si lavest mulig - altså et tak. 
  
-In order to write this project paper and the code required to produce the results, I used a variety of tools, including: C++, Python 3.7.7, NumPy \cite{numpy}, as well as a number of books, web-pages and articles - of which most are listed under 
- \hyperref[refer]{references}. All the code required to reproduce the results may be found on my \href{https://github.com/johanere/FYS4411}{github page }.  
+In order to write this project paper and the code required to produce the results, I used a variety of tools, including: C++, Python 3.7.7, NumPy \cite{numpy}, as well as a number of books, web-pages and articles - of which most are listed under \hyperref[refer]{references}. I would also like to emphasize that I used the \href{https://github.com/computative/block?fbclid=IwAR0_O5IXQHeKxK5TxNIWdNgSTWYZSHjt3qt5gJc57Cu5v5pTUiHBkHI3ciY}{C++ "blocking method" implementation} developed by M.Jonsson (see \cite{Jonsson}). All the code required to reproduce the results may be found on my \href{https://github.com/johanere/FYS4411}{github page }.  
+ 
+ 
+
 \section{Material and methods} \label{theory}
 
 
@@ -241,23 +239,27 @@ H_1=\sum_{i<j}\frac{1}{r_{ij}},
 \end{equation*}
 is the interactive part, where $r_{ij}=\vert \bm{r}_1-\bm{r}_2\vert$, and $r_i = \sqrt{r_{i_x}^2+r_{i_y}^2}$.
 
-\paragraph{The Pauli exlusion principle}requires that that two identical fermions, such as electrons, cannot occupy the same state \citep{Griffiths95}. As this project concerns itself with the ground state of a system of two non-interacting electrons, these electrons must therefore have opposite spins. This also means that the total spin of the two electron system in question must be zero, and that $P$ must be either one or two.
+\paragraph{The Pauli exlusion principle}requires that that two identical fermions, such as electrons, cannot occupy the same state \citep{Griffiths95}. As this project concerns itself with the ground state of the system of electrons (spin $\pm 1/2$), a maximum of two electrons are allowed, and these electrons must have opposite spins. 
 
-\paragraph{Analytic solutions}for the system are available, which makes evaluating the performance of the algorithms possible under certain caveats.  The energy of an harmonic oscillator is in one dimension is \citep{Griffiths95};
-
-\begin{equation}
-\begin{aligned}
-E_n = \hbar \omega (n+\frac{1}{2}
-\end{aligned}
-\end{equation}
-
-Thus, for a system of $P=\{1,2\}$ non-interacting electrons in $D$ dimensions,
+\paragraph{Analytic solutions}for the system are available, which makes evaluating the performance of the algorithms possible under certain caveats. The energy of an harmonic oscillator in one dimension is \citep{Griffiths95};
 
 \begin{equation}
 \begin{aligned}
-E_n = \hbar \omega (n+\frac{1}{2}
+E_n = \hbar \omega (n+\frac{1}{2})
 \end{aligned}
 \end{equation}
+and with a.u and $\omega=1.0$;
+\begin{equation}
+\begin{aligned}
+E_n = n+\frac{1}{2}
+\end{aligned}
+\end{equation}
+where $n$ is the quantum number. 
+Which means that in the ground state, $E_0=\frac{1}{2}$ a.u. for one electron in a one dimensional HO.
+
+For an interacting two-electron system in a two dimensional HO, $E_0=3$ a.u. \citep{taut}
+
+
 
 
 
@@ -308,7 +310,7 @@ is required in order to carry out the Monte Carlo integration for the ground sta
 F_i = \frac{2\nabla \Psi_T}{\Psi_T} = 2 \left[- \frac{(X_k - a_k)}{\sigma^2} + \sum_{i}^N \frac{w_{kj}}{\sigma^2}\frac{1}{1 + e^{-v(\bm X,j)}} \right]
 \end{equation} 
 
-\subsection{Updating parameters}
+\subsection{Optimizing parameters}
 As the weights of the RBM are initialized randomly, the resulting energy is unlikely be the best approximation the algorithm is capable of. In \cite{JN_P1}, the aim was to find $\alpha$ s.t the energy was minimized. Here, the aim is instead to optimize the network.  This is done by optimizing the weights $\bm X$, and biases $\bm a$ and $\bm b$, using the energy as a cost function. Although this optimization is over multiple parameters of different types, the strategy for each parameter $\beta_i$ of parameter type $\beta$, which can either be $\bm a$, $\bm b$, or $\bm X$, is the same as for $\alpha$ described in more detail in \cite{JN_P1}[2.2.3]. The update scheme for parameter $\beta$ is;
 \begin{equation}
 \bm{\beta}_{k+1}=\bm{\beta}_{k}-\eta_k  \bm g (\bm{\beta}_k),
@@ -379,12 +381,13 @@ The following algorithm gives an overview of the operations in a single experime
 In \cite{JN_P1} I found that the error estimate, $\sigma$, on correlated data without methods such as "blocking" is large deceptive. Hence, I have chosen to exclusively use the standard error (error estimate using "blocking"), $\hat \sigma$ in this project. This means that the error analysis of this extension paper is similar to the error analysis of project paper one. For the sake of clarity, I would like to stress that when using $\hat \sigma$ I am referring to the standard error of the energy estimate $\bar E$, and when I am using $ \sigma$ is am referring to standard deviation of the probability distribution of the RBM.
 
 \section{Results} \label{results}
-In the following examinations I will not be using the interacting Hamiltonian. Interacting in VMC and RBM is studied in some detail later.
+In the following simulations I will seek to verify the integrity of algorithm(s) in the C++ implementation. I will then study and compare the two Metropolis Hastings methods (the brute force approach and importance sampling), and Gibbs sampling, when used with an RBM. This will be done using a single particle in a single dimension, $P=D=1$, $N=2$. Subsequently, I will examine the simulations results when using two interacting electrons in two dimensions, $P=D=2$, $N=2$ and $N=4$.
+
 \subsection{Initial testing of VMC methods}
 In order to ascertain whether or not the implementation of the various VMC methods were successful, I ran an MC simulation over $2^{21}$ cycles $P=1$, $D=1$, $N=2$, using Brute Force ($l=1.0$), Importance Sampling ($\Delta t=1.0$), and Gibbs Sampling. 
 
 Figure \ref{fig:inital_1} shows the estimated energy $\bar E$ (left), and the absolute difference between the estimated energy at each cycle $\bar E(cycle)s$ and final estimated energy $\bar E$ (right), using the same seed for all three simulations. $\bar E$ is, as may be expected from an untrained network, relatively far from the exact energy. It is however clear that all three methods find a more-or-less stable value for $\bar E$ after a burn-in phase.  Similarly stable $\bar E$ values after burn-in was observed in subsequent tests using different seeds. As such, the VMC methods are deemed successfully implemented.
-	\begin{figure}
+	\begin{figure}[H]
 		\centering
 		\subfloat[Energy estimate]{{\includegraphics[width=8cm]{../Results/sim_0/initial_energies.pdf}}}
 		\subfloat[Difference in energy estimate from final estimate]{{\includegraphics[width=8cm]{../Results/sim_0/initial_energies_abs.pdf}}}
@@ -408,7 +411,7 @@ Next, I wanted to simultaneously compare BF and IS, and zero in on the best suit
 
 I averaged $\hat \sigma$ and $(\Delta E)^2$ in each experiment for each $\eta$ after $10$ training iterations, over the next $5$ training iterations. Smaller values of mean $(\Delta E)^2$ indicate that the loss function is sufficiently minimized, while smaller values of  $\hat \sigma$ indicate that the network is estimating consistently.  As such, the best suited $\eta$ should produce the smallest  $(\Delta E)^2$,  and a sufficiently small $\hat \sigma$. In order to average out noise, I repeated the experiments $15$ times using different seeds and averaged the results, which are shown in table \ref{table:BF_IS_eta}. I included experiments for IS using $\Delta t=1.0$ so that I could validate my previous findings on the choice of time step.
 
-\begin{table}[h!]
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{l|l|l|l|l|l|l} \hline
 \multirow{2}{*}{\begin{tabular}{c} $\eta	$ \end{tabular}} & \multicolumn{2}{c|}{BF} &\multicolumn{2}{c|}{IS $\Delta t=1.0$} & \multicolumn{2}{c}{IS $\Delta t=2.0$} \\ \cline{2-7}
@@ -445,9 +448,9 @@ When using the optimal $\eta$ values based on $(\Delta E)^2$ alone, BF and IS pe
 As GS samples positions from a distribution (\eqref{eq:gibbs_prob_x}), the standard deviation of that distribution, $\sigma$, directly influences the state of the system, and hence also the energy. In the initial test of VMC methods shown in figure \ref{fig:inital_1}, it is clear that the two Metropolis Hastings methods converged to a different $\bar E$ than the Gibbs Sampler (GS). This offset in convergence for GS is likely the result of it's direct dependence on $\sigma$. As such, I ran $8$ experiments ($\eta=0.3$) with $\sigma$ ranging from $0.65$ to $1.0$, and plotted the results (see \hyperref[APP_4]{Appendix 4: Testing $\sigma$ for GS}) From figure \ref{GS_sigma_initial}, it is clear that the value of $\sigma$ influences $\bar E$, as expected. For $P=D=1$, $n=2$ it appears that the correct value of $\sigma$ lies somewhere between $0.9$ and $0.95$. In order to narrow down the value of $\sigma$ further, I ran $8$ experiments using $\sigma=[0.9,0.935]$.
  
 Figure \ref{fig:inital_1} shows $\bar E$ for $\sigma=[0.9,0.935]$. It is clear that $\bar E$ converges after few iterations compared to BF and IS (see figures in \hyperref[APP_4]{Appendix 4}). Where $\bar E$ from BF and IS fluctuate (although marginally after $\sim 10$ iterations) for all tested $\eta$ values across all iterations, $\bar E$ reaches a stable value after $\sim 8$. This indicates that the RBM is either fully trained, or training very slow (relative to BF and IS), when using $\eta$ of the same magnitude $\sim 0.3$. Judging by the trajectories of $\bar E$ for the different values of $\sigma$, it also appears that $\bar E$, after $\sim 6$  iterations, may be moved arbitrarily close to $E=0.5$ by adjusting $\sigma$. 
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
-         \includegraphics[scale=0.8]{../Results/sim_8/GS_sigma.pdf} 
+         \includegraphics[scale=0.7]{../Results/sim_8/GS_sigma.pdf} 
         \caption{Gibbs Sampling:  $\bar E$ for different values of $\sigma$ }
         \label{fig:GS_sigma}   
 \end{figure}  
@@ -458,9 +461,9 @@ When producing the results presented in figure \ref{fig:inital_1}, $\eta = 0.3$ 
 
 Table \ref{table:GD_eta} shows that $(\Delta E)^2$ between $\sim 10^{-5}$ and $\sim 10^{-6}$, $\sigma$ is $\approx 1.4 \times 10^{-3}$ , for all tested values of $\eta$. $\eta=0.26$ has the lowest $(\Delta E)^2$ ( $8.41 \times 10^{-6} $), and is therefor deemed as the best suited value among the ones that were tested. 
 
-Comparing the best values of $(\Delta E)^2$ from BF($\approx 8.70\times 10^{-5 }$), IS ($\approx 8.62\times 10^{-5 }$), and GS ($\approx 8.41\times 10^{ -6 }$), indicates that $GS$ approximates $E$ for $P=D=1$ with $n=2$. However, the associated $\hat \sigma$ was $\sim 10^{-3}$ for GS, compared to $\sim 10^{-8}$ for BF and IS. This means that in the case of GS, the energy samples fluctuate (comparatively) wildly, around mean which is  (comparatively) close to the exact energy. BF and IS on the other hand exhibit a lot smaller fluctuations around a mean which is further from the exact energy.  Because of this, $\bar E$ should be sampled for a longer time when using GS, than what is necessary when using BF or IS. 
+Comparing the best values of $(\Delta E)^2$ from BF($\approx 8.70\times 10^{-5 }$), IS ($\approx 8.62\times 10^{-5 }$), and GS ($\approx 8.41\times 10^{ -6 }$), indicates that $GS$ approximates $E$ for $P=D=1$ with $n=2$. However, the associated $\hat \sigma$ was $\sim 10^{-3}$ for GS, compared to $\sim 10^{-8}$ for BF and IS. This means that in the case of GS, the energy samples fluctuate (comparatively) wildly, around mean which is  (comparatively) close to the exact energy. BF and IS on the other hand exhibit a lot smaller fluctuations around a mean which is further from the exact energy.  Because of this, $\bar E$ should be sampled for a longer time when using GS, than what is necessary when using BF or IS in the $P=D=1$, $n=2$ cse. 
 
-\begin{table}[h!]
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{lll}
 \hline
@@ -483,9 +486,11 @@ $ 0.36 $ &  $ 1.35\times 10^{ -5 } $ & $ 1.41\times 10^{ -3 } $  \\
 \end{table}
 
 
-\subsection{Comparison of VMC methods: 2 interacting electrons, n=4}
-I ran experiments for each of the three methods, using values of $\eta, \sigma, l, \Delta t$ from table \ref{table:sim_set}, for $20$ optimization iterations, repeated $10$ times. 
-\begin{table}[h!]
+\subsection{Comparison of VMC methods: 2 interacting electrons}
+Having examined the three VMC methods for $P=D=1$ and $n=2$, I here move on to the $P=D=2$ case with interaction between the two electrons. 
+
+I performed $10$ experiments for each of the three methods, using values of $\eta, \sigma, l, \Delta t$ from table \ref{table:sim_set} (based on the results from the previously presented $P=D=1$ simulations), for $20$ optimization iterations, and averaged the results, for both $N=2$ and $N=4$. 
+\begin{table}[H]
 \begin{center}
 \begin{tabular}{llll}
 \hline
@@ -497,50 +502,27 @@ GS &  $ 0.26 $ &$0.914 $ & -  \\
 \hline
 \end{tabular}
 \end{center}
-\caption{Comparison of VMC methods: Linear Regression fit}
+\caption{$P=D=2$, interacting: simulation settings}
 \label{table:sim_set}
 \end{table}
 
-\begin{figure}[!h]
-        \centering 
-         \includegraphics[scale=0.8]{../Results/sim_12/training_interacting.pdf} 
-        \caption{energy}
-        \label{fig:energy}   
-\end{figure}  
 
+Figure  \ref{fig:interacting_n4_energy} and figure \ref{fig:interacting_n2_energy} in \hyperref[APP_4]{Appendix 4: Training RBMs with interaction} show average the $\bar E$ in the first $20$ training iterations when using $N=4$ and $N=2$. Plots of the corresponding average $\hat \sigma$ values (figure \ref{fig:interacting_n4_sigma} and figure \ref{fig:interacting_n2_sigma}) are in the same appendix. By-eye comparison of these plots indicate that both $N=2$ and $N=4$ result in similarly estimated energies ($\bar E \approx 3.4$ for BS and IS and $\bar E \approx 2.9$ for GS) for each VMC method after the first $20$ iterations.
 
-\begin{figure}[!h]
-        \centering 
-         \includegraphics[scale=0.8]{../Results/sim_12/error_interacting.pdf} 
-        \caption{error }
-        \label{fig:inter_error}   
-\end{figure}  
+In order to gain more information about the training of RBMs from these simulations, I used linear regression on samples of $\bar E$ from the $10$ experiments for each VMS method, and each $N$. Based on this, I predicted where $\bar E$ would intercept $ E=3.0$ (visualized in figures \ref{fig:reg_BFIS} and \ref{fig:reg_GS} for $N=4$ in \hyperref[APP_4]{Appendix 4}).  As all methods had steep learning in the first few iterations, I discarded iterations $0$ to $10$ before fitting. Table \ref{table:reg} show the regression coefficients and predicted intercept with $E=3.0$ for all methods using both $N=2$ and $N=4$.
 
-\begin{figure}[!h]
-        \centering 
-         \includegraphics[scale=0.8]{../Results/sim_12/regression/Regression_BF_IS.pdf} 
-        \caption{Brute Force \& Importance Sampling:  reg }
-        \label{fig:reg_BFIS}   
-\end{figure}  
-
-
-\begin{figure}[!h]
-        \centering 
-         \includegraphics[scale=0.8]{../Results/sim_12/regression/Regression_GS.pdf} 
-        \caption{Gibbs Sampling:  reg }
-        \label{fig:reg_GS}   
-\end{figure}  
-
-
-\begin{table}[h!]
+\begin{table}[H]
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{llll}
 \hline
-Method & Regression coefficient & Predicted iteration for $\bar E=3.0$  \\
+Method & $N$ &Regression coefficient & Predicted iteration for $\bar E=3.0$  \\
 \hline
-BF &  $ -5 \times 10^{ -4 } $ & $ 462 $  \\
-IS &  $ -7 \times 10^{ -4 } $ & $ 367 $  \\
-GS &  $ 9 \times 10^{ -5 } $ & $433 $  \\
+BF &$2$ &  $ -1 \times 10^{ -3 } $ & $ 247 $  \\
+IS &$2$ &  $ -1 \times 10^{ -3 } $ & $ 207 $  \\
+GS &$2$ &  $ 1 \times 10^{ -4 } $ & $352 $  \\
+BF &$4$ &  $ -5 \times 10^{ -4 } $ & $ 462 $  \\
+IS &$4$ &  $ -7 \times 10^{ -4 } $ & $ 367 $  \\
+GS &$4$ &  $ 9 \times 10^{ -5 } $ & $433 $  \\
 \hline
 \end{tabular}
 \end{center}
@@ -548,21 +530,77 @@ GS &  $ 9 \times 10^{ -5 } $ & $433 $  \\
 \label{table:reg}
 \end{table}
 
+Based on the linear regression results in table \ref{table:reg}, $N=2$ is predicted to intercept $E=3.0$ intercepts after fewer iterations than $N=4$ for all methods. It is also worth noting that GS is predicted to intercept $E=3.0$ later than BF and IS, and that IS is predicted to intercept $E=3.0$ first. These predictions however are only valid if the training trajectory of $\bar E$ is linear w.r.t. the iterations. In order to test whether this is the case or not, I carried out $6$ more experiments, one for each VMC method for both $N=2$ and $N=4$. In these experiments, I used $200$ training iterations, with the same simulations settings as in the previous experiments. 
+
+
+Figure \ref{fig:de2_long} ($(\Delta E)^2$),  and \ref{fig:reg_sigma_long} ($\hat \sigma$) which is located in \hyperref[APP_4]{Appendix 4: Training RBMs with interaction} show the results from the experiments that ran for $200$ training iterations. Averages over iterations $180$ to $200$ are shown in table \ref{table:200_avr}. 
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.8]{../Results/sim_15/ns_interacting_de2_large.pdf} 
+        \caption{Comparison of methods: $(\Delta E)^2$ vs. training iterations, using $N=2$ and $N=4$ hidden nodes. }
+        \label{fig:de2_long}   
+\end{figure}  
+
+
+Figure \ref{fig:de2_long} shows three distinctly different types of trajectories for $(\Delta E)^2$:
+
+1. The RBMs using GS (both $N=2$ and $N=4$) quickly ($<10$ training iterations) reaches a stable $(\Delta E)^2$ value $\approx 0.1 \times 10^{-3}$, which appears to be consistently throughout the next $190$ iterations. 
+
+2. BF and IS for $N=4$, has an initial reduction in  $(\Delta E)^2$ (from $\approx 1.0 \times 10^{-1}$ to $\approx 0.5 \times 10^{-2}$), after $\sim 10^{1}$ iterations. From iterations $\approx 10$ to $\approx 50$, $(\Delta E)^2$ appears to linearly decrease with the training iterations. In the approximate region $[50, 125]$ iterations, $(\Delta E)^2$ drops at a higher rate per iteration, down to $\sim 10^{-2}$. From iteration $\approx 150$, $(\Delta E)^2$ is reduced (at a low rate) from $\sim 10^{-2}$ to $\approx 0.7 \times 10^{-3}$ (see figure \ref{fig:de2_last}).
+
+3. BF and IS for $N=2$ has the same shape as for $N=4$, but maintains  $(\Delta E)^2 \approx 0.5 \times 10^{-2}$ for approximately twice as long as $N=4$. The drop off from $0.5 \times  10^{-2}$ to $\sim 10^{-3}$ also appears to take twice as long (from $\approx 100$ to $\approx 200$ iterations), where it reaches $\approx 0.7 \times 10^{-3}$, just as for $N=4$.
+
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{llll}
+\hline
+Method & $N$ & Mean $(\Delta E)^2$ & Mean $\hat \sigma$ \\
+\hline
+BF &$2$ &  $ 6.19\times 10^{-3} $ & $ 3.02\times 10^{-3} $  \\
+IS &$2$ &  $ 7.78\times 10^{-3} $ & $ 3.34\times 10^{-3} $  \\
+GS &$2$ &  $ 1.34\times 10^{-3} $ & $1.96\times 10^{-3} $  \\
+BF &$4$ &  $ 7.15\times 10^{-3} $ & $ 2.81\times 10^{-3} $  \\
+IS &$4$ &  $ 7.11\times 10^{-3} $ & $ 2.77\times 10^{-3} $  \\
+GS &$4$ &  $ 1.37\times 10^{-3} $ & $1.94\times 10^{-3} $  \\
+\hline
+\end{tabular}
+\end{center}
+\caption{Comparison of VMC methods: Average values over training iterations from $180$ to $200$}
+\label{table:200_avr}
+\end{table}
+
+The $(\Delta E)^2$ trajectories of BF and IS (for both values of $N$), are clearly not linear, meaning that the predictions in table \ref{table:sim_set} are not correct. The RBM using BF or IS appear to have different "learning phases"; an initial and large correction of parameters, then a slow and more-or-less linear phase, followed by what may appear to be an exponential phase. The length of these phases appear to be dependent on the number of hidden nodes $N$, as $N=2$ had a longer linear phase than $N=4$. 
+
+Figure \ref{fig:GS_reg_last} in \hyperref[APP_4]{Appendix 4} shows linear regression on the $(\Delta E)^2$ for GS, there are clearly too few data points to accurately fit a line to the sample distribution. However, the figure follows the same trends as has been observed previously; GS trains very slowly, if at all, after the first few iterations, meaning that training an RBM using GS is mostly dependent on finding the right value of $\sigma$. 
+
+
+Figures \ref{fig:de2_long} and figure \ref{fig:de2_last}, shows that the RBMs using BF trained faster than when using IS in all tested training phases. In the linear training phase however, table \ref{table:reg} indicated faster learning for IS compared to BF. The regrresion model predicted intercepts with the correct energy after $247$ iterations for IS compared to $207$ for BF ($N=2$), and $462$ compared to $367$ for $N=4$. This descrepency in results may either be a results of lacking noise reducing in the last simulations, as the higher acceptance rate of IS (documented in \cite{JN_P1}) should lead to less variance in local energy, supposedly resulting in faster parameter optimization.
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.8]{../Results/sim_15/ns_interacting_de2.pdf} 
+        \caption{Comparison of methods: $(\Delta E)^2$ vs. training iterations in the final $50$ iterationsusing $N=2$ and $N=4$ hidden nodes.}
+        \label{fig:de2_last}   
+\end{figure}  
+
+
 \subsection{Validity of results}
-When determining the suitability of $l$ and $\Delta t$ I did not document the produced $\bar E$, as this would not have been feasible at that stage of the research (having not evaluated the training regime). This means that $l=1.0$ and $\Delta t=2.0$ might not be the best suited values after all, as lower variance is no guarantee for correct energy by it self. Furthermore, as I did not test values higher than $\Delta t=2.0$, higher values of $\Delta t$ may give lower $\hat sigma$ still. 
+When determining the suitability of $l$ and $\Delta t$ I did not document the produced $\bar E$, as this would not have been feasible at that stage of the project, as I had not yet evaluated the training regime. This means that $l=1.0$ and $\Delta t=2.0$ might not be the best suited values after all, as lower variance is no guarantee for correct energy by it self. I did however later confirm that $\Delta t=2.0$ performed better than $\Delta t=1.0$. Furthermore, as I did not test values higher than $\Delta t=2.0$, higher values of $\Delta t$ may give lower $\hat \sigma$ still. 
 
-\ref{table:BF_IS_eta} was produced using noise reducing averaging over $5$ optimization steps and $15$ experiments, with consistent standard errors of $\sigma \sim 10^{-8}$ to $\sim 10^{9}$. Optimally, I should have included the MSE of $\hat \sigma$, but in order to limit the amount of information, I chose not to. A more  in-depth study could be done by also looking into the variance of the error, yielding even more robust results.
+Table \ref{table:BF_IS_eta} was produced using noise reducing averaging over $5$ optimization steps and $15$ experiments, with consistent standard errors of $\sigma \sim 10^{-8}$ to $\sim 10^{9}$. Optimally, I should have included the MSE of $\hat \sigma$, but in order to limit the amount of information, I chose not to. A more  in-depth study could be done by also looking into the variance of the error, yielding even more robust results.
 
-Averaging over $10$ runs in the interacting case is not robust enough 
-\section{Conclusions} \label{conclusions}
-As all values of $(\Delta E)^2$ was $\sim 10^{-5}$ for IS, compared to $\sim 10^{-4}$ to $\sim 10^{-5}$ depending on $\eta$ for BF, I conclude that when using an RBM, BF is more sensitive than IS to the choice of learning rate w.r.t accuracy of energy estimates. I furthermore conclude that the effects of $\eta$  on $\hat \sigma$ is the same for both BF and IS, regardless of the value of $\Delta t$. 
-When using the optimal $\eta$ values based on $(\Delta E)^2$ alone, BF and IS performed equally well, producing $(\Delta E)^2 \approx 8.7 \times 10^{-8}$ with $\hat \sigma = 7 \times 10^{-8}$, when averaged over 15 experiments.
- hadde jeg hatt mer tid ville jeg prøvd å undersøke sigma mere. Kanskje det finnes noe forskning på det, eller noe i en lrebok, evenutelt kan den nok også læres med litt matte!
-I suspect (without any that this difference in $\hat \sigma$ is a consequence of only using $n=2$ hidden nodes.
+For the results from the interacting electron system, I averaged over $10$ runs in the first experiments, and in the last experiments, I did not average over multiple runs at all (due to the long run time). Any further use of the subsequent results should therefor first confirm any of the conclusions through further noise reducing averaging. 
 
-should be treated like an ML problem, using gridearch. Results from interacting are only valid ensorfar as results from non-interacting carries over!
+I did not test a wide range of learning rate values $\eta$ in the interacting case, nor step length $l$, time step $\Delta t$ or $\sigma$. It is therefor likely that one may obtain better suited values for these parameters.
+\section{Conclusions and main findings} \label{conclusions}
+All values of $(\Delta E)^2$ (single particle in one dimension) were $\sim 10^{-5}$ when using RBMs with the Metropolis Hastings algorithm with Importance Sampling (IS). When using brute force Metropolis Hastings approach (BF),  $(\Delta E)^2$ was  $\sim 10^{-4}$ to $\sim 10^{-5}$ depending on the learning rate $\eta$. Based on this, I conclude that when using an RBM, BF is more sensitive than IS to the choice of learning rate w.r.t accuracy of energy estimates. I furthermore conclude that the effect of $\eta$  on $\hat \sigma$ is the same for both BF and IS, regardless of the value of $\Delta t$. 
+
+Based on $(\Delta E)^2$ alone, BF and IS performed equally well, producing $(\Delta E)^2 \approx 8.7 \times 10^{-8}$ with $\hat \sigma = 7 \times 10^{-8}$, when averaged over $15$ single particle experiments. When used in an interacting system two electrons, I found that the RBMs were optimized similarly when using BF ($\eta=0.38$) and IS ($\eta=0.34$). I observed a short initial phase ($\sim 10$ iterations) of rapid optimization, followed by a longer phase ($\sim 50$ t0 $\sim 100$ training iterations for $N=2$ and $N=4$ respectively) of a slower, close-to linear optimization trajectory (regression coefficient $\sim 10^{-3}$ on iterations $10$ to $20$). After this "linear phase", sampling $(\Delta E)^2$ suggested a phase of exponentially decaying training rate, which converged both both $N=2$ and $N=4$ after $\sim 200$ iterations.
+
+RBM training using Gibbs Sampling (GS) was conclusively shown to follow different optimization trajectories than BF and IS. Instead of the three phases described above, GS ($\eta=0.26$) only exhibited two different training behaviors; rapid initial training after $<10$ iterations, followed by a phase  (persistently up to $200$ training iterations) in which $\bar E$ remained close to constant (regression coefficient $\sim 10^{-4}$), ie. no optimization. The standard deviation of the distribution used in GS was shown to directly influence the estimated energy, $\bar E$, in the "no training-phase" of GS. Experiments using different $\sigma$ values suggested that the training intercept of $\bar E$ with the exact energy of the system could be manipulated arbitrarily by changing $\sigma$. This project paper makes no general assertions on any optimization method, or other ways to find a suitable $\sigma$ for a given system. I do however believe that such methods may already exist, or may be possible to derive. 
 \bibliography{ref} \label{refer}
 \bibliographystyle{plain}
+
 
 
 \begin{appendices}
@@ -652,7 +690,6 @@ for $\beta=\bm a$:
 \begin{aligned}
 \frac{\partial}{\partial a_k} \log \Psi_T = \frac{X_k-a_k}{\sigma^2}
 \end{aligned}
-\label{eq:Appendix2_grad_a}
 \end{equation}
 
 for $\beta=\bm b$:
@@ -662,7 +699,6 @@ for $\beta=\bm b$:
 = 
   \frac{1}{1 + e^{-v(\bm X,k)}}
 \end{aligned}
-\label{eq:Appendix2_grad_b}
 \end{equation}
 
 for $\beta=\bm W$:
@@ -672,7 +708,6 @@ for $\beta=\bm W$:
   \frac{X_k e^{v(\bm X,l)} }{(1 + e^{v(\bm X,l)}) \sigma^2} =
   \frac{X_k} {(1 + e^{-v(\bm X,l)}) \sigma^2} 
 \end{aligned}
-\label{eq:Appendix2_grad_b}
 \end{equation}
 
 
@@ -710,18 +745,18 @@ And similarly for the parameter gradients, specifically for parameter number $k$
 \end{aligned}
 \end{equation}
 
-\section{Appendix 4.} \label{APP_3}
+\section{Appendix 4.} \label{APP_4}
 \subsection{Appendix 4: Testing step length $l$ and $\Delta t$}
  I averaged the standard error (using blocking) $\hat \sigma$ from 12 experiments. In each experiment, I used $8$ MC simulations with parameter optimization (learning rate $\eta =0.3$), with $2^{21}$ MC cycles with a $0.5$ burn-in factor, for the shown values of $l$ and $\Delta t$ in figures \ref{fig:app_4_BF} and  \ref{fig:app_4_IS}.
 I found that $l=1.0$ and $\Delta t = 2.0$ gave the best results among the tested values.
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
          \includegraphics[scale=0.6]{../Results/sim_2/error.pdf} 
         \caption{Importance Sampling: $\hat \sigma$ as a function of $\Delta t$}
         \label{fig:app_4_IS}   
 \end{figure}  
 
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
          \includegraphics[scale=0.6]{../Results/sim_3/error.pdf} 
         \caption{Brute Force $\hat \sigma$ as a function of $l$}
@@ -729,34 +764,96 @@ I found that $l=1.0$ and $\Delta t = 2.0$ gave the best results among the tested
 \end{figure}  
 
 \subsection{Appendix 4: Testing learning rate $\eta$}
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
-         \includegraphics[scale=0.6]{../Results/sim_4/BF_eta.pdf} 
+         \includegraphics[scale=0.7]{../Results/sim_4/BF_eta.pdf} 
         \caption{Brute Force: $\bar E$ for different values of $\eta$ }
         \label{fig:training_BF}   
 \end{figure}  
 
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
-         \includegraphics[scale=0.6]{../Results/sim_4/IS_eta.pdf} 
+         \includegraphics[scale=0.7]{../Results/sim_4/IS_eta.pdf} 
         \caption{Importance Sampling:  $\bar E$ for different values of $\eta$ }
         \label{fig:training_IS}   
 \end{figure}  
 
 \subsection{Appendix 4: Testing $\sigma$ and $\eta$ GS}
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
-         \includegraphics[scale=0.6]{../Results/sim_7/GS_initial.pdf} 
+         \includegraphics[scale=0.7]{../Results/sim_7/GS_initial.pdf} 
         \caption{Gibbs Sampling:  $\bar E$ for different values of $\sigma$ }
         \label{fig:GS_sigma_initial}   
 \end{figure}  
 
-\begin{figure}[!h]
+\begin{figure}[H]
         \centering 
-         \includegraphics[scale=0.8]{../Results/sim_9/GS_eta.pdf} 
+         \includegraphics[scale=0.7]{../Results/sim_9/GS_eta.pdf} 
         \caption{Gibbs Sampling:  $\bar E$ for different values of $\eta$ }
         \label{fig:GS_eta}   
 \end{figure}  
+
+\subsection{Appendix 4: Training RBMs with interaction}
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_12/training_interacting.pdf} 
+        \caption{$P=D=2$, $N=4$: Mean $\bar E$ as a function of training iterations.}
+        \label{fig:interacting_n4_energy}   
+\end{figure}  
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_13/n2_training_interacting.pdf} 
+        \caption{$P=D=2$, $N=2$: Mean $\bar E$ as a function of training iterations.}
+        \label{fig:interacting_n2_energy}
+\end{figure}  
+
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_13/n2_error_interacting.pdf} 
+        \caption{$P=D=2$, $N=2$: Mean $\hat \sigma$ as a function of training iterations.}
+        \label{fig:interacting_n2_sigma}   
+\end{figure}  
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_12/error_interacting.pdf} 
+        \caption{error }
+         \caption{$P=D=2$, $N=4$: Mean $\hat \sigma$ as a function of training iterations.}
+        \label{fig:interacting_n4_sigma}     
+\end{figure}  
+
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_12/regression/Regression_BF_IS.pdf} 
+        \caption{Brute Force \& Importance Sampling: Linear regression on $\bar E$ from training iterations $10$ to $20$, based on $10$ simulations  }
+        \label{fig:reg_BFIS}   
+\end{figure}  
+
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.7]{../Results/sim_12/regression/Regression_GS.pdf} 
+        \caption{Gibbs Sampling: Linear regression on $\bar E$ from training iterations $10$ to $20$, based on $10$ simulations }
+        \label{fig:reg_GS}   
+\end{figure}  
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.8]{../Results/sim_15/n2_error_interacting_long.pdf} 
+        \caption{Comparison of methods: $\hat \sigma$ as a function of training iterations for all VMC methods, using $N=2$ and $N=4$. }
+        \label{fig:reg_sigma_long}   
+\end{figure}  
+
+\begin{figure}[H]
+        \centering 
+         \includegraphics[scale=0.8]{../Results/sim_15/Regression_GS_inter.pdf} 
+        \caption{GS interacting: Regression on $(\Delta E)^2$ for $N=2$ and $N=4$ hidden nodes. }
+        \label{fig:GS_reg_last}   
+\end{figure}  
+
 
 \end{appendices}
 \end{document}

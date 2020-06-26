@@ -1,7 +1,0 @@
-i hver cycle:
-	For hver j=1,2,..N (hidden nodes)
-		trekk tall r [0,1] tilfeldig.
-		er p(h_j|x_i) >r set h_j=1, ellers h_j=0 
-	sample nye posisjoner, x_i|h (med de nye veridene for h, enten 1 eller 0) for alle i=1,2,...M (visible nodes)
-	oppdatering lokalenergi
-

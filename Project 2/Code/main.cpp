@@ -20,7 +20,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
-int n=4;
+int n;
 int P = 2;
 int D = 2;
 int m= P*D ;
@@ -32,11 +32,11 @@ int method=0;
 double stepLength = 1.0;
 int numberOfSteps = (int) pow(2,21);
 double equilibration = 0.5;
-int GD_iters = 20;
+int GD_iters = 200;
 double learningrate=0.3;
 double learningrate_initial=0.3;
 
-string folder_name="../../Results/sim_12/";
+string folder_name="../../Results/sim_16/";
 
 string tag;
 if (argc < 1){
@@ -44,8 +44,12 @@ if (argc < 1){
   exit(1);}
 if (argc > 1){
   method = atoi(argv[1]);
+  n = atoi(argv[2]);
 }
 tag=to_string(method);
+tag.append("_");
+tag.append(to_string(n));
+tag.append("_");
 
 cout<<"Method "<<method<< " n "<< n<<endl;
 cout<<"To folder "<<folder_name<<endl;
@@ -68,15 +72,16 @@ cout<<" "<<"eta "<<learningrate<<" sigma "<<sigma<<endl;
 
 
 int checkrunstotal=1;
-int average_runs=10;
+int average_runs=5;
 
-Eigen::VectorXd avr_error         = Eigen::VectorXd::Zero(GD_iters);
-Eigen::VectorXd avr_en_deviation  = Eigen::VectorXd::Zero(GD_iters);
-Eigen::VectorXd energy_vector     = Eigen::VectorXd::Zero(GD_iters);
+
 
 for (int a_run=1; a_run<=average_runs;a_run++)
   {
-    Eigen::VectorXd error_for_fitting = Eigen::VectorXd::Zero(GD_iters);
+    Eigen::VectorXd avr_error         = Eigen::VectorXd::Zero(GD_iters);
+    Eigen::VectorXd avr_en_deviation  = Eigen::VectorXd::Zero(GD_iters);
+
+
   for (int checkrun=0; checkrun<checkrunstotal;checkrun++)
     {
       RBM* rbm = new RBM(GD_iters,m,n,learningrate,sigma,omega);
@@ -103,24 +108,10 @@ for (int a_run=1; a_run<=average_runs;a_run++)
         system->getSampler()->Return_gradients_b(), system->getSampler()->
         Return_gradients_W());
 
-
         system->getSampler()->blocking();
-        error_for_fitting(run-1)=system->getSampler()->getEnergy();
-        avr_en_deviation(run-1)+= (system->getSampler()->getEnergy()-3.0)*(system->getSampler()->getEnergy()-3.0);
-        avr_error(run-1)+=system->getSampler()->getSE();
-        cout<<"e="<<system->getSampler()->getEnergy()<<endl;
-        cout<<"de2="<<(system->getSampler()->getEnergy()-3.0)*(system->getSampler()->getEnergy()-3.0)<<endl;
-        energy_vector(run-1)+=system->getSampler()->getEnergy();
 
-        if (a_run==average_runs){
-          if (run==GD_iters){
-          cout<<"printing"<<endl;
-          write_LocalEnergy(system->getSampler()->getEnergySamples(),tag+"_energy_one_iter",folder_name);}
-        }
-        if (run==GD_iters){
-            cout<<"printing for fitting"<<endl;
-        write_vector(error_for_fitting,tag+to_string(a_run)+"e_for_reg",folder_name+tag+"/");
-        }
+        avr_en_deviation(run-1)= (system->getSampler()->getEnergy()-3.0)*(system->getSampler()->getEnergy()-3.0);
+        avr_error(run-1)=system->getSampler()->getSE();
 
         delete ham;
         delete wf;
@@ -130,15 +121,11 @@ for (int a_run=1; a_run<=average_runs;a_run++)
         delete rbm;
     } //end of checkrun
 
-} // end of a_run
+  write_vector(avr_en_deviation,tag+to_string(a_run)+"_deltaE",folder_name);
+  write_vector(avr_error,tag+to_string(a_run)+"_error",folder_name);
 
-  avr_en_deviation=avr_en_deviation/average_runs;
-  avr_error=avr_error/average_runs;
-  energy_vector=energy_vector/average_runs;
 
-  write_vector(avr_en_deviation,tag+"_deltaE",folder_name);
-  write_vector(avr_error,tag+"_error",folder_name);
-  write_vector(energy_vector,tag+"_energy",folder_name);
+  }
   return 0;
 }
 

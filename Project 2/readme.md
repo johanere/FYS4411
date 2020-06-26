@@ -1,21 +1,44 @@
-## FYS 4411 - Project 2
-The project report ("FYSSTK4411project2_JN.pdf") may be found in this folder.
+## FYS4411 - Project 2
+The project report ("Project_paper.pdf") may be found in this folder.
 #### Folders
 All tex files used to compile the project report may be found under "Tex".  All programs used to obtain the results described in the report is under "Code". Python code used to analyse output from the C++ VMC engine may be found under "data_analysis" in "Results".
 
 ### Abstract
-UPDATE ABSTRACT!
-This project aimed to examine using Vartiational Monte Carlo (VMC) in making an estimate, 
-<img src="https://render.githubusercontent.com/render/math?math=\bar E">, of the ground state energy, 
-<img src="https://render.githubusercontent.com/render/math?math=E_0">, of a trapped, hard sphere Bose gas. The error of the energy estimate was evaluated by using the sample error with "blocking", 
-<img src="https://render.githubusercontent.com/render/math?math=\hat \sigma">. This method accounts for sample correlation, which was concluded to be necessary as the raw sample error was largely deceptive. Two approaches to the sampling scheme involved in the Metropolis algorithm were used, "Importance Sampling" and the "Brute Force" approach. "Importance sampling" was found to equilbrate the system faster than the "Brute Force" approach, albeit only for suitable values of 
-<img src="https://render.githubusercontent.com/render/math?math=\Delta t">. Several other parameters, such as the number of particles, N and the value 
-<img src="https://render.githubusercontent.com/render/math?math=\alpha"> was observed to affect the suitability of different
-<img src="https://render.githubusercontent.com/render/math?math=\Delta t"> values. Increases in particle number, N, was generally observed to increase 
-<img src="https://render.githubusercontent.com/render/math?math=\hat \sigma">; after 
-<img src="https://render.githubusercontent.com/render/math?math=2^{18}"> Monte Carlo cycles, 
-<img src="https://render.githubusercontent.com/render/math?math=\hat \sigma \sim 10^3"> (N=10) increased to 
-<img src="https://render.githubusercontent.com/render/math?math=\sim 10^2"> (N=50) and 
-<img src="https://render.githubusercontent.com/render/math?math=\sim 10^{-1}"> (N=100), both with and without the Jastrow factor, which accounts for particle-particle correlation.  Incorporating the Jastrow factor was concluded to have an increasing effect on the average estimated energy per particle 
-<img src="https://render.githubusercontent.com/render/math?math=\bar E /N"> as N increased, from 
-<img src="https://render.githubusercontent.com/render/math?math=\bar E/N\approx2.45\approx"> constant for all values of N, to 4.55 (N=50) and 2.66 (N=100). This impact dependence was further verified by qualitative comparison of one-body densities. 
+In this project, which is an extension paper to of a previous project paper on Variational Monte Carlo (VMC) methods,
+ training a restricted Boltzmann machine (RBM), with N hidden nodes, and M visible nodes, using VMC methods is the main focus.
+ Two Metropolis Hastings methods, the brute force approach (BF) and Importance Sampling (IS) are tested and compared to Gibbs Sampling (GS).
+ The methods are evaluated using the estimated energy 
+<img src="https://render.githubusercontent.com/render/math?math=\bar E">
+for both a system of one electron in a one-dimensional harmonic oscillator (HO) 
+and an interacting system of two electrons in a two-dimensional HO. BF (using learning rate 
+<img src="https://render.githubusercontent.com/render/math?math=\eta=0.38">
+) and IS (
+<img src="https://render.githubusercontent.com/render/math?math=\eta=0.34">
+) is 
+shown to results in similar optimization trajectories for the RBM; a short initial phase (
+<img src="https://render.githubusercontent.com/render/math?math=\sim 10">
+ iterations) of rapid optimization, 
+followed by (
+<img src="https://render.githubusercontent.com/render/math?math=\sim 50">
+to 
+<img src="https://render.githubusercontent.com/render/math?math=\sim 100">
+ training iterations for $=2 and N=4 respectively) of a slow and close-to linear optimization
+trajectory (regression coefficient 
+<img src="https://render.githubusercontent.com/render/math?math=\sim 10^{-3}">
+on iterations 10 to $0). Lastly, a phase of exponentially decaying training rates, 
+which converged both for N=2 and N=4, was observed (up to 200 iterations). RBM optimization using Gibbs Sampling (GS) was conclusively
+ shown to follow different optimization trajectories than BF and IS. GS (
+<img src="https://render.githubusercontent.com/render/math?math=\eta=0.26">)
+only exhibited two different training behaviors; rapid 
+initial training (<10  iterations), and a phase of close to no optimization with constant 
+<img src="https://render.githubusercontent.com/render/math?math=\bar E">
+(regression coefficient 
+<img src="https://render.githubusercontent.com/render/math?math=\sim 10^{-4}">
+persistently up to 200 training iterations). The value of the standard deviation of the position distribution from GS, 
+<img src="https://render.githubusercontent.com/render/math?math=\sigma">
+, was shown to directly control 
+<img src="https://render.githubusercontent.com/render/math?math=\bar E ">
+ in the "no training-phase" of GS.
+
+
+

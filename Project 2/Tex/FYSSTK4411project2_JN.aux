@@ -19,9 +19,11 @@
 \citation{JN_P1}
 \citation{JN_P1}
 \citation{JN_P1}
+\citation{JN_P1}
+\citation{JN_P1}
 \citation{Jonsson}
 \citation{numpy}
-\citation{Griffiths95}
+\citation{Jonsson}
 \@writefile{toc}{\contentsline {section}{\numberline {1}Introduction}{3}{section.1}}
 \@writefile{toc}{\contentsline {paragraph}{This project}{3}{section*.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {2}Material and methods}{3}{section.2}}
@@ -29,6 +31,8 @@
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.1}System: Electrons in 2D isotropic HO}{3}{subsection.2.1}}
 \newlabel{eq:finalH}{{1}{3}{System: Electrons in 2D isotropic HO}{equation.2.1}{}}
 \citation{Griffiths95}
+\citation{Griffiths95}
+\citation{taut}
 \citation{CarleoGiuseppe2017Stqm}
 \citation{CarleoGiuseppe2017Stqm}
 \citation{MLMurphy}
@@ -43,13 +47,13 @@
 \citation{JN_P1}
 \citation{JN_P1}
 \citation{JN_P1}
-\citation{MLMurphy}
-\citation{Flugsrud}
 \newlabel{eq:v_j}{{5}{5}{The marginal probability of the network}{equation.2.5}{}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.2.1}Local Energy and drift force}{5}{subsubsection.2.2.1}}
 \newlabel{eq:locale}{{6}{5}{Local Energy and drift force}{equation.2.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Updating parameters}{5}{subsection.2.3}}
-\newlabel{eq:GD_beta}{{8}{5}{Updating parameters}{equation.2.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3}Optimizing parameters}{5}{subsection.2.3}}
+\newlabel{eq:GD_beta}{{8}{5}{Optimizing parameters}{equation.2.8}{}}
+\citation{MLMurphy}
+\citation{Flugsrud}
 \citation{MLMurphy}
 \citation{MLMurphy}
 \citation{JN_P1}
@@ -61,41 +65,40 @@
 \citation{JN_P1}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {2.5.1}Algorithm}{7}{subsubsection.2.5.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {2.6}Error analysis}{7}{subsection.2.6}}
-\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{7}{section.3}}
-\newlabel{results}{{3}{7}{Results}{section.3}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3}Results}{8}{section.3}}
+\newlabel{results}{{3}{8}{Results}{section.3}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Initial testing of VMC methods}{8}{subsection.3.1}}
 \@writefile{lof}{\contentsline {figure}{\numberline {1}{\ignorespaces Initial test of the three VMC methods (same seed)\relax }}{8}{figure.caption.5}}
 \providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
 \newlabel{fig:inital_1}{{1}{8}{Initial test of the three VMC methods (same seed)\relax }{figure.caption.5}{}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {Energy estimate}}}{8}{subfigure.1.1}}
 \@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {Difference in energy estimate from final estimate}}}{8}{subfigure.1.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Initial testing of VMC methods}{8}{subsection.3.1}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Standard simulation settings}{8}{subsection.3.2}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.3}Comparison of Metropolis Hastings algorithms in training and RBM, n=2}{9}{subsection.3.3}}
 \@writefile{toc}{\contentsline {subsubsection}{\numberline {3.3.1}Focused examination of training RBMs using Metropolis Hastings algorithms}{9}{subsubsection.3.3.1}}
 \newlabel{Results_focused_MH}{{3.3.1}{9}{Focused examination of training RBMs using Metropolis Hastings algorithms}{subsubsection.3.3.1}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of methods: squared difference between estimated energy, $\mathaccentV {bar}016E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\mathaccentV {hat}05E\sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }}{9}{table.caption.6}}
-\newlabel{table:BF_IS_eta}{{1}{9}{Comparison of methods: squared difference between estimated energy, $\bar E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\hat \sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {1}{\ignorespaces Comparison of methods: squared difference between estimated energy, $\mathaccentV {bar}016E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\mathaccentV {hat}05E\sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }}{10}{table.caption.6}}
+\newlabel{table:BF_IS_eta}{{1}{10}{Comparison of methods: squared difference between estimated energy, $\bar E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\hat \sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }{table.caption.6}{}}
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.4}Gibbs Sampling, n=2}{10}{subsection.3.4}}
-\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Focused examination of training RBMs using Gibbs Sampling}{10}{subsubsection.3.4.1}}
-\newlabel{Results_focused_GS}{{3.4.1}{10}{Focused examination of training RBMs using Gibbs Sampling}{subsubsection.3.4.1}{}}
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces Gibbs Sampling: $\mathaccentV {bar}016E$ for different values of $\sigma $ \relax }}{11}{figure.caption.7}}
 \newlabel{fig:GS_sigma}{{2}{11}{Gibbs Sampling: $\bar E$ for different values of $\sigma $ \relax }{figure.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gibbs Sampling: squared difference between estimated energy, $\mathaccentV {bar}016E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\mathaccentV {hat}05E\sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }}{11}{table.caption.8}}
-\newlabel{table:GD_eta}{{2}{11}{Gibbs Sampling: squared difference between estimated energy, $\bar E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\hat \sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }{table.caption.8}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Comparison of VMC methods: 2 interacting electrons, n=4}{12}{subsection.3.5}}
-\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces Comparison of VMC methods: Linear Regression fit\relax }}{12}{table.caption.9}}
-\newlabel{table:sim_set}{{3}{12}{Comparison of VMC methods: Linear Regression fit\relax }{table.caption.9}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces energy\relax }}{12}{figure.caption.10}}
-\newlabel{fig:energy}{{3}{12}{energy\relax }{figure.caption.10}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Validity of results}{12}{subsection.3.6}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces error \relax }}{13}{figure.caption.11}}
-\newlabel{fig:inter_error}{{4}{13}{error \relax }{figure.caption.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of VMC methods: Linear Regression fit\relax }}{13}{table.caption.14}}
-\newlabel{table:reg}{{4}{13}{Comparison of VMC methods: Linear Regression fit\relax }{table.caption.14}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Brute Force \& Importance Sampling: reg \relax }}{14}{figure.caption.12}}
-\newlabel{fig:reg_BFIS}{{5}{14}{Brute Force \& Importance Sampling: reg \relax }{figure.caption.12}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Gibbs Sampling: reg \relax }}{15}{figure.caption.13}}
-\newlabel{fig:reg_GS}{{6}{15}{Gibbs Sampling: reg \relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsubsection}{\numberline {3.4.1}Focused examination of training RBMs using Gibbs Sampling}{11}{subsubsection.3.4.1}}
+\newlabel{Results_focused_GS}{{3.4.1}{11}{Focused examination of training RBMs using Gibbs Sampling}{subsubsection.3.4.1}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {2}{\ignorespaces Gibbs Sampling: squared difference between estimated energy, $\mathaccentV {bar}016E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\mathaccentV {hat}05E\sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }}{12}{table.caption.8}}
+\newlabel{table:GD_eta}{{2}{12}{Gibbs Sampling: squared difference between estimated energy, $\bar E$ and $E=0.5$, $(\Delta E)^2$, and standard error using blocking, $\hat \sigma $, averaged over gradient descent iterations $10,11,12,13,14,15$, which are again averaged over $15$ experiments for different learning rates $\eta $.\relax }{table.caption.8}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.5}Comparison of VMC methods: 2 interacting electrons}{12}{subsection.3.5}}
+\@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces $P=D=2$, interacting: simulation settings\relax }}{12}{table.caption.9}}
+\newlabel{table:sim_set}{{3}{12}{$P=D=2$, interacting: simulation settings\relax }{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {4}{\ignorespaces Comparison of VMC methods: Linear Regression fit\relax }}{13}{table.caption.10}}
+\newlabel{table:reg}{{4}{13}{Comparison of VMC methods: Linear Regression fit\relax }{table.caption.10}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Comparison of methods: $(\Delta E)^2$ vs. training iterations, using $N=2$ and $N=4$ hidden nodes. \relax }}{14}{figure.caption.11}}
+\newlabel{fig:de2_long}{{3}{14}{Comparison of methods: $(\Delta E)^2$ vs. training iterations, using $N=2$ and $N=4$ hidden nodes. \relax }{figure.caption.11}{}}
+\citation{JN_P1}
+\@writefile{lot}{\contentsline {table}{\numberline {5}{\ignorespaces Comparison of VMC methods: Average values over training iterations from $180$ to $200$\relax }}{15}{table.caption.12}}
+\newlabel{table:200_avr}{{5}{15}{Comparison of VMC methods: Average values over training iterations from $180$ to $200$\relax }{table.caption.12}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Comparison of methods: $(\Delta E)^2$ vs. training iterations in the final $50$ iterationsusing $N=2$ and $N=4$ hidden nodes.\relax }}{16}{figure.caption.13}}
+\newlabel{fig:de2_last}{{4}{16}{Comparison of methods: $(\Delta E)^2$ vs. training iterations in the final $50$ iterationsusing $N=2$ and $N=4$ hidden nodes.\relax }{figure.caption.13}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.6}Validity of results}{16}{subsection.3.6}}
 \bibdata{ref}
 \bibcite{CarleoGiuseppe2017Stqm}{{1}{}{{}}{{}}}
 \bibcite{Flugsrud}{{2}{}{{}}{{}}}
@@ -105,44 +108,60 @@
 \bibcite{MLMurphy}{{6}{}{{}}{{}}}
 \bibcite{JN_P1}{{7}{}{{}}{{}}}
 \bibcite{numpy}{{8}{}{{}}{{}}}
+\bibcite{taut}{{9}{}{{}}{{}}}
+\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions and main findings}{17}{section.4}}
+\newlabel{conclusions}{{4}{17}{Conclusions and main findings}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{References}{17}{section.4}}
 \bibstyle{plain}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Conclusions}{16}{section.4}}
-\newlabel{conclusions}{{4}{16}{Conclusions}{section.4}{}}
-\@writefile{toc}{\contentsline {section}{References}{16}{section.4}}
-\newlabel{refer}{{4}{16}{Conclusions}{section.4}{}}
-\@writefile{toc}{\contentsline {section}{Appendices}{16}{section*.15}}
-\@writefile{toc}{\contentsline {section}{\numberline {A}Appendix 1.}{16}{Appendix.1.A}}
-\newlabel{APP_1}{{A}{16}{Appendix 1}{Appendix.1.A}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Analytic expression for the local energy}{16}{subsection.1.A.1}}
-\newlabel{eq:Appendix_1EL}{{13}{17}{Analytic expression for the local energy}{equation.1.A.13}{}}
-\newlabel{eq:Appendix_1derivative}{{14}{17}{Analytic expression for the local energy}{equation.1.A.14}{}}
-\newlabel{eq:Appendix_1derivative_rw}{{16}{17}{Analytic expression for the local energy}{equation.1.A.16}{}}
-\newlabel{eq:Appendix_2derivative_rw}{{17}{17}{Analytic expression for the local energy}{equation.1.A.17}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {B}Appendix 2.}{17}{Appendix.1.B}}
-\newlabel{APP_2}{{B}{17}{Appendix 2}{Appendix.1.B}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Derivatives w.r.t RBM parameters}{17}{subsection.1.B.1}}
+\newlabel{refer}{{4}{18}{Conclusions and main findings}{section.4}{}}
+\@writefile{toc}{\contentsline {section}{Appendices}{18}{section*.14}}
+\@writefile{toc}{\contentsline {section}{\numberline {A}Appendix 1.}{18}{Appendix.1.A}}
+\newlabel{APP_1}{{A}{18}{Appendix 1}{Appendix.1.A}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {A.1}Analytic expression for the local energy}{18}{subsection.1.A.1}}
+\newlabel{eq:Appendix_1EL}{{13}{18}{Analytic expression for the local energy}{equation.1.A.13}{}}
+\newlabel{eq:Appendix_1derivative}{{14}{18}{Analytic expression for the local energy}{equation.1.A.14}{}}
+\newlabel{eq:Appendix_1derivative_rw}{{16}{19}{Analytic expression for the local energy}{equation.1.A.16}{}}
+\newlabel{eq:Appendix_2derivative_rw}{{17}{19}{Analytic expression for the local energy}{equation.1.A.17}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {B}Appendix 2.}{19}{Appendix.1.B}}
+\newlabel{APP_2}{{B}{19}{Appendix 2}{Appendix.1.B}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {B.1}Derivatives w.r.t RBM parameters}{19}{subsection.1.B.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {C}Appendix 3.}{19}{Appendix.1.C}}
+\newlabel{APP_3}{{C}{19}{Appendix 3}{Appendix.1.C}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Appendix 3: Local energy and parameter gradients for Gibbs sampling}{19}{subsection.1.C.1}}
+\newlabel{eq:wfgibs}{{21}{19}{Appendix 3: Local energy and parameter gradients for Gibbs sampling}{equation.1.C.21}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {D}Appendix 4.}{20}{Appendix.1.D}}
+\newlabel{APP_4}{{D}{20}{Appendix 4}{Appendix.1.D}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.1}Appendix 4: Testing step length $l$ and $\Delta t$}{20}{subsection.1.D.1}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Importance Sampling: $\mathaccentV {hat}05E\sigma $ as a function of $\Delta t$\relax }}{20}{figure.caption.15}}
+\newlabel{fig:app_4_IS}{{5}{20}{Importance Sampling: $\hat \sigma $ as a function of $\Delta t$\relax }{figure.caption.15}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Brute Force $\mathaccentV {hat}05E\sigma $ as a function of $l$\relax }}{21}{figure.caption.16}}
+\newlabel{fig:app_4_BF}{{6}{21}{Brute Force $\hat \sigma $ as a function of $l$\relax }{figure.caption.16}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.2}Appendix 4: Testing learning rate $\eta $}{21}{subsection.1.D.2}}
+\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Brute Force: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{21}{figure.caption.17}}
+\newlabel{fig:training_BF}{{7}{21}{Brute Force: $\bar E$ for different values of $\eta $ \relax }{figure.caption.17}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Importance Sampling: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{22}{figure.caption.18}}
+\newlabel{fig:training_IS}{{8}{22}{Importance Sampling: $\bar E$ for different values of $\eta $ \relax }{figure.caption.18}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.3}Appendix 4: Testing $\sigma $ and $\eta $ GS}{22}{subsection.1.D.3}}
+\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Gibbs Sampling: $\mathaccentV {bar}016E$ for different values of $\sigma $ \relax }}{22}{figure.caption.19}}
+\newlabel{fig:GS_sigma_initial}{{9}{22}{Gibbs Sampling: $\bar E$ for different values of $\sigma $ \relax }{figure.caption.19}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Gibbs Sampling: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{23}{figure.caption.20}}
+\newlabel{fig:GS_eta}{{10}{23}{Gibbs Sampling: $\bar E$ for different values of $\eta $ \relax }{figure.caption.20}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {D.4}Appendix 4: Training RBMs with interaction}{23}{subsection.1.D.4}}
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces $P=D=2$, $N=4$: Mean $\mathaccentV {bar}016E$ as a function of training iterations.\relax }}{23}{figure.caption.21}}
+\newlabel{fig:interacting_n4_energy}{{11}{23}{$P=D=2$, $N=4$: Mean $\bar E$ as a function of training iterations.\relax }{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces $P=D=2$, $N=2$: Mean $\mathaccentV {bar}016E$ as a function of training iterations.\relax }}{24}{figure.caption.22}}
+\newlabel{fig:interacting_n2_energy}{{12}{24}{$P=D=2$, $N=2$: Mean $\bar E$ as a function of training iterations.\relax }{figure.caption.22}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces $P=D=2$, $N=2$: Mean $\mathaccentV {hat}05E\sigma $ as a function of training iterations.\relax }}{24}{figure.caption.23}}
+\newlabel{fig:interacting_n2_sigma}{{13}{24}{$P=D=2$, $N=2$: Mean $\hat \sigma $ as a function of training iterations.\relax }{figure.caption.23}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces error \relax }}{25}{figure.caption.24}}
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces $P=D=2$, $N=4$: Mean $\mathaccentV {hat}05E\sigma $ as a function of training iterations.\relax }}{25}{figure.caption.24}}
+\newlabel{fig:interacting_n4_sigma}{{15}{25}{$P=D=2$, $N=4$: Mean $\hat \sigma $ as a function of training iterations.\relax }{figure.caption.24}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Brute Force \& Importance Sampling: Linear regression on $\mathaccentV {bar}016E$ from training iterations $10$ to $20$, based on $10$ simulations \relax }}{26}{figure.caption.25}}
+\newlabel{fig:reg_BFIS}{{16}{26}{Brute Force \& Importance Sampling: Linear regression on $\bar E$ from training iterations $10$ to $20$, based on $10$ simulations \relax }{figure.caption.25}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces Gibbs Sampling: Linear regression on $\mathaccentV {bar}016E$ from training iterations $10$ to $20$, based on $10$ simulations \relax }}{26}{figure.caption.26}}
+\newlabel{fig:reg_GS}{{17}{26}{Gibbs Sampling: Linear regression on $\bar E$ from training iterations $10$ to $20$, based on $10$ simulations \relax }{figure.caption.26}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces Comparison of methods: $\mathaccentV {hat}05E\sigma $ as a function of training iterations for all VMC methods, using $N=2$ and $N=4$. \relax }}{27}{figure.caption.27}}
+\newlabel{fig:reg_sigma_long}{{18}{27}{Comparison of methods: $\hat \sigma $ as a function of training iterations for all VMC methods, using $N=2$ and $N=4$. \relax }{figure.caption.27}{}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers
-\newlabel{eq:Appendix2_grad_a}{{18}{18}{Derivatives w.r.t RBM parameters}{equation.1.B.18}{}}
-\newlabel{eq:Appendix2_grad_b}{{19}{18}{Derivatives w.r.t RBM parameters}{equation.1.B.19}{}}
-\newlabel{eq:Appendix2_grad_b}{{20}{18}{Derivatives w.r.t RBM parameters}{equation.1.B.20}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {C}Appendix 3.}{18}{Appendix.1.C}}
-\newlabel{APP_3}{{C}{18}{Appendix 3}{Appendix.1.C}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {C.1}Appendix 3: Local energy and parameter gradients for Gibbs sampling}{18}{subsection.1.C.1}}
-\newlabel{eq:wfgibs}{{21}{18}{Appendix 3: Local energy and parameter gradients for Gibbs sampling}{equation.1.C.21}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {D}Appendix 4.}{18}{Appendix.1.D}}
-\newlabel{APP_3}{{D}{18}{Appendix 4}{Appendix.1.D}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {D.1}Appendix 4: Testing step length $l$ and $\Delta t$}{18}{subsection.1.D.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {D.2}Appendix 4: Testing learning rate $\eta $}{18}{subsection.1.D.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {D.3}Appendix 4: Testing $\sigma $ and $\eta $ GS}{18}{subsection.1.D.3}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Importance Sampling: $\mathaccentV {hat}05E\sigma $ as a function of $\Delta t$\relax }}{19}{figure.caption.16}}
-\newlabel{fig:app_4_IS}{{7}{19}{Importance Sampling: $\hat \sigma $ as a function of $\Delta t$\relax }{figure.caption.16}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Brute Force $\mathaccentV {hat}05E\sigma $ as a function of $l$\relax }}{19}{figure.caption.17}}
-\newlabel{fig:app_4_BF}{{8}{19}{Brute Force $\hat \sigma $ as a function of $l$\relax }{figure.caption.17}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {9}{\ignorespaces Brute Force: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{20}{figure.caption.18}}
-\newlabel{fig:training_BF}{{9}{20}{Brute Force: $\bar E$ for different values of $\eta $ \relax }{figure.caption.18}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces Importance Sampling: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{20}{figure.caption.19}}
-\newlabel{fig:training_IS}{{10}{20}{Importance Sampling: $\bar E$ for different values of $\eta $ \relax }{figure.caption.19}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces Gibbs Sampling: $\mathaccentV {bar}016E$ for different values of $\sigma $ \relax }}{21}{figure.caption.20}}
-\newlabel{fig:GS_sigma_initial}{{11}{21}{Gibbs Sampling: $\bar E$ for different values of $\sigma $ \relax }{figure.caption.20}{}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces Gibbs Sampling: $\mathaccentV {bar}016E$ for different values of $\eta $ \relax }}{21}{figure.caption.21}}
-\newlabel{fig:GS_eta}{{12}{21}{Gibbs Sampling: $\bar E$ for different values of $\eta $ \relax }{figure.caption.21}{}}
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces GS interacting: Regression on $(\Delta E)^2$ for $N=2$ and $N=4$ hidden nodes. \relax }}{28}{figure.caption.28}}
+\newlabel{fig:GS_reg_last}{{19}{28}{GS interacting: Regression on $(\Delta E)^2$ for $N=2$ and $N=4$ hidden nodes. \relax }{figure.caption.28}{}}
