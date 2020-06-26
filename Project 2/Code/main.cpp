@@ -20,6 +20,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
 
+// system settings
 int n;
 int P = 2;
 int D = 2;
@@ -28,17 +29,21 @@ double omega = 1.0;
 double sigma = 1.0;
 int interaction = 1;
 
+//VMC settings
 int method=0;
 double stepLength = 1.0;
 int numberOfSteps = (int) pow(2,21);
 double equilibration = 0.5;
+
+//Optimization settings
 int GD_iters = 200;
 double learningrate=0.3;
 double learningrate_initial=0.3;
 
+//output
 string folder_name="../../Results/sim_16/";
-
 string tag;
+
 if (argc < 1){
   cout << "Bad Usage: " << argv[0] <<" Too few CL arguments" << endl;
   exit(1);}
@@ -71,10 +76,8 @@ else { cout<<"Provide valid method selection"<<endl; abort(); }
 cout<<" "<<"eta "<<learningrate<<" sigma "<<sigma<<endl;
 
 
-int checkrunstotal=1;
-int average_runs=5;
-
-
+int average_runs=5; // Used to average over noise
+int checkrunstotal=1; // Used to run variations of parameters
 
 for (int a_run=1; a_run<=average_runs;a_run++)
   {
@@ -84,16 +87,18 @@ for (int a_run=1; a_run<=average_runs;a_run++)
 
   for (int checkrun=0; checkrun<checkrunstotal;checkrun++)
     {
+      // learningrate +=0.2
       RBM* rbm = new RBM(GD_iters,m,n,learningrate,sigma,omega);
       for (int run=1; run<=GD_iters;run++)
         {
-        cout<<"Average run"<<a_run<<" run:"<<run<<endl;
+        cout<<"Averaging run"<<a_run<<" run:"<<run<<endl;
         System* system = new System();
 
         system->setRBM                      (rbm,run);
-        //system->setDistances                (interaction,a);
+
         Hamiltonian* ham = new Hamiltonian(system);
         Wavefunction* wf = new Wavefunction(system);
+
         system->setHamiltonian              (ham);
 
         system->setWavefunction             (wf);
@@ -124,11 +129,6 @@ for (int a_run=1; a_run<=average_runs;a_run++)
   write_vector(avr_en_deviation,tag+to_string(a_run)+"_deltaE",folder_name);
   write_vector(avr_error,tag+to_string(a_run)+"_error",folder_name);
 
-
   }
   return 0;
 }
-
-
-
-// remember to change seed in randomuniform
