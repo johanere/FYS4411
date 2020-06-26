@@ -22,10 +22,10 @@ followed by (
 <img src="https://render.githubusercontent.com/render/math?math=\sim 50">
 to 
 <img src="https://render.githubusercontent.com/render/math?math=\sim 100">
- training iterations for $=2 and N=4 respectively) of a slow and close-to linear optimization
+ training iterations for N=2 and N=4 respectively) of a slow and close-to linear optimization
 trajectory (regression coefficient 
 <img src="https://render.githubusercontent.com/render/math?math=\sim 10^{-3}">
-on iterations 10 to $0). Lastly, a phase of exponentially decaying training rates, 
+on iterations 10 to 20). Lastly, a phase of exponentially decaying training rates, 
 which converged both for N=2 and N=4, was observed (up to 200 iterations). RBM optimization using Gibbs Sampling (GS) was conclusively
  shown to follow different optimization trajectories than BF and IS. GS (
 <img src="https://render.githubusercontent.com/render/math?math=\eta=0.26">)
