@@ -1,5 +1,5 @@
 ## FYS4411 - Project 2
-The project report ("Project_paper.pdf") may be found in this folder.
+The project report ("Project_paper.pdf") can be found in this folder.
 #### Folders
 All tex files used to compile the project report may be found under "Tex".  All programs used to obtain the results described in the report is under "Code". Python code used to analyse output from the C++ VMC engine may be found under "data_analysis" in "Results".
 
